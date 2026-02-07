@@ -256,6 +256,71 @@
             .event-card { flex-direction: column; text-align: center; border-left: none; border-top: 4px solid var(--soft-green); }
             .event-time { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 1rem; padding-right: 0; width: 100%;}
         }
+
+        /* --- Welcome & Countdown --- */
+        .welcome-section {
+            background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,250,0.9));
+            padding: 3rem 1rem;
+            margin-top: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(74,93,78,0.06);
+            text-align: center;
+        }
+
+        .welcome-text {
+            max-width: 900px;
+            margin: 0.5rem auto 1.5rem auto;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: var(--white);
+            border: 1px solid rgba(197,160,89,0.15);
+            padding: 1rem 1.2rem;
+            min-width: 90px;
+            border-radius: 8px;
+            box-shadow: 0 6px 18px rgba(74,93,78,0.06);
+        }
+
+        .countdown-item .number {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--dark-green);
+        }
+
+        .countdown-item .label {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 4px;
+        }
+
+        /* --- Things To Do --- */
+        .things-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+        }
+
+        .thing-card {
+            background: var(--white);
+            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(74,93,78,0.05);
+            box-shadow: 0 6px 18px rgba(74,93,78,0.04);
+        }
     </style>
 </head>
 <body>
@@ -271,7 +336,7 @@
 
     <header id="home">
         <p class="hero-date">The Wedding Of</p>
-        <h1 class="hero-names script-font">Anas & Nabiha</h1>
+        <h1 class="hero-names script-font">anas & Nabiha</h1>
         
         <div class="hero-image-container">
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1000" alt="Anas and Nabiha" class="hero-image">
@@ -279,6 +344,30 @@
 
         <p class="hero-date">July 5th, 2026 &bull; San Ramon, California</p>
     </header>
+
+    <section id="welcome" class="welcome-section">
+        <h2 class="section-title">Welcome</h2>
+        <p class="welcome-text">Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us. This celebration is not only about our union, but also about the incredible family and friendships that have shaped us. We hope this occasion is filled with joy, laughter, and lasting memories shared with you.</p>
+
+        <div id="countdown" class="countdown" aria-live="polite">
+            <div class="countdown-item">
+                <div class="number" id="days">0</div>
+                <div class="label">Days</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="hours">0</div>
+                <div class="label">Hours</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="minutes">0</div>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="countdown-item">
+                <div class="number" id="seconds">0</div>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+    </section>
 
     <hr style="width: 50%; margin: 2rem auto; border: 0; border-top: 1px solid #eee;">
 
@@ -289,13 +378,26 @@
         <div class="timeline">
             <div class="event-card">
                 <div class="event-time">
+                    <h4>July 3</h4>
+                    <span>Friday</span>
+                </div>
+                <div class="event-details">
+                    <h3>Dholki</h3>
+                    <p class="event-location">Private Residence / TBD</p>
+                    <p>The Dholki is a lively pre-wedding celebration filled with music and traditional festivities — expect singing, drumming, and joyous gatherings to welcome the upcoming ceremonies.</p>
+                    <div class="dress-code">Dress Code: Festive / Traditional</div>
+                </div>
+            </div>
+
+            <div class="event-card">
+                <div class="event-time">
                     <h4>July 4</h4>
                     <span>Saturday</span>
                 </div>
                 <div class="event-details">
                     <h3>Nikkah Ceremony</h3>
                     <p class="event-location">Evergreen Islamic Center (Tentative)</p>
-                    <p>Join us for our religious marriage ceremony. <br><em>(Timing TBD)</em></p>
+                    <p>The Nikkah is the Islamic marriage ceremony formalizing our union. Join us for our religious marriage ceremony. <br><em>(Timing TBD)</em></p>
                     <div class="dress-code">Dress Code: Modest / Semi-Formal</div>
                 </div>
             </div>
@@ -306,9 +408,9 @@
                     <span>Sunday</span>
                 </div>
                 <div class="event-details">
-                    <h3>Wedding Reception</h3>
+                    <h3>Reception (Shaalima)</h3>
                     <p class="event-location">Canyon View, San Ramon, CA</p>
-                    <p>Dinner, speeches, and celebration overlooking the valley.</p>
+                    <p>The Shaalima is a celebratory reception where family and friends join together for dinner, speeches, and dancing. Dinner, speeches, and celebration overlooking the valley.</p>
                     <div class="dress-code">Dress Code: Formal / Black Tie Optional</div>
                     <a href="https://maps.google.com/?q=Canyon+View+San+Ramon" target="_blank" style="font-size:0.8rem; color:var(--text-light); margin-top:0.5rem; display:block;">View Map &rarr;</a>
                 </div>
@@ -331,9 +433,45 @@
             <div>
                 <h3 style="font-family:'Playfair Display'; margin-bottom:1rem;">Where to Stay</h3>
                 <p>We recommend hotels in the <strong>San Ramon</strong> or <strong>Pleasanton</strong> area.</p>
+                <p>We are so excited to celebrate with you. For guests who would like to stay where many of our family and friends will be staying, please consider the recommended hotels below.</p>
                 <ul style="margin-top:1rem; margin-left:1.5rem; color:var(--text-light);">
                     <li>Marriott San Ramon</li>
                     <li>Hyatt House San Ramon</li>
+                    <li>DoubleTree by Hilton Fremont</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="things" style="padding-top:2rem;">
+        <h2 class="section-title">Things to Do</h2>
+        <p>Explore some local favorites while you're here.</p>
+
+        <div class="things-grid">
+            <div class="thing-card">
+                <h3 style="font-family:'Playfair Display';">Food spots</h3>
+                <ul style="margin-left:1rem; color:var(--text-light);">
+                    <li>Sidewalk Café & Bistro</li>
+                    <li>Valley Terrace Restaurant</li>
+                    <li>Locally Loved: The Curry House</li>
+                </ul>
+            </div>
+
+            <div class="thing-card">
+                <h3 style="font-family:'Playfair Display';">Matcha spots</h3>
+                <ul style="margin-left:1rem; color:var(--text-light);">
+                    <li>Matcha House</li>
+                    <li>Green Leaf Tea</li>
+                    <li>Bean & Blossom Tea Bar</li>
+                </ul>
+            </div>
+
+            <div class="thing-card">
+                <h3 style="font-family:'Playfair Display';">Hike spots</h3>
+                <ul style="margin-left:1rem; color:var(--text-light);">
+                    <li>Las Trampas Regional Wilderness</li>
+                    <li>Black Diamond Mines Regional Preserve</li>
+                    <li>Iron Horse Trail</li>
                 </ul>
             </div>
         </div>
@@ -353,6 +491,57 @@
         <p>WITH LOVE FROM THE BAY AREA</p>
         <p>&copy; 2026 Anas & Nabiha</p>
     </footer>
+</footer>
+
+    <script>
+        // Live countdown to July 5, 2026 (local time)
+        (function(){
+            const target = new Date('2026-07-05T00:00:00');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            const minutesEl = document.getElementById('minutes');
+            const secondsEl = document.getElementById('seconds');
+
+            function updateCountdown(){
+                const now = new Date();
+                const diff = target - now;
+                if(isNaN(diff)) return;
+
+                if(diff <= 0){
+                    daysEl.textContent = '0';
+                    hoursEl.textContent = '0';
+                    minutesEl.textContent = '0';
+                    secondsEl.textContent = '0';
+                    // Optionally show celebratory text
+                    const welcome = document.querySelector('.welcome-text');
+                    if(welcome && !welcome.dataset.posted){
+                        const msg = document.createElement('div');
+                        msg.style.marginTop = '1rem';
+                        msg.style.color = 'var(--primary-gold)';
+                        msg.style.fontWeight = '700';
+                        msg.textContent = "It's celebration time — see you there!";
+                        welcome.appendChild(msg);
+                        welcome.dataset.posted = '1';
+                    }
+                    return;
+                }
+
+                const secs = Math.floor(diff / 1000);
+                const days = Math.floor(secs / (3600 * 24));
+                const hours = Math.floor((secs % (3600 * 24)) / 3600);
+                const minutes = Math.floor((secs % 3600) / 60);
+                const seconds = Math.floor(secs % 60);
+
+                daysEl.textContent = days;
+                hoursEl.textContent = String(hours).padStart(2,'0');
+                minutesEl.textContent = String(minutes).padStart(2,'0');
+                secondsEl.textContent = String(seconds).padStart(2,'0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
 
 </body>
 </html>

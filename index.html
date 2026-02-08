@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
+        html { scroll-behavior: smooth; }
         /* --- CSS VARIABLES & RESET --- */
         :root {
             --primary-gold: #C5A059;
@@ -321,6 +322,37 @@
             border: 1px solid rgba(74,93,78,0.05);
             box-shadow: 0 6px 18px rgba(74,93,78,0.04);
         }
+
+        /* FAQ styling */
+        .faq-content {
+            text-align: left;
+            max-width: 900px;
+            margin: 0.5rem auto 2rem;
+            padding: 0 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.25rem;
+        }
+
+        .faq-item h3 {
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+            color: var(--dark-green);
+        }
+
+        /* Footer small note */
+        .footer-note {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.9);
+            opacity: 0.95;
+            margin-top: 0.5rem;
+            font-style: italic;
+            letter-spacing: 0.5px;
+        }
+
+        /* Extra spacing between bottom sections */
+        #things, #faq, #rsvp { padding-top: 5rem; }
     </style>
 </head>
 <body>
@@ -339,6 +371,7 @@
         <h1 class="hero-names script-font">anas & Nabiha</h1>
         
         <div class="hero-image-container">
+            <!-- TODO: Replace with BP photo -->
             <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1000" alt="Anas and Nabiha" class="hero-image">
         </div>
 
@@ -347,7 +380,7 @@
 
     <section id="welcome" class="welcome-section">
         <h2 class="section-title">Welcome</h2>
-        <p class="welcome-text">Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us. This celebration is not only about our union, but also about the incredible family and friendships that have shaped us. We hope this occasion is filled with joy, laughter, and lasting memories shared with you.</p>
+        <p class="welcome-text">Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us, and we are so grateful you will be part of our special day. This celebration is not only about our union, but also about the incredible family and friendships that have shaped our journey and helped bring us to this moment. We feel truly blessed to be surrounded by so many people who have supported, encouraged, and loved us along the way. We hope this occasion is filled with joy, laughter, and unforgettable memories for everyone celebrating with us. Thank you for taking the time to share in our happiness and for being such an important part of our lives. We cannot wait to celebrate together and create beautiful memories with all of you!</p>
 
         <div id="countdown" class="countdown" aria-live="polite">
             <div class="countdown-item">
@@ -437,7 +470,7 @@
                 <ul style="margin-top:1rem; margin-left:1.5rem; color:var(--text-light);">
                     <li>Marriott San Ramon</li>
                     <li>Hyatt House San Ramon</li>
-                    <li>DoubleTree by Hilton Fremont</li>
+                    <li>DoubleTree by Hilton Fremont - Conveniently located near the Nikkah ceremony and approximately 20 minutes from the Reception venue.</li>
                 </ul>
             </div>
         </div>
@@ -477,6 +510,26 @@
         </div>
     </section>
 
+    <section id="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <div class="faq-content">
+            <div class="faq-item">
+                <h3 style="font-family:'Playfair Display';">Parking</h3>
+                <p>Ample parking available at Canyon View.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 style="font-family:'Playfair Display';">Shuttle</h3>
+                <p>Check back for details.</p>
+            </div>
+
+            <div class="faq-item">
+                <h3 style="font-family:'Playfair Display';">Dress Code</h3>
+                <p>Formal/Black Tie Optional for Reception.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="rsvp">
         <div class="rsvp-section">
             <h2 class="section-title">RSVP</h2>
@@ -489,9 +542,9 @@
     <footer>
         <h2 class="script-font" style="font-size: 2.5rem; margin-bottom: 1rem;">A & N</h2>
         <p>WITH LOVE FROM THE BAY AREA</p>
+        <p class="footer-note">We kindly request no box gifts please</p>
         <p>&copy; 2026 Anas & Nabiha</p>
     </footer>
-</footer>
 
     <script>
         // Live countdown to July 5, 2026 (local time)
@@ -542,6 +595,8 @@
             setInterval(updateCountdown, 1000);
         })();
     </script>
+
+    
 
 </body>
 </html>

@@ -1,602 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anas & Nabihaaaa | July 5, 2026</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our Wedding Celebration - 2026</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        html { scroll-behavior: smooth; }
-        /* --- CSS VARIABLES & RESET --- */
-        :root {
-            --primary-gold: #C5A059;
-            --soft-green: #8FA692;
-            --dark-green: #4A5D4E;
-            --text-dark: #333333;
-            --text-light: #777777;
-            --bg-offwhite: #FAFAFA;
-            --white: #FFFFFF;
-        }
+    :root {
+        /* Color Palette */
+        --sage-green: #7B8E7E;
+        --soft-sage: #F4F6F4;
+        --gold: #C5A059;
+        --dark-gold: #9E7E3F;
+        --primary-text: #3A3F3A;
+        --bg-white: #FFFFFF;
+        
+        /* Fonts */
+        --serif-font: 'Playfair Display', serif;
+        --sans-font: 'Lato', sans-serif;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: var(--sans-font);
+        color: var(--primary-text);
+        scroll-behavior: smooth;
+        background-color: var(--bg-white);
+    }
 
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-offwhite);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    /* Top Navigation */
+    .nav-wrapper {
+        width: 100%;
+        background: var(--bg-white);
+        padding: 25px 0;
+        text-align: center;
+        border-bottom: 1px solid var(--soft-sage);
+    }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            color: var(--text-dark);
-            font-weight: 400;
-        }
+    .nav-wrapper a {
+        text-decoration: none;
+        color: var(--sage-green);
+        margin: 0 18px;
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: color 0.3s;
+    }
 
-        .script-font {
-            font-family: 'Great Vibes', cursive;
-            color: var(--primary-gold);
-            font-weight: 900;
-        }
+    .nav-wrapper a:hover {
+        color: var(--gold);
+    }
 
-        /* --- NAVIGATION --- */
-        nav {
-            text-align: center;
-            padding: 2rem 0;
-            background: var(--white);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
+    /* Hero / Welcome Section */
+    .hero-container {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 80px 20px;
+        text-align: center;
+    }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-        }
+    .hero-container h1 {
+        font-family: var(--serif-font);
+        font-size: 4rem;
+        margin-bottom: 10px;
+        font-weight: 400;
+        color: var(--sage-green);
+    }
 
-        nav a {
-            text-decoration: none;
-            color: var(--text-dark);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            transition: color 0.3s;
-        }
+    /* Countdown Timer */
+    #countdown {
+        font-family: var(--serif-font);
+        font-size: 1.6rem;
+        color: var(--gold);
+        margin: 30px auto;
+        padding: 20px;
+        max-width: 600px;
+        border-top: 1.5px solid var(--soft-sage);
+        border-bottom: 1.5px solid var(--soft-sage);
+        font-style: italic;
+    }
 
-        nav a:hover {
-            color: var(--primary-gold);
-        }
+    /* Section Headings */
+    .section-title {
+        font-family: var(--serif-font);
+        font-size: 2.8rem;
+        margin: 80px 0 40px;
+        text-align: center;
+        color: var(--sage-green);
+    }
 
-        /* --- HEADER / HERO --- */
-        header {
-            text-align: center;
-            padding: 4rem 1rem;
-            background-color: var(--white);
-            position: relative;
-        }
+    /* Event Cards */
+    .event-card {
+        background: var(--soft-sage); /* Light sage background */
+        padding: 40px;
+        border: 1px solid #E2E8E2;
+        text-align: center;
+        border-radius: 4px; /* Optional: slight rounding for a modern look */
+    }
 
-        /* Floral Top Border Effect (CSS Gradient simulation or replace with img) */
-        header::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100px;
-            background-image: url('https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&q=80&w=2000'); /* Placeholder Floral */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.8;
-            mask-image: linear-gradient(to bottom, black, transparent);
-            -webkit-mask-image: linear-gradient(to bottom, black, transparent);
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-        }
+    .event-card h3 {
+        font-family: var(--serif-font);
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--sage-green);
+    }
 
-        .hero-names {
-            font-size: 5rem;
-            margin: 1rem 0;
-            line-height: 1.2;
-        }
+    .event-meta {
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.85rem;
+        margin-bottom: 15px;
+        font-weight: 700;
+    }
 
-        .hero-date {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-light);
-            margin-top: 1rem;
-        }
+    /* Travel/Hotel Section */
+    .travel-section {
+        background-color: var(--sage-green); /* Sage background for contrast */
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
 
-        .hero-image-container {
-            max-width: 800px;
-            margin: 3rem auto;
-            position: relative;
-            padding: 10px;
-            border: 1px solid var(--primary-gold);
-        }
+    .travel-section .section-title {
+        color: white;
+        margin-top: 0;
+    }
 
-        .hero-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: sepia(10%); /* Adds a slight vintage warmth */
-        }
+    .hotel-card {
+        background: white;
+        color: var(--primary-text);
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 40px;
+        border-top: 5px solid var(--gold); /* Gold accent bar */
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
 
-        /* --- SECTIONS COMMON --- */
-        section {
-            padding: 4rem 1rem;
-            max-width: 900px;
-            margin: 0 auto;
-            text-align: center;
-        }
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 14px 35px;
+        border: 1px solid var(--gold);
+        background: transparent;
+        text-decoration: none;
+        color: var(--gold);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        transition: 0.4s;
+    }
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
+    .btn:hover {
+        background: var(--gold);
+        color: white;
+        border-color: var(--gold);
+    }
 
-        .section-title::after {
-            content: '❦'; /* decorative flourish */
-            display: block;
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-            margin-top: 0.5rem;
-        }
-
-        /* --- ITINERARY / TIMELINE --- */
-        .timeline {
-            margin-top: 3rem;
-            text-align: left;
-        }
-
-        .event-card {
-            background: var(--white);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--soft-green);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .event-time {
-            flex: 0 0 100px;
-            text-align: center;
-            border-right: 1px solid #eee;
-            padding-right: 1rem;
-        }
-
-        .event-time h4 {
-            font-size: 1.5rem;
-            color: var(--dark-green);
-        }
-
-        .event-details {
-            flex: 1;
-        }
-
-        .event-details h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .event-location {
-            color: var(--text-light);
-            font-style: italic;
-            margin-bottom: 1rem;
-        }
-
-        .dress-code {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--primary-gold);
-            font-weight: 700;
-        }
-
-        /* --- RSVP SECTION --- */
-        .rsvp-section {
-            background-color: var(--white);
-            border: 1px solid var(--primary-gold);
-            padding: 4rem 2rem;
-            margin-top: 3rem;
-        }
-
-        .btn-primary {
-            display: inline-block;
-            background-color: var(--dark-green);
-            color: var(--white);
-            padding: 1rem 3rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-            transition: background 0.3s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-gold);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--dark-green);
-            color: var(--white);
-            text-align: center;
-            padding: 3rem 1rem;
-            margin-top: 4rem;
-        }
-
-        footer p {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            opacity: 0.8;
-        }
-
-        /* --- MOBILE TWEAKS --- */
-        @media (max-width: 768px) {
-            .hero-names { font-size: 3.5rem; }
-            nav ul { gap: 1rem; flex-wrap: wrap; }
-            .event-card { flex-direction: column; text-align: center; border-left: none; border-top: 4px solid var(--soft-green); }
-            .event-time { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 1rem; padding-right: 0; width: 100%;}
-        }
-
-        /* --- Welcome & Countdown --- */
-        .welcome-section {
-            background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(250,250,250,0.9));
-            padding: 3rem 1rem;
-            margin-top: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(74,93,78,0.06);
-            text-align: center;
-        }
-
-        .welcome-text {
-            max-width: 900px;
-            margin: 0.5rem auto 1.5rem auto;
-            color: var(--text-dark);
-            font-size: 1.05rem;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .countdown-item {
-            background: var(--white);
-            border: 1px solid rgba(197,160,89,0.15);
-            padding: 1rem 1.2rem;
-            min-width: 90px;
-            border-radius: 8px;
-            box-shadow: 0 6px 18px rgba(74,93,78,0.06);
-        }
-
-        .countdown-item .number {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--dark-green);
-        }
-
-        .countdown-item .label {
-            font-size: 0.75rem;
-            color: var(--text-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        /* --- Things To Do --- */
-        .things-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            text-align: left;
-        }
-
-        .thing-card {
-            background: var(--white);
-            padding: 1rem 1.2rem;
-            border-radius: 10px;
-            border: 1px solid rgba(74,93,78,0.05);
-            box-shadow: 0 6px 18px rgba(74,93,78,0.04);
-        }
-
-        /* FAQ styling */
-        .faq-content {
-            text-align: left;
-            max-width: 900px;
-            margin: 0.5rem auto 2rem;
-            padding: 0 1rem;
-        }
-
-        .faq-item {
-            margin-bottom: 1.25rem;
-        }
-
-        .faq-item h3 {
-            font-weight: 700;
-            margin-bottom: 0.25rem;
-            color: var(--dark-green);
-        }
-
-        /* Footer small note */
-        .footer-note {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.9);
-            opacity: 0.95;
-            margin-top: 0.5rem;
-            font-style: italic;
-            letter-spacing: 0.5px;
-        }
-
-        /* Extra spacing between bottom sections */
-        #things, #faq, #rsvp { padding-top: 5rem; }
-    </style>
+    footer {
+        padding: 60px 0;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--sage-green);
+        letter-spacing: 2px;
+        opacity: 0.7;
+    }
+</style>
 </head>
 <body>
 
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#schedule">Itinerary</a></li>
-            <li><a href="#travel">Travel & Stay</a></li>
-            <li><a href="#rsvp">RSVP</a></li>
-        </ul>
+    <nav class="nav-wrapper">
+        <a href="#home">Home</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#travel">Travel</a>
+        <a href="#activities">Things to Do</a>
+        <a href="#faq">FAQ</a>
     </nav>
 
-    <header id="home">
-        <p class="hero-date">The Wedding Of</p>
-        <h1 class="hero-names script-font">anas & Nabiha</h1>
+    <section id="home" class="hero-container">
+        <h1>Welcome to Our Wedding!</h1>
+        <div id="countdown">Loading Countdown...</div>
         
-        <div class="hero-image-container">
-            <!-- TODO: Replace with BP photo -->
-            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=1000" alt="Anas and Nabiha" class="hero-image">
-        </div>
-
-        <p class="hero-date">July 5th, 2026 &bull; San Ramon, California</p>
-    </header>
-
-    <section id="welcome" class="welcome-section">
-        <h2 class="section-title">Welcome</h2>
-        <p class="welcome-text">Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us, and we are so grateful you will be part of our special day. This celebration is not only about our union, but also about the incredible family and friendships that have shaped our journey and helped bring us to this moment. We feel truly blessed to be surrounded by so many people who have supported, encouraged, and loved us along the way. We hope this occasion is filled with joy, laughter, and unforgettable memories for everyone celebrating with us. Thank you for taking the time to share in our happiness and for being such an important part of our lives. We cannot wait to celebrate together and create beautiful memories with all of you!</p>
-
-        <div id="countdown" class="countdown" aria-live="polite">
-            <div class="countdown-item">
-                <div class="number" id="days">0</div>
-                <div class="label">Days</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="hours">0</div>
-                <div class="label">Hours</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="minutes">0</div>
-                <div class="label">Minutes</div>
-            </div>
-            <div class="countdown-item">
-                <div class="number" id="seconds">0</div>
-                <div class="label">Seconds</div>
-            </div>
+        <div class="welcome-text">
+            <p>Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us.</p>
+            <p>This celebration is not only about our union, but also about the incredible family and friendships that have shaped our journey. We cannot wait to celebrate together!</p>
         </div>
     </section>
-
-    <hr style="width: 50%; margin: 2rem auto; border: 0; border-top: 1px solid #eee;">
 
     <section id="schedule">
-        <h2 class="section-title">The Weekend</h2>
-        <p>We can't wait to celebrate with you! Here is what to expect.</p>
-
-        <div class="timeline">
+        <h2 class="section-title">The Events</h2>
+        <div class="event-grid">
             <div class="event-card">
-                <div class="event-time">
-                    <h4>July 3</h4>
-                    <span>Friday</span>
-                </div>
-                <div class="event-details">
-                    <h3>Dholki</h3>
-                    <p class="event-location">Private Residence / TBD</p>
-                    <p>The Dholki is a lively pre-wedding celebration filled with music and traditional festivities — expect singing, drumming, and joyous gatherings to welcome the upcoming ceremonies.</p>
-                    <div class="dress-code">Dress Code: Festive / Traditional</div>
-                </div>
+                <h3>Dholki</h3>
+                <p class="event-meta">July 3, 2026 • 6:00 PM</p>
+                <p><strong>Fremont Downtown Event Center</strong><br>3500 Capitol Ave, Fremont, CA 94538</p>
+                <p class="event-description">A lively pre-wedding celebration filled with music and traditional festivities. Dress Code: Traditional.</p>
             </div>
 
             <div class="event-card">
-                <div class="event-time">
-                    <h4>July 4</h4>
-                    <span>Saturday</span>
-                </div>
-                <div class="event-details">
-                    <h3>Nikkah Ceremony</h3>
-                    <p class="event-location">Evergreen Islamic Center (Tentative)</p>
-                    <p>The Nikkah is the Islamic marriage ceremony formalizing our union. Join us for our religious marriage ceremony. <br><em>(Timing TBD)</em></p>
-                    <div class="dress-code">Dress Code: Modest / Semi-Formal</div>
-                </div>
+                <h3>Nikkah</h3>
+                <p class="event-meta">July 4, 2026 • Dhuhr</p>
+                <p><strong>Evergreen Islamic Center</strong><br>2486 Ruby Ave, San Jose, CA 95148</p>
+                <p class="event-description">The sacred marriage ceremony where we formally enter into marriage. Dress Code: Traditional.</p>
             </div>
 
             <div class="event-card">
-                <div class="event-time">
-                    <h4>July 5</h4>
-                    <span>Sunday</span>
-                </div>
-                <div class="event-details">
-                    <h3>Reception (Shaalima)</h3>
-                    <p class="event-location">Canyon View, San Ramon, CA</p>
-                    <p>The Shaalima is a celebratory reception where family and friends join together for dinner, speeches, and dancing. Dinner, speeches, and celebration overlooking the valley.</p>
-                    <div class="dress-code">Dress Code: Formal / Black Tie Optional</div>
-                    <a href="https://maps.google.com/?q=Canyon+View+San+Ramon" target="_blank" style="font-size:0.8rem; color:var(--text-light); margin-top:0.5rem; display:block;">View Map &rarr;</a>
-                </div>
+                <h3>Shaalima</h3>
+                <p class="event-meta">July 5, 2026 • 6:00 PM</p>
+                <p><strong>Canyon View Event Center</strong><br>680 Bollinger Canyon Way, San Ramon, CA 94582</p>
+                <p class="event-description">A celebratory reception to share an evening of dining and joy with our loved ones. Dress Code: Traditional.</p>
             </div>
         </div>
     </section>
 
-    <section id="travel" style="background-color: var(--white);">
-        <h2 class="section-title">Travel & Accommodations</h2>
+    <section id="travel" class="travel-section">
+        <h2 class="section-title">Where to Stay</h2>
+        <p style="max-width: 600px; margin: 0 auto;">We recommend the hotel below to make it easier to connect and travel to events together!</p>
         
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left; margin-top: 2rem;">
-            <div>
-                <h3 style="font-family:'Playfair Display'; margin-bottom:1rem;">The Venue</h3>
-                <p><strong>Canyon View</strong><br>
-                680 Bollinger Canyon Way<br>
-                San Ramon, CA 94582</p>
-                <br>
-                <p>Located in the beautiful Tri-Valley area, the venue offers plenty of parking and stunning sunset views.</p>
-            </div>
-            <div>
-                <h3 style="font-family:'Playfair Display'; margin-bottom:1rem;">Where to Stay</h3>
-                <p>We recommend hotels in the <strong>San Ramon</strong> or <strong>Pleasanton</strong> area.</p>
-                <p>We are so excited to celebrate with you. For guests who would like to stay where many of our family and friends will be staying, please consider the recommended hotels below.</p>
-                <ul style="margin-top:1rem; margin-left:1.5rem; color:var(--text-light);">
-                    <li>Marriott San Ramon</li>
-                    <li>Hyatt House San Ramon</li>
-                    <li>DoubleTree by Hilton Fremont - Conveniently located near the Nikkah ceremony and approximately 20 minutes from the Reception venue.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="things" style="padding-top:2rem;">
-        <h2 class="section-title">Things to Do</h2>
-        <p>Explore some local favorites while you're here.</p>
-
-        <div class="things-grid">
-            <div class="thing-card">
-                <h3 style="font-family:'Playfair Display';">Food spots</h3>
-                <ul style="margin-left:1rem; color:var(--text-light);">
-                    <li>Sidewalk Café & Bistro</li>
-                    <li>Valley Terrace Restaurant</li>
-                    <li>Locally Loved: The Curry House</li>
-                </ul>
-            </div>
-
-            <div class="thing-card">
-                <h3 style="font-family:'Playfair Display';">Matcha spots</h3>
-                <ul style="margin-left:1rem; color:var(--text-light);">
-                    <li>Matcha House</li>
-                    <li>Green Leaf Tea</li>
-                    <li>Bean & Blossom Tea Bar</li>
-                </ul>
-            </div>
-
-            <div class="thing-card">
-                <h3 style="font-family:'Playfair Display';">Hike spots</h3>
-                <ul style="margin-left:1rem; color:var(--text-light);">
-                    <li>Las Trampas Regional Wilderness</li>
-                    <li>Black Diamond Mines Regional Preserve</li>
-                    <li>Iron Horse Trail</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq">
-        <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="faq-content">
-            <div class="faq-item">
-                <h3 style="font-family:'Playfair Display';">Parking</h3>
-                <p>Ample parking available at Canyon View.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3 style="font-family:'Playfair Display';">Shuttle</h3>
-                <p>Check back for details.</p>
-            </div>
-
-            <div class="faq-item">
-                <h3 style="font-family:'Playfair Display';">Dress Code</h3>
-                <p>Formal/Black Tie Optional for Reception.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="rsvp">
-        <div class="rsvp-section">
-            <h2 class="section-title">RSVP</h2>
-            <p>Please let us know if you will be joining us by <strong>June 1, 2026</strong>.</p>
-            
-            <a href="#" class="btn-primary">Click here to RSVP</a>
+        <div class="hotel-card">
+            <h3>DoubleTree by Hilton</h3>
+            <p>39900 Balentine Drive, Newark, CA 94560</p>
+            <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn">Book Your Stay</a>
         </div>
     </section>
 
     <footer>
-        <h2 class="script-font" style="font-size: 2.5rem; margin-bottom: 1rem;">A & N</h2>
-        <p>WITH LOVE FROM THE BAY AREA</p>
-        <p class="footer-note">We kindly request no box gifts please</p>
-        <p>&copy; 2026 Anas & Nabiha</p>
+        <p>2026 • MADE WITH LOVE</p>
     </footer>
 
     <script>
-        // Live countdown to July 5, 2026 (local time)
-        (function(){
-            const target = new Date('2026-07-05T00:00:00');
-            const daysEl = document.getElementById('days');
-            const hoursEl = document.getElementById('hours');
-            const minutesEl = document.getElementById('minutes');
-            const secondsEl = document.getElementById('seconds');
+        // Set the date we're counting down to
+        const weddingDate = new Date("July 4, 2026 1:30:00").getTime();
 
-            function updateCountdown(){
-                const now = new Date();
-                const diff = target - now;
-                if(isNaN(diff)) return;
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-                if(diff <= 0){
-                    daysEl.textContent = '0';
-                    hoursEl.textContent = '0';
-                    minutesEl.textContent = '0';
-                    secondsEl.textContent = '0';
-                    // Optionally show celebratory text
-                    const welcome = document.querySelector('.welcome-text');
-                    if(welcome && !welcome.dataset.posted){
-                        const msg = document.createElement('div');
-                        msg.style.marginTop = '1rem';
-                        msg.style.color = 'var(--primary-gold)';
-                        msg.style.fontWeight = '700';
-                        msg.textContent = "It's celebration time — see you there!";
-                        welcome.appendChild(msg);
-                        welcome.dataset.posted = '1';
-                    }
-                    return;
-                }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
 
-                const secs = Math.floor(diff / 1000);
-                const days = Math.floor(secs / (3600 * 24));
-                const hours = Math.floor((secs % (3600 * 24)) / 3600);
-                const minutes = Math.floor((secs % 3600) / 60);
-                const seconds = Math.floor(secs % 60);
+            document.getElementById("countdown").innerHTML = days + " Days, " + hours + " Hours, " + minutes + " Minutes until we celebrate!";
 
-                daysEl.textContent = days;
-                hoursEl.textContent = String(hours).padStart(2,'0');
-                minutesEl.textContent = String(minutes).padStart(2,'0');
-                secondsEl.textContent = String(seconds).padStart(2,'0');
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "The celebration has begun!";
             }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        })();
+        }, 1000);
     </script>
-
-    
 
 </body>
 </html>

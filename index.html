@@ -73,6 +73,22 @@
         color: var(--sage-green);
     }
 
+    /* Hero banner image */
+    .hero-banner {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto 30px;
+        overflow: hidden;
+        border-radius: 6px;
+    }
+
+    .hero-banner img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
     /* Countdown Timer */
     #countdown {
         font-family: var(--serif-font);
@@ -83,7 +99,6 @@
         max-width: 600px;
         border-top: 1.5px solid var(--soft-sage);
         border-bottom: 1.5px solid var(--soft-sage);
-        font-style: italic;
     }
 
     /* Section Headings */
@@ -180,13 +195,17 @@
     <nav class="nav-wrapper">
         <a href="#home">Home</a>
         <a href="#schedule">Schedule</a>
+        <a href="events.html">Events</a>
         <a href="#travel">Travel</a>
         <a href="#activities">Things to Do</a>
         <a href="#faq">FAQ</a>
     </nav>
 
     <section id="home" class="hero-container">
-        <h1>Welcomeeeee to Our Wedding!</h1>
+        <div class="hero-banner">
+            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Wedding couple banner">
+        </div>
+        <h1>Welcome to Our Wedding!</h1>
         <div id="countdown">Loading Countdown...</div>
         
         <div class="welcome-text">
@@ -202,7 +221,7 @@
                 <h3>Dholki</h3>
                 <p class="event-meta">July 3, 2026 • 6:00 PM</p>
                 <p><strong>Fremont Downtown Event Center</strong><br>3500 Capitol Ave, Fremont, CA 94538</p>
-                <p class="event-description">A lively pre-wedding celebration filled with music and traditional festivities. Dress Code: Traditional.</p>
+                <p class="event-description">A lsssslively pre-wedding celebration filled with music and traditional festivities. Dress Code: Traditional.</p>
             </div>
 
             <div class="event-card">

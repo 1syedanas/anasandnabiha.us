@@ -1,627 +1,852 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Our Wedding Celebration - 2026</title>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
-    :root {
-        /* Color Palette */
-        --sage-green: #7B8E7E;
-        --soft-sage: #F4F6F4;
-        --gold: #C5A059;
-        --dark-gold: #9E7E3F;
-        --primary-text: #3A3F3A;
-        --bg-white: #FFFFFF;
+        :root {
+            /* Color Palette */
+            --sage-green: #7B8E7E;
+            --soft-sage: #F4F6F4;
+            --gold: #C5A059;
+            --dark-gold: #9E7E3F;
+            --primary-text: #3A3F3A;
+            --bg-white: #FFFFFF;
+
+            /* Fonts */
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Lato', sans-serif;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            scroll-behavior: smooth;
+            background-color: var(--bg-white);
+        }
         
-        /* Fonts */
-        --serif-font: 'Playfair Display', serif;
-        --sans-font: 'Lato', sans-serif;
-    }
+        html {
+            scroll-snap-type: y proximity;
+            scroll-padding-top: 20px;
+        }
 
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: var(--sans-font);
-        color: var(--primary-text);
-        scroll-behavior: smooth;
-        background-color: var(--bg-white);
-    }
+        .snap-section {
+            scroll-snap-align: start;
+            scroll-snap-stop: normal;
+            scroll-margin-top: 20px;
+        }
 
-    /* Top Navigation */
-    .nav-wrapper {
-        width: auto;
-        background: transparent;
-        padding: 0;
-        text-align: left;
-        position: fixed;
-        top: 18px;
-        left: 18px;
-        z-index: 1100;
-    }
+        /* Top Navigation */
+        .nav-wrapper {
+            width: auto;
+            background: transparent;
+            padding: 0;
+            text-align: left;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            z-index: 9999;
+        }
 
-    .nav-wrapper a {
-        text-decoration: none;
-        color: var(--sage-green);
-        margin: 0 18px;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-weight: 700;
-        transition: color 0.3s;
-    }
+        /* You can remove or comment out the .menu-close styles */
 
-    .nav-wrapper a:hover {
-        color: var(--gold);
-    }
+        .nav-wrapper a {
+            text-decoration: none;
+            color: var(--sage-green);
+            margin: 0 18px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
 
-    /* Left options menu (replaces top links) */
-    .menu-btn {
-        width: 46px;
-        height: 46px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        background: var(--bg-white);
-        border: 1px solid rgba(58,63,58,0.06);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-        cursor: pointer;
-    }
+        .nav-wrapper a:hover {
+            color: var(--gold);
+        }
 
-    .hamburger {
-        width: 20px;
-        height: 2px;
-        background: var(--sage-green);
-        position: relative;
-        display: inline-block;
-    }
+        /* Left options menu (replaces top links) */
+        .menu-btn {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+        }
 
-    .hamburger::before,
-    .hamburger::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 20px;
-        height: 2px;
-        background: var(--sage-green);
-    }
+        .hamburger {
+            width: 24px;
+            height: 1.7px;
+            background: var(--sage-green);
+            position: relative;
+            display: inline-block;
+            -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 2px;
+            background: var(--sage-green);
+            -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
 
-    .menu-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(26,28,26,0.94);
-        backdrop-filter: blur(6px);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.35s ease, visibility 0.35s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 1050;
-    }
+        .hamburger::before {
+            top: -6px;
+        }
 
-    .menu-overlay.open {
-        opacity: 1;
-        visibility: visible;
-    }
+        .hamburger::after {
+            top: 6px;
+        }
 
-    .menu-inner {
-        text-align: center;
-    }
+        /* Hamburger to X animation */
+        .menu-btn.active .hamburger {
+            background: transparent;
+            /* Hides middle bar */
+        }
 
-    .menu-link {
-        display: block;
-        color: var(--soft-sage);
-        font-family: var(--serif-font);
-        font-size: 2rem;
-        margin: 18px 0;
-        text-decoration: none;
-    }
+        /* Change both bars to sage green and ensure they are visible */
+        .menu-btn.active .hamburger::before,
+        .menu-btn.active .hamburger::after {
+            background: var(--sage-green);
+            top: 0;
+        }
 
-    .menu-close {
-        position: absolute;
-        top: 18px;
-        right: 18px;
-        color: var(--soft-sage);
-        background: transparent;
-        border: none;
-        font-size: 1.2rem;
-        cursor: pointer;
-    }
+        .menu-btn.active .hamburger::before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
 
-    /* Page transition when navigating between pages */
-    body.page-exit {
-        opacity: 0;
-        transform: translateY(8px);
-        transition: opacity 0.42s ease, transform 0.42s ease;
-    }
+        .menu-btn.active .hamburger::after {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
 
-    /* Hero / Welcome Section */
-    .hero-container {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 80px 20px;
-        text-align: center;
-    }
+        /* Make the button background transparent when menu is open */
+        .menu-btn.active {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
 
-    .hero-container h1 {
-        font-family: var(--serif-font);
-        font-size: 4rem;
-        margin-bottom: 10px;
-        font-weight: 400;
-        color: var(--sage-green);
-    }
-
-    /* Hero banner image */
-    .hero-banner {
-        width: 100%;
-        max-width: 1000px;
-        margin: 0 auto 30px;
-        overflow: hidden;
-        border-radius: 6px;
-    }
-
-    .hero-banner img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-        mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-    }
-
-    /* Countdown Timer */
-    #countdown {
-        font-family: var(--serif-font);
-        font-size: 1.6rem;
-        color: var(--gold);
-        margin: 30px auto;
-        padding: 20px;
-        max-width: 600px;
-        border-top: 1.5px solid var(--soft-sage);
-        border-bottom: 1.5px solid var(--soft-sage);
-    }
-
-    /* Section Headings */
-    .section-title {
-        font-family: var(--serif-font);
-        font-size: 2.8rem;
-        margin: 80px 0 40px;
-        text-align: center;
-        color: var(--sage-green);
-    }
-
-    /* Event Cards */
-    .event-card {
-        background: var(--soft-sage); /* Light sage background */
-        padding: 40px;
-        border: 1px solid #E2E8E2;
-        text-align: center;
-        border-radius: 4px; /* Optional: slight rounding for a modern look */
-    }
-
-    .event-card h3 {
-        font-family: var(--serif-font);
-        font-size: 2rem;
-        margin-bottom: 10px;
-        color: var(--sage-green);
-    }
-
-    .event-meta {
-        color: var(--gold);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.85rem;
-        margin-bottom: 15px;
-        font-weight: 700;
-    }
-
-    /* Travel/Hotel Section */
-    .travel-section {
-        background-color: var(--sage-green); /* Sage background for contrast */
-        color: white;
-        padding: 100px 20px;
-        text-align: center;
-    }
-
-    .travel-section .section-title {
-        color: white;
-        margin-top: 0;
-    }
-
-    .hotel-card {
-        background: white;
-        color: var(--primary-text);
-        max-width: 600px;
-        margin: 30px auto;
-        padding: 40px;
-        border-top: 5px solid var(--gold); /* Gold accent bar */
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-
-    /* Buttons */
-    .btn {
-        display: inline-block;
-        margin-top: 20px;
-        padding: 14px 35px;
-        border: 1px solid var(--gold);
-        background: transparent;
-        text-decoration: none;
-        color: var(--gold);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        transition: 0.4s;
-    }
-
-    .btn:hover {
-        background: var(--gold);
-        color: white;
-        border-color: var(--gold);
-    }
-
-    /* Countdown Section */
-    .countdown-section {
-        background: linear-gradient(135deg, var(--soft-sage) 0%, rgba(251, 251, 251, 0.8) 100%);
-        padding: 120px 20px;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .countdown-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: radial-gradient(circle at 20% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(123, 142, 126, 0.05) 0%, transparent 50%);
-        pointer-events: none;
-    }
-
-    .countdown-content {
-        max-width: 900px;
-        margin: 0 auto;
-        position: relative;
-        z-index: 1;
-    }
-
-    .countdown-section h2 {
-        font-family: var(--serif-font);
-        font-size: 2.2rem;
-        color: var(--sage-green);
-        margin-bottom: 30px;
-        font-weight: 400;
-        opacity: 0;
-        transform: translateY(-16px);
-    }
-
-    .countdown-section.in-view h2 {
-        animation: fadeInDown 0.8s ease-out 0.15s forwards;
-    }
-
-    /* Large day-focused countdown */
-    .countdown-display.big {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 40px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-
-    .big-count {
-        text-align: center;
-    }
-
-    .big-number {
-        font-family: var(--serif-font);
-        font-size: 6rem;
-        color: var(--gold);
-        line-height: 1;
-        font-weight: 700;
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    .countdown-section.in-view .big-number {
-        animation: fadeInUp 0.8s ease-out 0.25s forwards;
-    }
-
-    .big-label {
-        font-size: 0.9rem;
-        color: var(--sage-green);
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        margin-top: 6px;
-        opacity: 0;
-        transform: translateY(12px);
-    }
-
-    .countdown-section.in-view .big-label {
-        animation: fadeInUp 0.6s ease-out 0.4s forwards;
-    }
-
-    /* small hours/minutes removed — only large days shown */
-
-    .countdown-number {
-        font-family: var(--serif-font);
-        font-size: 1.8rem;
-        color: var(--gold);
-        font-weight: 700;
-        line-height: 1;
-        margin-bottom: 6px;
-    }
-
-    .countdown-label {
-        font-size: 0.72rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--sage-green);
-        font-weight: 700;
-    }
-
-    .countdown-message {
-        font-family: var(--serif-font);
-        font-size: 1.2rem;
-        color: var(--sage-green);
-        font-style: italic;
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    .countdown-section.in-view .countdown-message {
-        animation: fadeInUp 0.8s ease-out 0.7s forwards;
-    }
-
-    @keyframes fadeInUp {
-        from {
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(244, 246, 244, 0.4);
+            /* Frosted glass effect with transparency */
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
             opacity: 0;
-            transform: translateY(30px);
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 1050;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 
-    @keyframes fadeInDown {
-        from {
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-inner {
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .menu-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 8px 6px;
+
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--sage-green);
+            text-decoration: none;
+            letter-spacing: 2px;
+            line-height: 1;
+
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s;
+            
+            /* Remove default tap/click highlight */
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* First menu item has underline by default */
+        .menu-link:first-child {
+            border-bottom-color: var(--sage-green);
+        }
+
+        /* Hover and active state to make it interactive */
+        .menu-link:hover,
+        .menu-link:active,
+        .menu-link:focus {
+            color: var(--sage-green);
+            border-bottom-color: var(--sage-green);
+            transform: translateY(-2px);
+            background: rgba(255, 192, 203, 0.15);
+            border-radius: 4px;
+        }
+
+        /* Mobile scaling as per your snippet */
+        @media (max-width: 640px) {
+            .menu-link {
+                font-size: calc(16px * 0.875);
+                margin: 0 auto;
+            }
+        }
+
+
+        /* Page transition when navigating between pages */
+        body.page-exit {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(8px);
+            transition: opacity 0.42s ease, transform 0.42s ease;
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        /* Hero / Welcome Section */
+        .hero-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px 24px 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
         }
-    }
 
-    /* Timeline/Events Story Section */
-    .timeline-section {
-        padding: 100px 20px;
-        background-color: var(--bg-white);
-    }
-
-    .timeline-container {
-        max-width: 1100px;
-        margin: 0 auto;
-    }
-
-    .timeline-header {
-        text-align: center;
-        margin-bottom: 80px;
-    }
-
-    .timeline-title {
-        font-family: var(--serif-font);
-        font-size: 2.8rem;
-        color: var(--sage-green);
-        margin-bottom: 20px;
-        font-weight: 400;
-    }
-
-    .timeline-intro {
-        font-size: 1rem;
-        color: var(--primary-text);
-        max-width: 600px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-
-    .timeline-items {
-        display: flex;
-        flex-direction: column;
-        gap: 50px;
-    }
-
-    .timeline-item-block {
-        will-change: width, height;
-        width: 0%;
-        overflow: hidden;
-    }
-
-    .timeline-section.in-view .timeline-item-block {
-        animation: expandWidth 0.8s ease-out forwards;
-    }
-
-    .timeline-section.in-view .timeline-item-block:nth-child(1) { animation-delay: 0.1s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(2) { animation-delay: 0.25s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(3) { animation-delay: 0.4s; }
-
-    .timeline-item-flex {
-        display: flex;
-        gap: 30px;
-        align-items: flex-start;
-        padding: 20px 0;
-    }
-
-    .timeline-date-text {
-        will-change: transform;
-        transform: translate3d(0px, 100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-        transform-style: preserve-3d;
-        font-family: var(--serif-font);
-        font-size: 1.8rem;
-        color: var(--gold);
-        font-weight: 700;
-        min-width: 140px;
-        flex-shrink: 0;
-    }
-
-    .timeline-section.in-view .timeline-date-text {
-        animation: slideUpText 0.8s ease-out forwards;
-    }
-
-    .timeline-section.in-view .timeline-item-block:nth-child(1) .timeline-date-text { animation-delay: 0.2s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(2) .timeline-date-text { animation-delay: 0.35s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(3) .timeline-date-text { animation-delay: 0.5s; }
-
-    .timeline-content-text {
-        will-change: transform;
-        transform: translate3d(0px, 100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-        transform-style: preserve-3d;
-    }
-
-    .timeline-section.in-view .timeline-content-text {
-        animation: slideUpText 0.8s ease-out forwards;
-    }
-
-    .timeline-section.in-view .timeline-item-block:nth-child(1) .timeline-content-text { animation-delay: 0.25s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(2) .timeline-content-text { animation-delay: 0.4s; }
-    .timeline-section.in-view .timeline-item-block:nth-child(3) .timeline-content-text { animation-delay: 0.55s; }
-
-    .timeline-event-name {
-        font-family: var(--serif-font);
-        font-size: 1.5rem;
-        color: var(--sage-green);
-        margin-bottom: 8px;
-        font-weight: 400;
-    }
-
-    .timeline-event-desc {
-        font-size: 0.95rem;
-        color: var(--primary-text);
-        line-height: 1.7;
-        opacity: 0.85;
-    }
-
-    @keyframes expandWidth {
-        from {
-            width: 0%;
+        .hero-container h1 {
+            line-height: 1;
+            margin: 0 auto 8px auto;
+            font-family: 'Playfair Display SC', serif;
+            color: #404041;
+            font-size: 60px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            padding-top: 0;
+            padding-bottom: 30px;
         }
-        to {
+
+        @media (max-width: 640px) {
+            .hero-container h1 {
+                font-size: calc(60px * 0.75);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-container h1 {
+                padding-top: 40px;
+            }
+        }
+
+        @media (min-width: 1920px) {
+            .hero-container h1 {
+                padding-top: 230px;
+            }
+        }
+
+        .event-date {
+            line-height: 1;
+            margin: 8px 0;
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 3px;
+            color: #404041;
+            font-size: 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .event-countdown {
+            font-size: 36px;
+            margin-top: 0px;
+        }
+
+        .hero-countdown-slot .event-countdown {
+            font-size: 26px;
+        }
+
+        .hero-countdown-slot {
+            text-align: center;
+            margin: 0 0 4px;
+        }
+
+        @media (max-width: 640px) {
+            .event-date {
+                font-size: calc(20px * 0.75);
+            }
+
+            .event-countdown {
+                font-size: calc(36px * 0.75);
+            }
+        }
+
+        /* Hero banner image */
+        .hero-banner {
             width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 10px;
+            overflow: hidden;
+            border-radius: 6px;
         }
-    }
 
-    @keyframes slideUpText {
-        from {
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+        }
+
+        /* Countdown Timer */
+        #countdown {
+            font-family: var(--serif-font);
+            font-size: 1.6rem;
+            color: var(--gold);
+            margin: 30px auto;
+            padding: 20px;
+            max-width: 600px;
+            border-top: 1.5px solid var(--soft-sage);
+            border-bottom: 1.5px solid var(--soft-sage);
+        }
+
+        /* Section Headings */
+        .section-title {
+            font-family: var(--serif-font);
+            font-size: 2.8rem;
+            margin: 80px 0 40px;
+            text-align: center;
+            color: var(--sage-green);
+        }
+
+        /* Event Cards */
+        .event-card {
+            background: var(--soft-sage);
+            /* Light sage background */
+            padding: 40px;
+            border: 1px solid #E2E8E2;
+            text-align: center;
+            border-radius: 4px;
+            /* Optional: slight rounding for a modern look */
+        }
+
+        .event-card h3 {
+            font-family: var(--serif-font);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--sage-green);
+        }
+
+        .event-meta {
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        /* Travel/Hotel Section */
+        .travel-section {
+            background-color: var(--bg-white);
+            color: var(--primary-text);
+            min-height: 100vh;
+            min-height: 100svh;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .travel-section .timeline-title {
+            margin-top: 0;
+        }
+
+        .hotel-card {
+            background: white;
+            color: var(--primary-text);
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 40px;
+            border-top: 5px solid var(--gold);
+            /* Gold accent bar */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 14px 35px;
+            border: 1px solid var(--gold);
+            background: transparent;
+            text-decoration: none;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            transition: 0.4s;
+        }
+
+        .btn:hover {
+            background: var(--gold);
+            color: white;
+            border-color: var(--gold);
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--soft-sage) 0%, rgba(251, 251, 251, 0.8) 100%);
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(123, 142, 126, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .countdown-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-section h2 {
+            font-family: var(--serif-font);
+            font-size: 2.2rem;
+            color: var(--sage-green);
+            margin-bottom: 30px;
+            font-weight: 400;
             opacity: 0;
-            transform: translate3d(0px, 100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            transform-style: preserve-3d;
+            transform: translateY(-16px);
         }
-        to {
-            opacity: 1;
-            transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
-            transform-style: preserve-3d;
-        }
-    }
 
-    @keyframes slideUp {
-        from {
+        .countdown-section.in-view h2 {
+            animation: fadeInDown 0.8s ease-out 0.15s forwards;
+        }
+
+        /* Large day-focused countdown */
+        .countdown-display.big {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .big-count {
+            text-align: center;
+        }
+
+        .big-number {
+            font-family: var(--serif-font);
+            font-size: 6rem;
+            color: var(--gold);
+            line-height: 1;
+            font-weight: 700;
             opacity: 0;
             transform: translateY(20px);
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
 
-    footer {
-        padding: 60px 0;
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--sage-green);
-        letter-spacing: 2px;
-        opacity: 0.7;
-    }
-</style>
+        .countdown-section.in-view .big-number {
+            animation: fadeInUp 0.8s ease-out 0.25s forwards;
+        }
+
+        .big-label {
+            font-size: 0.9rem;
+            color: var(--sage-green);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-top: 6px;
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        .countdown-section.in-view .big-label {
+            animation: fadeInUp 0.6s ease-out 0.4s forwards;
+        }
+
+        /* small hours/minutes removed — only large days shown */
+
+        .countdown-number {
+            font-family: var(--serif-font);
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+
+        .countdown-label {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--sage-green);
+            font-weight: 700;
+        }
+
+        .countdown-message {
+            font-family: var(--serif-font);
+            font-size: 1.2rem;
+            color: var(--sage-green);
+            font-style: italic;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .countdown-section.in-view .countdown-message {
+            animation: fadeInUp 0.8s ease-out 0.7s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-390px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Timeline/Events Story Section */
+        .timeline-section {
+            padding: 105px 20px 30px;
+            background-color: var(--bg-white);
+            scroll-margin-top: -90px;
+        }
+
+        .timeline-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .timeline-title {
+            font-family: 'Playfair Display SC', serif;
+            font-size: 2rem;
+            color: var(--primary-text);
+            margin-bottom: 20px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: sticky;
+            top: 12px;
+            z-index: 0;
+            background: var(--bg-white);
+            padding: 6px 0;
+        }
+
+        .timeline-intro {
+            font-size: 1rem;
+            color: var(--primary-text);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .timeline-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline-item-block {
+            border-top: 2px solid #ddd;
+            padding: 40px 0;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-item-block:last-child {
+            border-bottom: 2px solid #ddd;
+        }
+
+        .timeline-item-flex {
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 0;
+        }
+
+        .timeline-date-text {
+            font-family: var(--serif-font);
+            font-size: 1.6rem;
+            color: var(--primary-text);
+            font-weight: 400;
+            min-width: 120px;
+            flex-shrink: 0;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-content-text {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .timeline-event-name {
+            font-family: var(--serif-font);
+            font-size: 1.3rem;
+            color: var(--primary-text);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+
+        .timeline-event-desc {
+            font-size: 0.95rem;
+            color: var(--primary-text);
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* Subtle Fireworks Effect for July 4th */
+        .timeline-item-block[data-event="nikkah"] {
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes firework {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            60% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(0);
+            }
+        }
+
+        .firework-particle {
+            position: absolute;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 2px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0%;
+            }
+
+            to {
+                width: 100%;
+            }
+        }
+
+        @keyframes slideUpText {
+            from {
+                opacity: 0;
+                transform: translate3d(0px, 100%, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                transform-style: preserve-3d;
+            }
+
+            to {
+                opacity: 1;
+                transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg) rotateY(0deg) rotateZ(0deg) skew(0deg, 0deg);
+                transform-style: preserve-3d;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--sage-green);
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+    </style>
+    <style>
+        /* Mobile page title: visible on all screens */
+        .mobile-page-title {
+            width: 100%;
+            text-align: center;
+            display: block;
+            overflow: hidden;
+            padding: 16px 0;
+            margin: 0;
+            text-overflow: ellipsis;
+            font-family: 'Quicksand', sans-serif;
+            color: #404041;
+            font-size: 32px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: #FFFFFF;
+        }
+
+        @media (max-width: 640px) {
+            .mobile-page-title {
+                font-size: calc(32px * 0.75);
+            }
+
+            /* Reduce hero H1 size on small screens to avoid crowding */
+            .hero-container h1 {
+                font-size: 1.6rem;
+            }
+        }
+
+        /* Blur effect for sections until user scrolls */
+        .blur-initial {
+            filter: blur(4px);
+            transition: filter 0.6s ease;
+        }
+
+        .blur-initial.unblurred {
+            filter: blur(0px);
+        }
+    </style>
 </head>
+
 <body>
+
+    <h2 data-testid="mobile-page-title" class="mobile-page-title">A&amp;N</h2>
 
     <nav class="nav-wrapper">
         <button id="menuBtn" class="menu-btn" aria-label="Open navigation" aria-haspopup="true" aria-expanded="false">
             <span class="hamburger" aria-hidden="true"></span>
         </button>
-
-        <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
-            <div class="menu-inner" role="dialog" aria-modal="true" aria-label="Site navigation">
-                <button class="menu-close" id="menuClose" aria-label="Close navigation">✕</button>
-                <a href="#home" class="menu-link">Home</a>
-                <a href="#schedule" class="menu-link">Schedule</a>
-                <a href="events.html" class="menu-link">Events</a>
-                <a href="#travel" class="menu-link">Travel</a>
-                <a href="#activities" class="menu-link">Things to Do</a>
-                <a href="#faq" class="menu-link">FAQ</a>
-            </div>
-        </div>
     </nav>
+
+    <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
+        <div class="menu-inner" role="dialog" aria-modal="true" aria-label="Site navigation">
+            <a href="#home" class="menu-link">Home</a>
+            <a href="events.html" class="menu-link">Events</a>
+            <a href="travel.html" class="menu-link">Travel</a>
+            <a href="#faq" class="menu-link">Q + A</a>
+            <a href="#activities" class="menu-link">Things to Do</a>
+            <a href="registry.html" class="menu-link">Registry</a>
+        </div>
+    </div>
 
     <section id="home" class="hero-container">
         <div class="hero-banner">
             <img src="images/gem.png" alt="Wedding couple banner">
         </div>
-        <h1>Welcome to Our Wedding!</h1>
-        
-        <div class="welcome-text">
-            <p>Welcome to our wedding celebration! We are beyond excited to gather with our favorite people as we begin this new chapter together. Your love, support, and presence mean the world to us.</p>
-            <p>This celebration is not only about our union, but also about the incredible family and friendships that have shaped our journey. We cannot wait to celebrate together!</p>
-        </div>
+        <h1>Anas &amp; Nabiha</h1>
+
+        <p class="event-date">July 4th, 2026 • San Ramon, CA</p>
     </section>
 
-    <section id="schedule" class="timeline-section">
+    <div class="hero-countdown-slot">
+        <p class="event-date event-countdown" id="hero-countdown">0 Days to Go!</p>
+    </div>
+
+    <section id="schedule" class="timeline-section blur-initial snap-section">
         <div class="timeline-container">
             <div class="timeline-header">
-                <h2 class="timeline-title">Our Wedding Journey</h2>
-                <p class="timeline-intro">Three days of celebration, three milestones of love. Join us as we mark the most important moments of our lives together.</p>
+                <h2 class="timeline-title">Events</h2>
+                <p class="timeline-intro" id="timeline-intro">Three days of celebration, three milestones of love. Join us as we mark the
+                    most important moments of our lives together.</p>
             </div>
             <div class="timeline-items">
-                <div class="timeline-item-block">
+                <div class="timeline-item-block" data-event="dholki">
                     <div class="timeline-item-flex">
                         <div class="timeline-date-text">July 3rd</div>
                         <div class="timeline-content-text">
                             <div class="timeline-event-name">Dholki</div>
-                            <div class="timeline-event-desc">A lively pre-wedding celebration filled with music, dance, and traditional festivities. Join us for an evening of joy and anticipation as we celebrate with our closest loved ones.</div>
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item-block">
+                <div class="timeline-item-block" data-event="nikkah">
                     <div class="timeline-item-flex">
                         <div class="timeline-date-text">July 4th</div>
                         <div class="timeline-content-text">
                             <div class="timeline-event-name">Nikkah</div>
-                            <div class="timeline-event-desc">The sacred marriage ceremony where we formally enter into marriage. This beautiful and meaningful moment will unite us in the eyes of our faith and family.</div>
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item-block">
+                <div class="timeline-item-block" data-event="shaalima">
                     <div class="timeline-item-flex">
                         <div class="timeline-date-text">July 5th</div>
                         <div class="timeline-content-text">
                             <div class="timeline-event-name">Shaalima Reception</div>
-                            <div class="timeline-event-desc">A celebratory reception to share an evening of fine dining, dancing, and endless joy with all of our cherished guests as we celebrate our union.</div>
                         </div>
                     </div>
                 </div>
@@ -629,18 +854,20 @@
         </div>
     </section>
 
-    <section id="travel" class="travel-section">
-        <h2 class="section-title">Where to Stay</h2>
-        <p style="max-width: 600px; margin: 0 auto;">We recommend the hotel below to make it easier to connect and travel to events together!</p>
-        
+    <section id="travel" class="travel-section blur-initial snap-section">
+        <h2 class="timeline-title">Where to Stay</h2>
+        <p style="max-width: 600px; margin: 0 auto;">We recommend the hotel below to make it easier to connect and
+            travel to events together!</p>
+
         <div class="hotel-card">
             <h3>DoubleTree by Hilton</h3>
             <p>39900 Balentine Drive, Newark, CA 94560</p>
-            <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn">Book Your Stay</a>
+            <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank"
+                class="btn">Book Your Stay</a>
         </div>
     </section>
 
-    <section class="countdown-section">
+    <section class="countdown-section blur-initial">
         <div class="countdown-content">
             <h2>Counting down the days to forever</h2>
             <div class="countdown-display big">
@@ -658,6 +885,112 @@
     </footer>
 
     <script>
+        // Force page to load at the top
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Ensure we start at the top before page loads
+        window.addEventListener('beforeunload', function () {
+            window.scrollTo(0, 0);
+        });
+        
+        // Scroll to top immediately on load
+        window.scrollTo(0, 0);
+        
+        // Additional scroll to top after page fully loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 0);
+        });
+        
+        // Blur removal on scroll
+        (function() {
+            let hasScrolled = false;
+            const blurredSections = document.querySelectorAll('.blur-initial');
+            const travelSection = document.getElementById('travel');
+            
+            function removeBlur() {
+                if (!hasScrolled && window.scrollY > 50) {
+                    hasScrolled = true;
+                    blurredSections.forEach(section => {
+                        if (section !== travelSection) {
+                            section.classList.add('unblurred');
+                        }
+                    });
+                    // Remove listener after blur is cleared
+                    window.removeEventListener('scroll', removeBlur);
+                }
+            }
+            
+            window.addEventListener('scroll', removeBlur, { passive: true });
+
+            if (travelSection) {
+                const travelObserver = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('unblurred');
+                            obs.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.35, rootMargin: '0px 0px -10% 0px' });
+
+                travelObserver.observe(travelSection);
+            }
+        })();
+        
+        // Invitation Type Handler - Persist type across pages using sessionStorage
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            
+            // If no type in URL, check sessionStorage
+            if (!invitationType) {
+                invitationType = sessionStorage.getItem('invitationType');
+            }
+            
+            // Store type in sessionStorage for persistence across pages
+            if (invitationType) {
+                sessionStorage.setItem('invitationType', invitationType);
+            } else {
+                invitationType = 'subkuch'; // default to all events
+            }
+            
+            // Define which events are in each invitation type
+            const invitationTypes = {
+                'subkuch': ['dholki', 'nikkah', 'shaalima'],
+                'nikkah': ['nikkah'],
+                'nikkahandshalima': ['nikkah', 'shaalima']
+            };
+            
+            // Default to nikkah only if invalid type specified
+            const allowedEvents = invitationType && invitationTypes[invitationType] 
+                ? invitationTypes[invitationType] 
+                : invitationTypes['nikkah'];
+            
+            // Remove timeline items that aren't allowed (completely remove from DOM)
+            const allTimelineItems = document.querySelectorAll('.timeline-item-block[data-event]');
+            allTimelineItems.forEach(item => {
+                const eventType = item.getAttribute('data-event');
+                if (!allowedEvents.includes(eventType)) {
+                    item.remove();
+                }
+            });
+            
+            // Update intro text based on invitation type
+            const introText = document.getElementById('timeline-intro');
+            if (introText) {
+                if (invitationType === 'nikkah') {
+                    introText.textContent = 'You are cordially invited to celebrate our sacred union at the Nikkah ceremony.';
+                } else if (invitationType === 'nikkahandshalima') {
+                    introText.textContent = 'Join us as we celebrate our sacred union and reception. Two beautiful days of love and joy.';
+                } else {
+                    introText.textContent = 'Join us as we celebrate three beautiful days of love, joy, and new beginnings.';
+                }
+            }
+        })();
+        
         // Set the date we're counting down to
         const weddingDate = new Date("July 4, 2026 01:30:00").getTime();
 
@@ -667,7 +1000,8 @@
 
             const days = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
 
-            // header countdown removed from hero — only big counter remains
+            const heroCountdown = document.getElementById("hero-countdown");
+            if (heroCountdown) heroCountdown.textContent = `${days} Days to Go!`;
 
             // Update big day-focused display
             const bigDays = document.getElementById("big-days");
@@ -684,21 +1018,155 @@
         updateCountdown();
         const timer = setInterval(updateCountdown, 1000);
 
+        // Subtle fireworks effect for July 4th (Nikkah)
+        function createSubtleFireworks(element) {
+            // Color palette: gold, pink, sage green, and light purple
+            const colors = ['#FFD700', '#E879A1', '#7B8E7E', '#D8B4E8'];
+            
+            function launchRockets(delay = 0) {
+                setTimeout(() => {
+                    const rect = element.getBoundingClientRect();
+                    const relativeRect = element.getBoundingClientRect();
+                    
+                    // Create 4-6 rockets that fly up then explode
+                    const rocketCount = 4 + Math.floor(Math.random() * 2);
+                    
+                    for (let r = 0; r < rocketCount; r++) {
+                        setTimeout(() => {
+                            const startX = relativeRect.width * (0.2 + Math.random() * 0.6);
+                            const startY = relativeRect.height * 0.5;
+                            const endY = relativeRect.height * (0.1 + Math.random() * 0.2);
+                            
+                            // Create rocket particle
+                            const rocket = document.createElement('div');
+                            rocket.className = 'firework-particle';
+                            rocket.style.position = 'absolute';
+                            rocket.style.left = startX + 'px';
+                            rocket.style.top = startY + 'px';
+                            rocket.style.width = '4px';
+                            rocket.style.height = '4px';
+                            
+                            const rocketColor = colors[Math.floor(Math.random() * colors.length)];
+                            rocket.style.background = rocketColor;
+                            rocket.style.boxShadow = `0 0 4px ${rocketColor}`;
+                            
+                            element.appendChild(rocket);
+                            
+                            // Animate rocket flying upward
+                            rocket.style.animation = `none`;
+                            rocket.style.transform = 'translate(0, 0)';
+                            
+                            // Manually animate rocket
+                            let rocketProgress = 0;
+                            const rocketDuration = 600;
+                            const rocketStart = Date.now();
+                            
+                            const animateRocket = () => {
+                                const elapsed = Date.now() - rocketStart;
+                                rocketProgress = elapsed / rocketDuration;
+                                
+                                if (rocketProgress < 1) {
+                                    const currentY = startY - (startY - endY) * rocketProgress;
+                                    rocket.style.transform = `translate(0, ${currentY - startY}px)`;
+                                    rocket.style.opacity = 1 - (rocketProgress * 0.3);
+                                    requestAnimationFrame(animateRocket);
+                                } else {
+                                    rocket.remove();
+                                    // Explode at the top with randomized colors
+                                    const particleCount = 14 + Math.random() * 4;
+                                    
+                                    for (let i = 0; i < particleCount; i++) {
+                                        const particle = document.createElement('div');
+                                        particle.className = 'firework-particle';
+                                        
+                                        const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.4;
+                                        const distance = 35 + Math.random() * 50;
+                                        const tx = Math.cos(angle) * distance;
+                                        const ty = Math.sin(angle) * distance;
+                                        
+                                        particle.style.position = 'absolute';
+                                        particle.style.left = startX + 'px';
+                                        particle.style.top = endY + 'px';
+                                        particle.style.setProperty('--tx', tx + 'px');
+                                        particle.style.setProperty('--ty', ty + 'px');
+                                        
+                                        // Randomize color for each particle
+                                        const color = colors[Math.floor(Math.random() * colors.length)];
+                                        particle.style.background = color;
+                                        particle.style.boxShadow = `0 0 3px ${color}`;
+                                        
+                                        element.appendChild(particle);
+                                        
+                                        particle.style.animation = `firework ${0.8 + Math.random() * 0.5}s ease-out forwards`;
+                                        
+                                        setTimeout(() => {
+                                            particle.remove();
+                                        }, 1400);
+                                    }
+                                }
+                            };
+                            
+                            animateRocket();
+                        }, r * 200); // Stagger rockets
+                    }
+                }, delay);
+            }
+            
+            // Launch multiple waves of rockets to keep fireworks going longer
+            launchRockets(0);     // First wave
+            launchRockets(1800);  // Second wave after ~2 seconds
+            launchRockets(3600);  // Third wave after ~4 seconds
+        }
+
         // Scroll-triggered animation: separate observers so timeline animates earlier
         const countdownSection = document.querySelector('.countdown-section');
         const timelineSection = document.querySelector('.timeline-section');
 
-        // Timeline observer: trigger when ~20% visible
-        if (timelineSection) {
-            const timelineObserver = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('in-view');
-                        obs.unobserve(entry.target);
+        // Scroll-driven animation for timeline
+        const timelineItems = document.querySelectorAll('.timeline-item-block');
+        let fireworksCreated = false;
+        const nikkahItem = document.querySelector('[data-event="nikkah"]');
+        
+        if (timelineItems.length > 0) {
+            const handleScrollAnimation = () => {
+                timelineItems.forEach((item, index) => {
+                    const rect = item.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    
+                    // Calculate how much of the item is in view (0 to 1)
+                    const elementTop = rect.top;
+                    const elementHeight = rect.height;
+                    const visibleStart = Math.max(0, windowHeight - elementTop);
+                    const progress = Math.min(1, Math.max(0, visibleStart / (windowHeight * 0.25)));
+                    
+                    // Apply opacity and transform based on scroll progress
+                    item.style.opacity = progress;
+                    item.style.transform = `translateY(${(1 - progress) * 30}px)`;
+                    
+                    // Trigger subtle fireworks for Nikkah when it becomes visible
+                    if (item === nikkahItem && progress > 0.3 && !fireworksCreated) {
+                        createSubtleFireworks(item);
+                        fireworksCreated = true;
+                    }                    
+                    // Also animate the date and content inside
+                    const dateText = item.querySelector('.timeline-date-text');
+                    const contentText = item.querySelector('.timeline-content-text');
+                    
+                    if (dateText) {
+                        dateText.style.opacity = progress;
+                        dateText.style.transform = `translateY(${(1 - progress) * 30}px)`;
+                    }
+                    
+                    if (contentText) {
+                        contentText.style.opacity = progress;
+                        contentText.style.transform = `translateY(${(1 - progress) * 30}px)`;
                     }
                 });
-            }, { threshold: 0.2, rootMargin: '0px' });
-            timelineObserver.observe(timelineSection);
+            };
+            
+            window.addEventListener('scroll', handleScrollAnimation, { passive: true });
+            // Run once on load to set initial state
+            handleScrollAnimation();
         }
 
         // Countdown observer: require nearly-full visibility so it shows when scrolled to bottom
@@ -715,62 +1183,66 @@
         }
 
         // Top-left options menu + page transition behavior
-        (function() {
+        (function () {
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
             const menuClose = document.getElementById('menuClose');
             const menuLinks = document.querySelectorAll('.menu-link');
 
-            function openMenu() {
-                menuOverlay.classList.add('open');
-                menuBtn.setAttribute('aria-expanded', 'true');
-                menuOverlay.setAttribute('aria-hidden', 'false');
-                // lock focus within overlay for simple accessibility
-                document.body.style.overflow = 'hidden';
-            }
-
-            function closeMenu() {
-                menuOverlay.classList.remove('open');
-                menuBtn.setAttribute('aria-expanded', 'false');
-                menuOverlay.setAttribute('aria-hidden', 'true');
-                document.body.style.overflow = '';
-                menuBtn.focus();
+            function toggleMenu() {
+                const isOpen = menuOverlay.classList.contains('open');
+                if (isOpen) {
+                    menuOverlay.classList.remove('open');
+                    menuBtn.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuOverlay.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                } else {
+                    menuOverlay.classList.add('open');
+                    menuBtn.classList.add('active');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    menuOverlay.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
             }
 
             if (menuBtn && menuOverlay) {
-                menuBtn.addEventListener('click', () => {
-                    if (menuOverlay.classList.contains('open')) closeMenu(); else openMenu();
-                });
+                menuBtn.addEventListener('click', toggleMenu);
+                
+                // Close menu when close button is clicked
+                menuClose && menuClose.addEventListener('click', toggleMenu);
 
-                menuClose && menuClose.addEventListener('click', closeMenu);
-
+                // Close if clicking the backdrop itself
                 menuOverlay.addEventListener('click', (e) => {
-                    if (e.target === menuOverlay) closeMenu();
+                    if (e.target === menuOverlay) toggleMenu();
                 });
 
                 document.addEventListener('keydown', (e) => {
                     if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
-                        closeMenu();
+                        toggleMenu();
                     }
                 });
 
                 menuLinks.forEach(link => {
                     link.addEventListener('click', (e) => {
-                        const href = link.getAttribute('href');
+                        let href = link.getAttribute('href');
                         if (!href) return;
 
-                        // Internal anchor: close menu and smooth-scroll
                         if (href.startsWith('#')) {
                             e.preventDefault();
-                            closeMenu();
+                            toggleMenu(); // Close menu on click
                             const target = document.querySelector(href);
                             if (target) target.scrollIntoView({ behavior: 'smooth' });
                             return;
                         }
 
-                        // External page: play exit animation then navigate
+                        // Append invitation type to external links
+                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const separator = href.includes('?') ? '&' : '?';
+                        href = href + separator + 'type=' + invitationType;
+
                         e.preventDefault();
-                        closeMenu();
+                        toggleMenu(); // Close and animate out
                         document.documentElement.classList.add('page-exit');
                         setTimeout(() => { window.location.href = href; }, 420);
                     });
@@ -780,4 +1252,5 @@
     </script>
 
 </body>
+
 </html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Travel - Our Wedding Celebration - 2026</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+    :root {
+        --sage-green: #7B8E7E;
+        --soft-sage: #F4F6F4;
+        --gold: #C5A059;
+        --dark-gold: #9E7E3F;
+        --primary-text: #3A3F3A;
+        --bg-white: #FFFFFF;
+        --serif-font: 'Playfair Display', serif;
+        --sans-font: 'Lato', sans-serif;
+        --serif-sc: 'Playfair Display SC', serif;
+        --accent-font: 'Quicksand', sans-serif;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: var(--sans-font);
+        color: var(--primary-text);
+        background-color: var(--bg-white);
+    }
+
+    .nav-wrapper {
+        width: auto;
+        background: transparent;
+        padding: 0;
+        text-align: left;
+        position: fixed;
+        top: 5px;
+        left: 5px;
+        z-index: 9999;
+    }
+
+    .menu-btn {
+        width: 46px;
+        height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        z-index: 9999;
+    }
+
+    .hamburger {
+        width: 24px;
+        height: 1.7px;
+        background: var(--sage-green);
+        position: relative;
+        display: inline-block;
+        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hamburger::before,
+    .hamburger::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        width: 24px;
+        height: 2px;
+        background: var(--sage-green);
+        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .hamburger::before { top: -6px; }
+    .hamburger::after { top: 6px; }
+
+    .menu-btn.active .hamburger {
+        background: transparent;
+    }
+
+    .menu-btn.active .hamburger::before,
+    .menu-btn.active .hamburger::after {
+        background: var(--sage-green);
+        top: 0;
+    }
+
+    .menu-btn.active .hamburger::before { transform: rotate(45deg); }
+    .menu-btn.active .hamburger::after { transform: rotate(-45deg); }
+
+    .menu-btn.active {
+        background: transparent;
+        border-color: transparent;
+        box-shadow: none;
+    }
+
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(244, 246, 244, 0.4);
+        backdrop-filter: blur(12px) saturate(150%);
+        -webkit-backdrop-filter: blur(12px) saturate(150%);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        z-index: 1050;
+    }
+
+    .menu-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .menu-inner {
+        text-align: center;
+        position: relative;
+        padding-top: 100px;
+    }
+
+    .menu-link {
+        display: block;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 8px 8px 6px;
+        font-family: var(--accent-font);
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--sage-green);
+        text-decoration: none;
+        letter-spacing: 2px;
+        line-height: 1;
+        border-bottom: 2px solid transparent;
+        transition: all 0.25s;
+        -webkit-tap-highlight-color: transparent;
+        outline: none;
+    }
+
+    .menu-link:first-child {
+        border-bottom-color: var(--sage-green);
+    }
+
+    .menu-link:hover,
+    .menu-link:active,
+    .menu-link:focus {
+        color: var(--sage-green);
+        border-bottom-color: var(--sage-green);
+        transform: translateY(-2px);
+        background: rgba(255, 192, 203, 0.15);
+        border-radius: 4px;
+    }
+
+    body.page-exit {
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.42s ease, transform 0.42s ease;
+    }
+
+    /* Main Layout */
+    .page-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 80px 40px 60px;
+        text-align: center;
+    }
+
+    .hero-title {
+        font-family: var(--serif-sc);
+        font-size: 3.5rem;
+        text-transform: uppercase;
+        letter-spacing: 6px;
+        color: var(--primary-text);
+        margin: 0 0 50px 0;
+        font-weight: normal;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-family: var(--accent-font);
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: var(--primary-text);
+        margin: 0 0 80px 0;
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 40px;
+        margin-bottom: 50px;
+    }
+
+    .content-block {
+        text-align: center;
+    }
+
+    .block-label {
+        font-family: var(--accent-font);
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--sage-green);
+        margin-bottom: 12px;
+        padding-top: 20px;
+        position: relative;
+    }
+
+    .block-label::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(to right, transparent, rgba(123, 142, 126, 0.25), transparent);
+    }
+
+    .block-title {
+        font-family: var(--serif-font);
+        font-size: 2.3rem;
+        color: var(--primary-text);
+        margin: 0 0 15px 0;
+        font-weight: 400;
+    }
+
+    .block-detail {
+        font-family: var(--sans-font);
+        font-size: 0.95rem;
+        line-height: 1.7;
+        color: var(--primary-text);
+    }
+
+    .block-detail a {
+        color: var(--sage-green);
+        text-decoration: none;
+        border-bottom: 1px solid var(--sage-green);
+    }
+
+    .block-detail a:hover {
+        color: var(--gold);
+        border-bottom-color: var(--gold);
+    }
+
+    .code-label {
+        font-family: var(--accent-font);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        color: var(--primary-text);
+        margin-top: 12px;
+    }
+
+    .code-value {
+        font-family: var(--sans-font);
+        font-size: 1.1rem;
+        color: #000000;
+        margin: 8px 0 0 0;
+        font-weight: 700;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 11px 30px;
+        border: 1px solid var(--sage-green);
+        background: transparent;
+        text-decoration: none;
+        color: var(--sage-green);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        transition: 0.3s;
+    }
+
+    .btn:hover {
+        background: var(--sage-green);
+        color: white;
+    }
+
+    .full-width-block {
+        grid-column: 1 / -1;
+        padding: 40px 30px;
+        background: var(--soft-sage);
+    }
+
+    .travel-times {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    .time-card {
+        padding: 20px 15px;
+        text-align: center;
+    }
+
+    .time-label {
+        font-family: var(--accent-font);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--sage-green);
+        margin-bottom: 8px;
+    }
+
+    .time-value {
+        font-family: var(--serif-font);
+        font-size: 1.3rem;
+        color: var(--primary-text);
+    }
+
+    footer {
+        background: var(--bg-white);
+        padding: 60px 0 30px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: var(--sage-green);
+        letter-spacing: 2px;
+        opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+        .page-wrapper {
+            padding: 60px 30px 50px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+        }
+
+        .content-grid {
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .page-wrapper {
+            padding: 50px 20px 40px;
+        }
+
+        .hero-title {
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .block-title {
+            font-size: 1.9rem;
+        }
+
+        .menu-link {
+            font-size: calc(16px * 0.875);
+        }
+
+        .content-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .full-width-block {
+            padding: 30px 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <nav class="nav-wrapper">
+        <button id="menuBtn" class="menu-btn" aria-label="Open navigation" aria-haspopup="true" aria-expanded="false">
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
+    </nav>
+
+    <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
+        <div class="menu-inner" role="dialog" aria-modal="true" aria-label="Site navigation">
+            <a href="index.html#home" class="menu-link">Home</a>
+            <a href="events.html" class="menu-link">Events</a>
+            <a href="travel.html" class="menu-link">Travel</a>
+            <a href="index.html#faq" class="menu-link">Q + A</a>
+            <a href="index.html#activities" class="menu-link">Things to Do</a>
+            <a href="registry.html" class="menu-link">Registry</a>
+        </div>
+    </div>
+
+    <div class="page-wrapper">
+        <h1 class="hero-title">Travel</h1>
+        <p class="hero-subtitle" id="heroSubtitle">July 3-5, 2026 • San Ramon, CA</p>
+
+        <div class="content-grid">
+            <div class="content-block">
+                <p class="block-label">Hotel</p>
+                <h2 class="block-title">DoubleTree by Hilton</h2>
+                <h3 class="block-detail">Hotel Newark - Fremont</h3>
+                <p class="block-detail">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
+                <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn">Book Your Stay</a>
+            </div>
+
+            <div class="content-block">
+                <p class="block-label">Group Rate</p>
+                <h2 class="block-title">Wedding Block Code</h2>
+                <p class="block-detail">Use Code Below When Booking</p>
+                <p class="code-label">Code:</p>
+                <p class="code-value">A&amp;N2026</p>
+            </div>
+
+            <div class="content-block">
+                <p class="block-label">Check-In / Check-Out</p>
+                <h2 class="block-title" id="checkInDates">July 3 - 5</h2>
+                <p class="block-detail"><span id="checkInDetail">Check-In: Wednesday<br>Check-Out: Friday</span></p>
+            </div>
+
+            <div class="content-block">
+                <p class="block-label">Hotel Amenities</p>
+                <h2 class="block-title">Free Shuttle From SJC</h2>
+                <p class="block-detail">The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)</p>
+            </div>
+
+            <div class="full-width-block">
+                <h2 class="block-title" style="margin-top: 0;">Travel Times from Hotel</h2>
+                <div class="travel-times">
+                    <div class="time-card">
+                        <p class="time-label">Hotel to Mosque</p>
+                        <p class="time-value">~25 Minutes</p>
+                    </div>
+                    <div class="time-card">
+                        <p class="time-label">Hotel to Reception</p>
+                        <p class="time-value">~25 Minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>2026 • MADE WITH LOVE</p>
+    </footer>
+
+    <script>
+        // Event dates configuration (2026)
+        const eventDatesConfig = {
+            'dholki': new Date('2026-07-03'),
+            'nikkah': new Date('2026-07-04'),
+            'shaalima': new Date('2026-07-05')
+        };
+
+        // Invitation types and their events
+        const invitationTypes = {
+            'subkuch': ['dholki', 'nikkah', 'shaalima'],
+            'nikkah': ['nikkah'],
+            'nikkahandshalima': ['nikkah', 'shaalima']
+        };
+
+        // Function to update travel dates based on invited events
+        function updateTravelDates() {
+            const params = new URLSearchParams(window.location.search);
+            let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            
+            // If no type in URL, check sessionStorage
+            if (!invitationType) {
+                invitationType = sessionStorage.getItem('invitationType');
+            }
+            
+            // Store type in sessionStorage for persistence across pages
+            if (invitationType) {
+                sessionStorage.setItem('invitationType', invitationType);
+            } else {
+                invitationType = 'nikkah'; // default to nikkah only
+            }
+            
+            // Default to nikkah only if invalid type specified
+            const allowedEvents = invitationTypes[invitationType] || invitationTypes['nikkah'];
+            
+            if (allowedEvents.length === 0) {
+                return;
+            }
+
+            // Find earliest and latest event dates
+            let earliestDate = null;
+            let latestDate = null;
+
+            allowedEvents.forEach(event => {
+                if (eventDatesConfig[event]) {
+                    const date = new Date(eventDatesConfig[event]);
+                    if (!earliestDate || date < earliestDate) earliestDate = date;
+                    if (!latestDate || date > latestDate) latestDate = date;
+                }
+            });
+
+            if (earliestDate && latestDate) {
+                // Check-in on first event day, check-out day after last event
+                const checkInDate = new Date(earliestDate);
+                
+                const checkOutDate = new Date(latestDate);
+                checkOutDate.setDate(checkOutDate.getDate() + 1);
+                
+                // For subkuch, extend checkout to Monday (July 7)
+                if (invitationType === 'subkuch') {
+                    checkOutDate.setDate(checkOutDate.getDate() + 1);
+                }
+
+                // Format dates
+                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                              'July', 'August', 'September', 'October', 'November', 'December'];
+                const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
+                const checkInMonth = months[checkInDate.getMonth()];
+                const checkInDay = checkInDate.getDate();
+                const checkInDayName = days[checkInDate.getDay()];
+                
+                const checkOutMonth = months[checkOutDate.getMonth()];
+                const checkOutDay = checkOutDate.getDate();
+                const checkOutDayName = days[checkOutDate.getDay()];
+
+                const latestMonth = months[latestDate.getMonth()];
+                const latestDay = latestDate.getDate();
+
+                // Update hero subtitle - show event date range
+                if (checkInDay === latestDay && checkInMonth === latestMonth) {
+                    // Single day event
+                    document.getElementById('heroSubtitle').textContent = 
+                        `${checkInMonth.substring(0, 3)} ${checkInDay}, 2026 • San Ramon, CA`;
+                } else {
+                    // Multi-day event range
+                    document.getElementById('heroSubtitle').textContent = 
+                        `${checkInMonth.substring(0, 3)} ${checkInDay} - ${latestMonth.substring(0, 3)} ${latestDay}, 2026 • San Ramon, CA`;
+                }
+
+                // Update check-in dates - show checkin through checkout range
+                if (checkInDay === checkOutDay && checkInMonth === checkOutMonth) {
+                    // Single day
+                    document.getElementById('checkInDates').textContent = 
+                        `${checkInMonth} ${checkInDay}`;
+                } else {
+                    // Date range
+                    document.getElementById('checkInDates').textContent = 
+                        `${checkInMonth} ${checkInDay} - ${checkOutMonth} ${checkOutDay}`;
+                }
+                
+                document.getElementById('checkInDetail').innerHTML = 
+                    `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
+            }
+        }
+
+        // Call update function on page load
+        updateTravelDates();
+
+        // Top-left options menu + page transition behavior
+        (function() {
+            const menuBtn = document.getElementById('menuBtn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            function toggleMenu() {
+                const isOpen = menuOverlay.classList.contains('open');
+                if (isOpen) {
+                    menuOverlay.classList.remove('open');
+                    menuBtn.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuOverlay.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                } else {
+                    menuOverlay.classList.add('open');
+                    menuBtn.classList.add('active');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    menuOverlay.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            if (menuBtn && menuOverlay) {
+                menuBtn.addEventListener('click', toggleMenu);
+
+                menuOverlay.addEventListener('click', (e) => {
+                    if (e.target === menuOverlay) toggleMenu();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                });
+
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        let href = link.getAttribute('href');
+                        if (!href) return;
+
+                        if (href.startsWith('#')) {
+                            e.preventDefault();
+                            toggleMenu();
+                            const target = document.querySelector(href);
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                            return;
+                        }
+
+                        // Append invitation type to external links
+                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const separator = href.includes('?') ? '&' : '?';
+                        href = href + separator + 'type=' + invitationType;
+
+                        e.preventDefault();
+                        toggleMenu();
+                        document.documentElement.classList.add('page-exit');
+                        setTimeout(() => { window.location.href = href; }, 420);
+                    });
+                });
+            }
+        })();
+    </script>
+</body>
+</html>

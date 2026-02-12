@@ -1,43 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registry - Our Wedding Celebration - 2026</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+
     <style>
-    :root{
-        --sage-green:#7B8E7E;--bg-white:#FFFFFF;--soft-sage:#F4F6F4;--gold:#C5A059;--primary-text:#3A3F3A;
-        --serif-font:'Playfair Display',serif;--sans-font:'Lato',sans-serif;
-    }
-    body,html{margin:0;padding:0;font-family:var(--sans-font);color:var(--primary-text);background:var(--bg-white)}
-    .nav-wrapper{width:100%;background:var(--bg-white);padding:25px 0;text-align:center;border-bottom:1px solid var(--soft-sage)}
-    .nav-wrapper a{ text-decoration:none;color:var(--sage-green);margin:0 18px;font-size:0.8rem;letter-spacing:2px;text-transform:uppercase;font-weight:700}
-    .container{max-width:900px;margin:60px auto;padding:40px;text-align:center}
-    h1{font-family:var(--serif-font);font-size:2.4rem;color:var(--sage-green);margin-bottom:10px}
-    p.lead{max-width:700px;margin:0 auto;color:var(--primary-text);line-height:1.6}
-    .registry-list{margin-top:30px;text-align:left}
-    .registry-item{border-top:1px solid #eee;padding:20px 0}
-    .btn{display:inline-block;margin-top:12px;padding:10px 22px;border:1px solid var(--gold);color:var(--gold);text-decoration:none;text-transform:uppercase;font-weight:700}
-    .btn:hover{background:var(--gold);color:#fff}
+        :root {
+            /* Color Palette */
+            --sage-green: #7B8E7E;
+            --soft-sage: #F4F6F4;
+            --gold: #C5A059;
+            --dark-gold: #9E7E3F;
+            --primary-text: #3A3F3A;
+            --bg-white: #FFFFFF;
+
+            /* Fonts */
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Lato', sans-serif;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            scroll-behavior: smooth;
+            background-color: var(--bg-white);
+        }
+
+        .mobile-page-title {
+            width: 100%;
+            text-align: center;
+            display: block;
+            overflow: hidden;
+            padding: 16px 0;
+            margin: 0;
+            text-overflow: ellipsis;
+            font-family: 'Quicksand', sans-serif;
+            color: #404041;
+            font-size: 32px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: #FFFFFF;
+        }
+
+        @media (max-width: 640px) {
+            .mobile-page-title {
+                font-size: calc(32px * 0.75);
+            }
+        }
+
+        /* Top Navigation */
+        .nav-wrapper {
+            width: auto;
+            background: transparent;
+            padding: 0;
+            text-align: left;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            z-index: 9999;
+        }
+
+        .nav-wrapper a {
+            text-decoration: none;
+            color: var(--sage-green);
+            margin: 0 18px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-wrapper a:hover {
+            color: var(--gold);
+        }
+
+        /* Left options menu (replaces top links) */
+        .menu-btn {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1100;
+        }
+
+        .hamburger {
+            width: 20px;
+            height: 2px;
+            background: var(--sage-green);
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 20px;
+            height: 2px;
+            background: var(--sage-green);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger::before {
+            top: -10px;
+        }
+
+        .hamburger::after {
+            top: 10px;
+        }
+
+        /* Hamburger to X animation */
+        .menu-btn.active .hamburger {
+            background: transparent;
+            /* Hides middle bar */
+        }
+
+        /* Change both bars to sage green and ensure they are visible */
+        .menu-btn.active .hamburger::before,
+        .menu-btn.active .hamburger::after {
+            background: #404041;
+            top: 0;
+        }
+
+        .menu-btn.active .hamburger::before {
+            transform: rotate(45deg);
+        }
+
+        .menu-btn.active .hamburger::after {
+            transform: rotate(-45deg);
+        }
+
+        /* Make the button background transparent when menu is open */
+        .menu-btn.active {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(244, 246, 244, 0.4);
+            /* Frosted glass effect with transparency */
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-inner {
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 8px 6px;
+
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            color: #000000;
+            text-decoration: none;
+            letter-spacing: 2px;
+            line-height: 1;
+
+            border-bottom: 2px solid #000000;
+            transition: all 0.25s;
+        }
+
+        /* Hover state to make it interactive */
+        .menu-link:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* Mobile scaling as per your snippet */
+        @media (max-width: 640px) {
+            .menu-link {
+                font-size: calc(16px * 0.875);
+                margin: 0 auto;
+            }
+        }
+
+        /* Page transition when navigating between pages */
+        body.page-exit {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.42s ease, transform 0.42s ease;
+        }
+
+        /* Main Content Container */
+        .main-container {
+            max-width: 900px;
+            margin: 80px auto 0;
+            padding: 40px 20px 60px;
+            text-align: center;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h1 {
+            font-family: var(--serif-font);
+            font-size: 3rem;
+            color: var(--sage-green);
+            margin: 0 0 20px 0;
+            font-weight: 400;
+        }
+
+        .page-intro {
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--primary-text);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .registry-list {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .registry-item {
+            border-top: 2px solid #ddd;
+            padding: 40px 0;
+        }
+
+        .registry-item strong {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .registry-item:first-child {
+            border-top: none;
+            padding-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 10px 22px;
+            border: 1px solid var(--sage-green);
+            color: var(--sage-green);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--sage-green);
+            color: #fff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--sage-green);
+            opacity: 0.7;
+        }
     </style>
 </head>
+
 <body>
+
+    <h2 class="mobile-page-title">A&amp;N</h2>
+
     <nav class="nav-wrapper">
-        <a href="index.html#home">Home</a>
-        <a href="index.html#schedule">Schedule</a>
-        <a href="events.html">Events</a>
-        <a href="index.html#travel">Travel</a>
-        <a href="registry.html">Registry</a>
-        <a href="index.html#activities">Things to Do</a>
-        <a href="index.html#faq">FAQ</a>
+        <button id="menuBtn" class="menu-btn" aria-label="Open navigation" aria-haspopup="true" aria-expanded="false">
+            <span class="hamburger" aria-hidden="true"></span>
+        </button>
     </nav>
 
-    <main class="container">
-        <h1>Registry</h1>
-        <p class="lead">Thank you for your love and support. If you'd like to help us celebrate, you can find our registry below.</p>
+    <div id="menuOverlay" class="menu-overlay" aria-hidden="true">
+        <div class="menu-inner" role="dialog" aria-modal="true" aria-label="Site navigation">
+            <a href="index.html#home" class="menu-link">Home</a>
+            <a href="events.html" class="menu-link">Events</a>
+            <a href="travel.html" class="menu-link">Travel</a>
+            <a href="index.html#faq" class="menu-link">Q + A</a>
+            <a href="index.html#activities" class="menu-link">Things to Do</a>
+            <a href="registry.html" class="menu-link">Registry</a>
+        </div>
+    </div>
+
+    <section class="main-container">
+        <div class="page-header">
+            <h1>Registry</h1>
+        </div>
+
+        <p class="page-intro">Thank you for your love and support. If you'd like to help us celebrate, you can find our registry below.</p>
 
         <div class="registry-list">
             <div class="registry-item">
@@ -49,8 +339,116 @@
                 <div><a class="btn" href="#" target="_blank">Visit</a></div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer style="text-align:center;padding:40px 0;color:var(--sage-green);opacity:0.7">2026 • MADE WITH LOVE</footer>
+    <footer>
+        <p>2026 • MADE WITH LOVE</p>
+    </footer>
+
+    <script>
+        // Force page to load at the top
+        if (history.scrollRestoration) {
+            history.scrollRestoration = 'manual';
+        }
+        
+        // Ensure we start at the top before page loads
+        window.addEventListener('beforeunload', function () {
+            window.scrollTo(0, 0);
+        });
+        
+        // Scroll to top immediately on load
+        window.scrollTo(0, 0);
+        
+        // Additional scroll to top after page fully loads
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                window.scrollTo(0, 0);
+            }, 0);
+        });
+
+        // Invitation Type Handler - Persist type across pages using sessionStorage
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            
+            // If no type in URL, check sessionStorage
+            if (!invitationType) {
+                invitationType = sessionStorage.getItem('invitationType');
+            }
+            
+            // Store type in sessionStorage for persistence across pages
+            if (invitationType) {
+                sessionStorage.setItem('invitationType', invitationType);
+            } else {
+                invitationType = 'subkuch'; // default to all events
+            }
+        })();
+
+        // Top-left options menu + page transition behavior
+        (function () {
+            const menuBtn = document.getElementById('menuBtn');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuLinks = document.querySelectorAll('.menu-link');
+
+            function toggleMenu() {
+                const isOpen = menuOverlay.classList.contains('open');
+                if (isOpen) {
+                    menuOverlay.classList.remove('open');
+                    menuBtn.classList.remove('active');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                    menuOverlay.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                } else {
+                    menuOverlay.classList.add('open');
+                    menuBtn.classList.add('active');
+                    menuBtn.setAttribute('aria-expanded', 'true');
+                    menuOverlay.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            if (menuBtn && menuOverlay) {
+                menuBtn.addEventListener('click', toggleMenu);
+
+                // Close if clicking the backdrop itself
+                menuOverlay.addEventListener('click', (e) => {
+                    if (e.target === menuOverlay) toggleMenu();
+                });
+
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+                        toggleMenu();
+                    }
+                });
+
+                menuLinks.forEach(link => {
+                    link.addEventListener('click', (e) => {
+                        let href = link.getAttribute('href');
+                        if (!href) return;
+
+                        if (href.startsWith('#')) {
+                            e.preventDefault();
+                            toggleMenu(); // Close menu on click
+                            const target = document.querySelector(href);
+                            if (target) target.scrollIntoView({ behavior: 'smooth' });
+                            return;
+                        }
+
+                        // Append invitation type to external links
+                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const separator = href.includes('?') ? '&' : '?';
+                        href = href + separator + 'type=' + invitationType;
+
+                        e.preventDefault();
+                        toggleMenu(); // Close and animate out
+                        document.documentElement.classList.add('page-exit');
+                        setTimeout(() => { window.location.href = href; }, 420);
+                    });
+                });
+            }
+        })();
+    </script>
+
 </body>
+
 </html>

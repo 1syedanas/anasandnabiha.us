@@ -141,7 +141,7 @@
         outline: none;
     }
 
-    .menu-link:first-child {
+    .menu-link.active {
         border-bottom-color: var(--sage-green);
     }
 
@@ -392,12 +392,12 @@
         <p class="hero-subtitle" id="heroSubtitle">July 3-5, 2026 • San Ramon, CA</p>
 
         <div class="content-grid">
-            <div class="content-block">
+            <div class="content-block" data-hotel-block>
                 <p class="block-label">Hotel</p>
-                <h2 class="block-title">DoubleTree by Hilton</h2>
-                <h3 class="block-detail">Hotel Newark - Fremont</h3>
-                <p class="block-detail">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
-                <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn">Book Your Stay</a>
+                <h2 class="block-title" id="hotelName">DoubleTree by Hilton</h2>
+                <h3 class="block-detail" id="hotelSubtitle">Hotel Newark - Fremont</h3>
+                <p class="block-detail" id="hotelAddress">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
+                <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
             </div>
 
             <div class="content-block">
@@ -416,8 +416,8 @@
 
             <div class="content-block">
                 <p class="block-label">Hotel Amenities</p>
-                <h2 class="block-title">Free Shuttle From SJC</h2>
-                <p class="block-detail">The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)</p>
+                <h2 class="block-title" id="amenitiesTitle">Free Shuttle From SJC</h2>
+                <p class="block-detail" id="amenitiesDetail">The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)</p>
             </div>
 
             <div class="full-width-block">
@@ -450,9 +450,12 @@
 
         // Invitation types and their events
         const invitationTypes = {
-            'subkuch': ['dholki', 'nikkah', 'shalima'],
-            'nikkah': ['nikkah'],
-            'nikkahandshalima': ['nikkah', 'shalima']
+            'subkucha': ['dholki', 'nikkah', 'shalima'],
+            'subkuchn': ['dholki', 'nikkah', 'shalima'],
+            'nikkaha': ['nikkah'],
+            'nikkahn': ['nikkah'],
+            'nikkahandshalimaa': ['nikkah', 'shalima'],
+            'nikkahandshaliman': ['nikkah', 'shalima']
         };
 
         // Function to update travel dates based on invited events
@@ -476,11 +479,11 @@
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
                 // No type in URL, check sessionStorage
-                invitationType = storedType || 'nikkah'; // default to nikkah only
+                invitationType = storedType || 'nikkaha'; // default to nikkah only
             }
             
-            // Default to nikkah only if invalid type specified
-            const allowedEvents = invitationTypes[invitationType] || invitationTypes['nikkah'];
+            // Default to nikkaha only if invalid type specified
+            const allowedEvents = invitationTypes[invitationType] || invitationTypes['nikkaha'];
             
             if (allowedEvents.length === 0) {
                 return;
@@ -505,8 +508,8 @@
                 const checkOutDate = new Date(latestDate);
                 checkOutDate.setDate(checkOutDate.getDate() + 1);
                 
-                // For subkuch, extend checkout to Monday (July 7)
-                if (invitationType === 'subkuch') {
+                // For subkucha and subkuchn, extend checkout to Monday (July 7)
+                if (invitationType === 'subkucha' || invitationType === 'subkuchn') {
                     checkOutDate.setDate(checkOutDate.getDate() + 1);
                 }
 
@@ -555,6 +558,62 @@
 
         // Call update function on page load
         updateTravelDates();
+
+        // Update hotel information based on invitation type suffix
+        (function updateHotelInfo() {
+            const params = new URLSearchParams(window.location.search);
+            let invitationType = params.get('type');
+            const storedType = sessionStorage.getItem('invitationType');
+            
+            invitationType = invitationType || storedType || 'nikkaha';
+            
+            // Determine which hotel based on invitation type suffix
+            const isEmbassySuites = invitationType && (
+                invitationType === 'subkuchn' ||
+                invitationType === 'nikkahn' ||
+                invitationType === 'nikkahandshaliman'
+            );
+            
+            const hotelName = document.getElementById('hotelName');
+            const hotelSubtitle = document.getElementById('hotelSubtitle');
+            const hotelAddress = document.getElementById('hotelAddress');
+            const hotelLink = document.getElementById('hotelLink');
+            const amenitiesTitle = document.getElementById('amenitiesTitle');
+            const amenitiesDetail = document.getElementById('amenitiesDetail');
+            
+            if (isEmbassySuites) {
+                // Embassy Suites for 'n' suffix types
+                if (hotelName) hotelName.textContent = 'Embassy Suites by Hilton Milpitas Silicon Valley';
+                if (hotelSubtitle) hotelSubtitle.textContent = 'Milpitas, Silicon Valley';
+                if (hotelAddress) hotelAddress.innerHTML = '901 E Calaveras Blvd<br>Milpitas, California, 95035, USA<br><a href=\"tel:+14089108300\">(408) 910-8300</a>';
+                if (hotelLink) hotelLink.href = 'https://www.hilton.com/en/hotels/milcaes-embassy-suites-milpitas-silicon-valley/';
+                if (amenitiesTitle) amenitiesTitle.textContent = 'Free Shuttle From SJC';
+                if (amenitiesDetail) amenitiesDetail.textContent = 'The Embassy Suites provides complimentary shuttle service from San José International Airport (SJC)';
+            } else {
+                // DoubleTree by Hilton for 'a' suffix types (default)
+                if (hotelName) hotelName.textContent = 'DoubleTree by Hilton';
+                if (hotelSubtitle) hotelSubtitle.textContent = 'Hotel Newark - Fremont';
+                if (hotelAddress) hotelAddress.innerHTML = '39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href=\"tel:+15105940900\">(510) 594-0900</a>';
+                if (hotelLink) hotelLink.href = 'https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/';
+                if (amenitiesTitle) amenitiesTitle.textContent = 'Free Shuttle From SJC';
+                if (amenitiesDetail) amenitiesDetail.textContent = 'The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)';
+            }
+        })();
+
+        // Mark current page in menu
+        (function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const menuLinks = document.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                // Check if this link matches the current page
+                if (href === currentPage || 
+                    (currentPage === '' && href === 'index.html') ||
+                    (currentPage === 'travel.html' && href === 'travel.html')) {
+                    link.classList.add('active');
+                }
+            });
+        })();
 
         // Top-left options menu + page transition behavior
         (function() {
@@ -606,7 +665,7 @@
                         }
 
                         // Append invitation type to external links
-                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
                         const separator = href.includes('?') ? '&' : '?';
                         href = href + separator + 'type=' + invitationType;
 

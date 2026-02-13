@@ -187,8 +187,8 @@
         outline: none;
     }
 
-    /* First menu item has underline by default */
-    .menu-link:first-child {
+    /* Active menu item has underline */
+    .menu-link.active {
         border-bottom-color: var(--sage-green);
     }
 
@@ -592,6 +592,24 @@
     </footer>
 
     <script>
+        // Mark current page in menu
+        (function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const menuLinks = document.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                // Check if this link matches the current page
+                if (href === currentPage || 
+                    (currentPage === '' && href === 'index.html') ||
+                    (currentPage === 'events.html' && href === 'events.html') ||
+                    (currentPage === 'travel.html' && href === 'travel.html') ||
+                    (currentPage === 'registry.html' && href === 'registry.html') ||
+                    (href.startsWith('index.html') && (currentPage === 'index.html' || currentPage === ''))) {
+                    link.classList.add('active');
+                }
+            });
+        })();
+
         // Top-left options menu + page transition behavior
         (function() {
             const menuBtn = document.getElementById('menuBtn');
@@ -644,7 +662,7 @@
                         }
 
                         // Append invitation type to external links
-                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
                         const separator = href.includes('?') ? '&' : '?';
                         href = href + separator + 'type=' + invitationType;
 
@@ -679,20 +697,23 @@
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
                 // No type in URL, check sessionStorage
-                invitationType = storedType || 'subkuch'; // default to all events
+                invitationType = storedType || 'nikkaha'; // default to nikkah only
             }
             
             // Define which events are in each invitation type
             const invitationTypes = {
-                'subkuch': ['dholki', 'nikkah', 'shalima'],
-                'nikkah': ['nikkah'],
-                'nikkahandshalima': ['nikkah', 'shalima']
+                'subkucha': ['dholki', 'nikkah', 'shalima'],
+                'subkuchn': ['dholki', 'nikkah', 'shalima'],
+                'nikkaha': ['nikkah'],
+                'nikkahn': ['nikkah'],
+                'nikkahandshalimaa': ['nikkah', 'shalima'],
+                'nikkahandshaliman': ['nikkah', 'shalima']
             };
             
-            // Default to nikkah only if invalid type specified
+            // Default to nikkaha only if invalid type specified
             const allowedEvents = invitationType && invitationTypes[invitationType] 
                 ? invitationTypes[invitationType] 
-                : invitationTypes['nikkah'];
+                : invitationTypes['nikkaha'];
             
             // Remove event items that aren't allowed (completely remove from DOM)
             const allEventItems = document.querySelectorAll('.event-item[data-event]');

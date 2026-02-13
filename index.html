@@ -34,19 +34,13 @@
             padding: 0;
             font-family: var(--sans-font);
             color: var(--primary-text);
-            scroll-behavior: smooth;
             background-color: var(--bg-white);
         }
         
         html {
-            scroll-snap-type: y proximity;
-            scroll-padding-top: 20px;
         }
 
         .snap-section {
-            scroll-snap-align: start;
-            scroll-snap-stop: normal;
-            scroll-margin-top: 20px;
         }
 
         /* Top Navigation */
@@ -208,8 +202,8 @@
             outline: none;
         }
 
-        /* First menu item has underline by default */
-        .menu-link:first-child {
+/* Active menu item has underline */
+    .menu-link.active {
             border-bottom-color: var(--sage-green);
         }
 
@@ -386,9 +380,7 @@
         .travel-section {
             background-color: var(--bg-white);
             color: var(--primary-text);
-            min-height: 100vh;
-            min-height: 100svh;
-            padding: 100px 20px;
+            padding: 40px 20px 60px;
             text-align: center;
         }
 
@@ -863,20 +855,7 @@
             <h3>DoubleTree by Hilton</h3>
             <p>39900 Balentine Drive, Newark, CA 94560</p>
             <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank"
-                class="btn">Book Your Stay</a>
-        </div>
-    </section>
-
-    <section class="countdown-section blur-initial">
-        <div class="countdown-content">
-            <h2>Counting down the days to forever</h2>
-            <div class="countdown-display big">
-                <div class="big-count">
-                    <div id="big-days" class="big-number">0</div>
-                    <div class="big-label">DAYS</div>
-                </div>
-            </div>
-            <p class="countdown-message" id="countdown-msg">The countdown begins...</p>
+                class="btn">Travel Information</a>
         </div>
     </section>
 
@@ -961,20 +940,23 @@
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
                 // No type in URL, check sessionStorage
-                invitationType = storedType || 'subkuch'; // default to all events
+                invitationType = storedType || 'nikkaha'; // default to nikkah only
             }
             
             // Define which events are in each invitation type
             const invitationTypes = {
-                'subkuch': ['dholki', 'nikkah', 'shalima'],
-                'nikkah': ['nikkah'],
-                'nikkahandshalima': ['nikkah', 'shalima']
+                'subkucha': ['dholki', 'nikkah', 'shalima'],
+                'subkuchn': ['dholki', 'nikkah', 'shalima'],
+                'nikkaha': ['nikkah'],
+                'nikkahn': ['nikkah'],
+                'nikkahandshalimaa': ['nikkah', 'shalima'],
+                'nikkahandshaliman': ['nikkah', 'shalima']
             };
             
-            // Default to nikkah only if invalid type specified
+            // Default to nikkaha only if invalid type specified
             const allowedEvents = invitationType && invitationTypes[invitationType] 
                 ? invitationTypes[invitationType] 
-                : invitationTypes['nikkah'];
+                : invitationTypes['nikkaha'];
             
             // Remove timeline items that aren't allowed (completely remove from DOM)
             const allTimelineItems = document.querySelectorAll('.timeline-item-block[data-event]');
@@ -988,14 +970,43 @@
             // Update intro text based on invitation type
             const introText = document.getElementById('timeline-intro');
             if (introText) {
-                if (invitationType === 'nikkah') {
+                if (invitationType === 'nikkaha' || invitationType === 'nikkahn') {
                     introText.textContent = 'You are cordially invited to celebrate our sacred union at the Nikkah ceremony.';
-                } else if (invitationType === 'nikkahandshalima') {
+                } else if (invitationType === 'nikkahandshalimaa' || invitationType === 'nikkahandshaliman') {
                     introText.textContent = 'Join us as we celebrate our sacred union and reception. Two beautiful days of love and joy.';
                 } else {
                     introText.textContent = 'Join us as we celebrate three beautiful days of love, joy, and new beginnings.';
                 }
             }
+            
+            // Update hotel information based on invitation type suffix
+            (function updateHotelInfo() {
+                // Determine which hotel based on invitation type suffix
+                const isEmbassySuites = invitationType && (
+                    invitationType === 'subkuchn' ||
+                    invitationType === 'nikkahn' ||
+                    invitationType === 'nikkahandshaliman'
+                );
+                
+                const hotelCard = document.querySelector('.hotel-card');
+                if (!hotelCard) return;
+                
+                const h3 = hotelCard.querySelector('h3');
+                const p = hotelCard.querySelector('p');
+                const a = hotelCard.querySelector('a');
+                
+                if (isEmbassySuites) {
+                    // Embassy Suites for 'n' suffix types
+                    if (h3) h3.textContent = 'Embassy Suites by Hilton Milpitas Silicon Valley';
+                    if (p) p.textContent = '901 E Calaveras Blvd, Milpitas, CA 95035';
+                    if (a) a.href = 'https://www.hilton.com/en/hotels/milcaes-embassy-suites-milpitas-silicon-valley/';
+                } else {
+                    // DoubleTree by Hilton for 'a' suffix types (default)
+                    if (h3) h3.textContent = 'DoubleTree by Hilton';
+                    if (p) p.textContent = '39900 Balentine Drive, Newark, CA 94560';
+                    if (a) a.href = 'https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/';
+                }
+            })();
         })();
         
         // Set the date we're counting down to
@@ -1189,6 +1200,21 @@
             countdownObserver.observe(countdownSection);
         }
 
+        // Mark current page in menu
+        (function() {
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            const menuLinks = document.querySelectorAll('.menu-link');
+            menuLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                // Check if this link matches the current page
+                if (href.startsWith('index.html') || href.startsWith('#home')) {
+                    if (currentPage === 'index.html' || currentPage === '') {
+                        link.classList.add('active');
+                    }
+                }
+            });
+        })();
+
         // Top-left options menu + page transition behavior
         (function () {
             const menuBtn = document.getElementById('menuBtn');
@@ -1244,7 +1270,7 @@
                         }
 
                         // Append invitation type to external links
-                        const invitationType = sessionStorage.getItem('invitationType') || 'subkuch';
+                        const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
                         const separator = href.includes('?') ? '&' : '?';
                         href = href + separator + 'type=' + invitationType;
 

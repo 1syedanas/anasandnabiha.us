@@ -239,7 +239,7 @@
     .page-header h1 {
         font-family: var(--serif-font);
         font-size: 3rem;
-        color: var(--sage-green);
+        color: #000000;
         margin: 0 0 20px 0;
         font-weight: 400;
     }
@@ -539,6 +539,10 @@
         </div>
 
         <div class="event-item" data-event="dholki">
+            <div class="event-content">
+                <div class="event-header">
+                    <h3 class="event-title"><span class="event-date">Friday, July 3</span> Dholki</h3>
+                </div>
                 <p class="event-timing">6:00 PM</p>
                 <p class="event-description">Welcome family and friends! We are hosting a fun dholki night to welcome our guests from near and far. This will be a lively pre-wedding celebration filled with music and traditional festivities.</p>
                 <p class="event-location"><a href="https://www.google.com/maps/dir/?api=1&destination=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538" target="_blank" rel="noopener">Fremont Downtown Event Center<br>3500 Capitol Ave, Fremont, CA 94538</a></p>
@@ -566,10 +570,10 @@
             </div>
         </div>
 
-        <div class="event-item" data-event="shaalima">
+        <div class="event-item" data-event="shalima">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span> Shaalima</h3>
+                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span> Shalima</h3>
                 </div>
                 <p class="event-timing">6:00 PM</p>
                 <p class="event-description">A celebratory reception to share an evening of dining and joy with our loved ones.</p>
@@ -578,7 +582,7 @@
                 <div class="map-embed">
                     <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582&output=embed" title="Canyon View Event Center map"></iframe>
                 </div>
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shaalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" class="add-to-calendar-btn">+ Add to Calendar</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" class="add-to-calendar-btn">+ Add to Calendar</a>
             </div>
         </div>
     </section>
@@ -658,24 +662,31 @@
         (function() {
             const params = new URLSearchParams(window.location.search);
             let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            const storedType = sessionStorage.getItem('invitationType');
             
-            // If no type in URL, check sessionStorage
-            if (!invitationType) {
-                invitationType = sessionStorage.getItem('invitationType');
-            }
-            
-            // Store type in sessionStorage for persistence across pages
+            // If URL has a type parameter, it always wins
             if (invitationType) {
+                // If it differs from stored value and we haven't just reloaded, update and reload
+                if (storedType && storedType !== invitationType && !sessionStorage.getItem('_reloadLock')) {
+                    // Set a temporary lock to prevent reload loops
+                    sessionStorage.setItem('_reloadLock', '1');
+                    sessionStorage.setItem('invitationType', invitationType);
+                    window.location.reload();
+                    return;
+                }
+                // Clear the reload lock
+                sessionStorage.removeItem('_reloadLock');
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
-                invitationType = 'subkuch'; // default to all events
+                // No type in URL, check sessionStorage
+                invitationType = storedType || 'subkuch'; // default to all events
             }
             
             // Define which events are in each invitation type
             const invitationTypes = {
-                'subkuch': ['dholki', 'nikkah', 'shaalima'],
+                'subkuch': ['dholki', 'nikkah', 'shalima'],
                 'nikkah': ['nikkah'],
-                'nikkahandshalima': ['nikkah', 'shaalima']
+                'nikkahandshalima': ['nikkah', 'shalima']
             };
             
             // Default to nikkah only if invalid type specified

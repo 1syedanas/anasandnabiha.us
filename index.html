@@ -842,11 +842,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="timeline-item-block" data-event="shaalima">
+                <div class="timeline-item-block" data-event="shalima">
                     <div class="timeline-item-flex">
                         <div class="timeline-date-text">July 5th</div>
                         <div class="timeline-content-text">
-                            <div class="timeline-event-name">Shaalima Reception</div>
+                            <div class="timeline-event-name">Shalima/Reception</div>
                         </div>
                     </div>
                 </div>
@@ -944,24 +944,31 @@
         (function() {
             const params = new URLSearchParams(window.location.search);
             let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            const storedType = sessionStorage.getItem('invitationType');
             
-            // If no type in URL, check sessionStorage
-            if (!invitationType) {
-                invitationType = sessionStorage.getItem('invitationType');
-            }
-            
-            // Store type in sessionStorage for persistence across pages
+            // If URL has a type parameter, it always wins
             if (invitationType) {
+                // If it differs from stored value and we haven't just reloaded, update and reload
+                if (storedType && storedType !== invitationType && !sessionStorage.getItem('_reloadLock')) {
+                    // Set a temporary lock to prevent reload loops
+                    sessionStorage.setItem('_reloadLock', '1');
+                    sessionStorage.setItem('invitationType', invitationType);
+                    window.location.reload();
+                    return;
+                }
+                // Clear the reload lock
+                sessionStorage.removeItem('_reloadLock');
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
-                invitationType = 'subkuch'; // default to all events
+                // No type in URL, check sessionStorage
+                invitationType = storedType || 'subkuch'; // default to all events
             }
             
             // Define which events are in each invitation type
             const invitationTypes = {
-                'subkuch': ['dholki', 'nikkah', 'shaalima'],
+                'subkuch': ['dholki', 'nikkah', 'shalima'],
                 'nikkah': ['nikkah'],
-                'nikkahandshalima': ['nikkah', 'shaalima']
+                'nikkahandshalima': ['nikkah', 'shalima']
             };
             
             // Default to nikkah only if invalid type specified
@@ -1144,7 +1151,7 @@
                     item.style.transform = `translateY(${(1 - progress) * 30}px)`;
                     
                     // Trigger subtle fireworks for Nikkah when it becomes visible
-                    if (item === nikkahItem && progress > 0.3 && !fireworksCreated) {
+                    if (item === nikkahItem && progress > 0.8 && !fireworksCreated) {
                         createSubtleFireworks(item);
                         fireworksCreated = true;
                     }                    

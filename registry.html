@@ -370,17 +370,24 @@
         (function() {
             const params = new URLSearchParams(window.location.search);
             let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            const storedType = sessionStorage.getItem('invitationType');
             
-            // If no type in URL, check sessionStorage
-            if (!invitationType) {
-                invitationType = sessionStorage.getItem('invitationType');
-            }
-            
-            // Store type in sessionStorage for persistence across pages
+            // If URL has a type parameter, it always wins
             if (invitationType) {
+                // If it differs from stored value and we haven't just reloaded, update and reload
+                if (storedType && storedType !== invitationType && !sessionStorage.getItem('_reloadLock')) {
+                    // Set a temporary lock to prevent reload loops
+                    sessionStorage.setItem('_reloadLock', '1');
+                    sessionStorage.setItem('invitationType', invitationType);
+                    window.location.reload();
+                    return;
+                }
+                // Clear the reload lock
+                sessionStorage.removeItem('_reloadLock');
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
-                invitationType = 'subkuch'; // default to all events
+                // No type in URL, check sessionStorage
+                invitationType = storedType || 'subkuch'; // default to all events
             }
         })();
 

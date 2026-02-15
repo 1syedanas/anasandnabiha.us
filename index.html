@@ -922,7 +922,22 @@
         // Invitation Type Handler - Persist type across pages using sessionStorage
         (function() {
             const params = new URLSearchParams(window.location.search);
+            if (window.location.hash.includes('?')) {
+                const [hashPath, hashQuery] = window.location.hash.split('?');
+                const hashParams = new URLSearchParams(hashQuery);
+                const hashType = hashParams.get('type');
+                if (hashType && !params.get('type')) {
+                    params.set('type', hashType);
+                    const newSearch = params.toString();
+                    const newHash = hashPath || '';
+                    window.history.replaceState(null, '', `${window.location.pathname}?${newSearch}${newHash}`);
+                }
+            }
             let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            if (!invitationType && window.location.hash.includes('?')) {
+                const hashQuery = window.location.hash.split('?')[1];
+                invitationType = new URLSearchParams(hashQuery).get('type');
+            }
             const storedType = sessionStorage.getItem('invitationType');
             
             // If URL has a type parameter, it always wins

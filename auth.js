@@ -1,6 +1,9 @@
 // Wedding Website Authentication
 // Guests access via URL: https://anasandnabiha.us/?key=YOURPASSWORD
 
+// Hide content immediately to prevent flash
+document.documentElement.style.visibility = 'hidden';
+
 (function() {
     'use strict';
     
@@ -29,6 +32,11 @@
         
         // Not authenticated
         return false;
+    }
+    
+    // Show the page content
+    function showContent() {
+        document.documentElement.style.visibility = 'visible';
     }
     
     // Show access denied page
@@ -71,10 +79,24 @@
         `;
         document.body.style.margin = '0';
         document.body.style.padding = '0';
+        document.documentElement.style.visibility = 'visible';
     }
     
-    // Run authentication check
-    if (!checkAuthentication()) {
-        showAccessDenied();
+    // Run authentication check when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!checkAuthentication()) {
+                showAccessDenied();
+            } else {
+                showContent();
+            }
+        });
+    } else {
+        // DOM already loaded
+        if (!checkAuthentication()) {
+            showAccessDenied();
+        } else {
+            showContent();
+        }
     }
 })();

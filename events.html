@@ -300,6 +300,11 @@
         color: var(--sage-green);
         margin: 0 0 4px 0;
         font-weight: 400;
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        width: 100%;
     }
 
     .event-date {
@@ -308,6 +313,11 @@
         color: var(--primary-text);
         font-weight: 400;
         margin-right: 8px;
+    }
+
+    .event-name {
+        text-align: right;
+        margin-left: auto;
     }
 
     .event-timing {
@@ -541,7 +551,7 @@
         <div class="event-item" data-event="dholki">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Friday, July 3</span> Dholki</h3>
+                    <h3 class="event-title"><span class="event-date">Friday, July 3</span><span class="event-name">Dholki</span></h3>
                 </div>
                 <p class="event-timing">6:00 PM</p>
                 <p class="event-description">Welcome family and friends! We are hosting a fun dholki night to welcome our guests from near and far. This will be a lively pre-wedding celebration filled with music and traditional festivities.</p>
@@ -557,7 +567,7 @@
         <div class="event-item" data-event="nikkah">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Saturday, July 4</span> Nikkah</h3>
+                    <h3 class="event-title"><span class="event-date">Saturday, July 4</span><span class="event-name">Nikkah</span></h3>
                 </div>
                 <p class="event-timing">1:30pm</p>
                 <p class="event-description">The Islamic ceremony where we formally enter into marriage.</p>
@@ -573,7 +583,7 @@
         <div class="event-item" data-event="shalima">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span> Shalima</h3>
+                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span><span class="event-name">Shalima</span></h3>
                 </div>
                 <p class="event-timing">6:00 PM</p>
                 <p class="event-description">A celebratory reception to share an evening of dining and joy with our loved ones.</p>
@@ -696,8 +706,9 @@
                 sessionStorage.removeItem('_reloadLock');
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
-                // No type in URL, check sessionStorage
-                invitationType = storedType || 'nikkaha'; // default to nikkah only
+                // No type in URL, default to nikkah only
+                invitationType = 'nikkaha';
+                sessionStorage.setItem('invitationType', invitationType);
             }
             
             // Define which events are in each invitation type

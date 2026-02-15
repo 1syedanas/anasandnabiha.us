@@ -939,8 +939,9 @@
                 sessionStorage.removeItem('_reloadLock');
                 sessionStorage.setItem('invitationType', invitationType);
             } else {
-                // No type in URL, check sessionStorage
-                invitationType = storedType || 'nikkaha'; // default to nikkah only
+                // No type in URL, default to nikkah only
+                invitationType = 'nikkaha';
+                sessionStorage.setItem('invitationType', invitationType);
             }
             
             // Define which events are in each invitation type

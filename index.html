@@ -1010,14 +1010,14 @@
             })();
         })();
         
-        // Set the date we're counting down to
-        const weddingDate = new Date("July 4, 2026 01:30:00").getTime();
+        // Set the date we're counting down to (Pacific time, July 4, 2026 1:30 AM)
+        const weddingDateUtc = Date.UTC(2026, 6, 4, 8, 30, 0);
 
         function updateCountdown() {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
+            const distance = weddingDateUtc - now;
 
-            const days = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
+            const days = Math.max(0, Math.ceil(distance / (1000 * 60 * 60 * 24)));
 
             const heroCountdown = document.getElementById("hero-countdown");
             if (heroCountdown) heroCountdown.textContent = `${days} Days to Go!`;

@@ -19,8 +19,11 @@ document.documentElement.style.visibility = 'hidden';
         // If key is in URL and correct, store authentication
         if (keyParam === WEDDING_PASSWORD) {
             sessionStorage.setItem('weddingAuth', 'true');
-            // Remove key from URL for cleaner look
-            const cleanUrl = window.location.origin + window.location.pathname;
+            // Remove key from URL but keep other parameters
+            urlParams.delete('key');
+            const remainingParams = urlParams.toString();
+            const cleanUrl = window.location.origin + window.location.pathname + 
+                (remainingParams ? '?' + remainingParams : '');
             window.history.replaceState({}, document.title, cleanUrl);
             return true;
         }

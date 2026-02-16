@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Background circle in sage green -->
+  <circle cx="16" cy="16" r="16" fill="#7B8E7E"/>
+  
+  <!-- Gold accent circle -->
+  <circle cx="16" cy="16" r="14" fill="none" stroke="#C5A059" stroke-width="1.5"/>
+  
+  <!-- A initial -->
+  <text x="9.5" y="21" font-family="'Playfair Display', serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">A</text>
+  
+  <!-- & symbol -->
+  <text x="16" y="21" font-family="'Playfair Display', serif" font-size="12" font-weight="400" fill="#C5A059" text-anchor="middle">&amp;</text>
+  
+  <!-- N initial -->
+  <text x="22.5" y="21" font-family="'Playfair Display', serif" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">N</text>
+</svg>

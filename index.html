@@ -37,12 +37,10 @@
             color: var(--primary-text);
             background-color: var(--bg-white);
         }
-        
-        html {
-        }
 
-        .snap-section {
-        }
+        html {}
+
+        .snap-section {}
 
         /* Top Navigation */
         .nav-wrapper {
@@ -197,14 +195,14 @@
 
             border-bottom: 2px solid transparent;
             transition: all 0.25s;
-            
+
             /* Remove default tap/click highlight */
             -webkit-tap-highlight-color: transparent;
             outline: none;
         }
 
-/* Active menu item has underline */
-    .menu-link.active {
+        /* Active menu item has underline */
+        .menu-link.active {
             border-bottom-color: var(--sage-green);
         }
 
@@ -398,6 +396,13 @@
             border-top: 5px solid var(--gold);
             /* Gold accent bar */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* Buttons */
@@ -669,9 +674,11 @@
                 opacity: 1;
                 transform: translate(0, 0) scale(1);
             }
+
             60% {
                 opacity: 0.8;
             }
+
             100% {
                 opacity: 0;
                 transform: translate(var(--tx, 100px), var(--ty, -100px)) scale(0);
@@ -792,7 +799,6 @@
             <a href="#home" class="menu-link">Home</a>
             <a href="events.html" class="menu-link">Events</a>
             <a href="travel.html" class="menu-link">Travel</a>
-            <a href="#faq" class="menu-link">Q + A</a>
             <a href="#activities" class="menu-link">Things to Do</a>
             <a href="registry.html" class="menu-link">Registry</a>
             <a href="rsvp.html" class="menu-link">RSVP</a>
@@ -812,11 +818,12 @@
         <p class="event-date event-countdown" id="hero-countdown">0 Days to Go!</p>
     </div>
 
-    <section id="schedule" class="timeline-section blur-initial snap-section">
+    <section id="schedule" class="timeline-section blur-initial snap-section" style="cursor: pointer;">
         <div class="timeline-container">
             <div class="timeline-header">
                 <h2 class="timeline-title">Events</h2>
-                <p class="timeline-intro" id="timeline-intro">Three days of celebration, three milestones of love. Join us as we mark the
+                <p class="timeline-intro" id="timeline-intro">Three days of celebration, three milestones of love. Join
+                    us as we mark the
                     most important moments of our lives together.</p>
             </div>
             <div class="timeline-items">
@@ -856,8 +863,7 @@
         <div class="hotel-card">
             <h3>DoubleTree by Hilton</h3>
             <p>39900 Balentine Drive, Newark, CA 94560</p>
-            <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank"
-                class="btn">Travel Information</a>
+            <a href="travel.html" class="btn">Travel Information</a>
         </div>
     </section>
 
@@ -870,28 +876,28 @@
         if (history.scrollRestoration) {
             history.scrollRestoration = 'manual';
         }
-        
+
         // Ensure we start at the top before page loads
         window.addEventListener('beforeunload', function () {
             window.scrollTo(0, 0);
         });
-        
+
         // Scroll to top immediately on load
         window.scrollTo(0, 0);
-        
+
         // Additional scroll to top after page fully loads
-        window.addEventListener('load', function() {
-            setTimeout(function() {
+        window.addEventListener('load', function () {
+            setTimeout(function () {
                 window.scrollTo(0, 0);
             }, 0);
         });
-        
+
         // Blur removal on scroll
-        (function() {
+        (function () {
             let hasScrolled = false;
             const blurredSections = document.querySelectorAll('.blur-initial');
             const travelSection = document.getElementById('travel');
-            
+
             function removeBlur() {
                 if (!hasScrolled && window.scrollY > 50) {
                     hasScrolled = true;
@@ -904,7 +910,7 @@
                     window.removeEventListener('scroll', removeBlur);
                 }
             }
-            
+
             window.addEventListener('scroll', removeBlur, { passive: true });
 
             if (travelSection) {
@@ -920,9 +926,9 @@
                 travelObserver.observe(travelSection);
             }
         })();
-        
+
         // Invitation Type Handler - Persist type across pages using sessionStorage
-        (function() {
+        (function () {
             const params = new URLSearchParams(window.location.search);
             if (window.location.hash.includes('?')) {
                 const [hashPath, hashQuery] = window.location.hash.split('?');
@@ -941,7 +947,7 @@
                 invitationType = new URLSearchParams(hashQuery).get('type');
             }
             const storedType = sessionStorage.getItem('invitationType');
-            
+
             // If URL has a type parameter, it always wins
             if (invitationType) {
                 // If it differs from stored value and we haven't just reloaded, update and reload
@@ -960,7 +966,7 @@
                 invitationType = 'nikkaha';
                 sessionStorage.setItem('invitationType', invitationType);
             }
-            
+
             // Define which events are in each invitation type
             const invitationTypes = {
                 'subkucha': ['dholki', 'nikkah', 'shalima'],
@@ -970,12 +976,12 @@
                 'nikkahandshalimaa': ['nikkah', 'shalima'],
                 'nikkahandshaliman': ['nikkah', 'shalima']
             };
-            
+
             // Default to nikkaha only if invalid type specified
-            const allowedEvents = invitationType && invitationTypes[invitationType] 
-                ? invitationTypes[invitationType] 
+            const allowedEvents = invitationType && invitationTypes[invitationType]
+                ? invitationTypes[invitationType]
                 : invitationTypes['nikkaha'];
-            
+
             // Remove timeline items that aren't allowed (completely remove from DOM)
             const allTimelineItems = document.querySelectorAll('.timeline-item-block[data-event]');
             allTimelineItems.forEach(item => {
@@ -984,7 +990,7 @@
                     item.remove();
                 }
             });
-            
+
             // Update intro text based on invitation type
             const introText = document.getElementById('timeline-intro');
             if (introText) {
@@ -996,7 +1002,7 @@
                     introText.textContent = 'Join us as we celebrate three beautiful days of love, joy, and new beginnings.';
                 }
             }
-            
+
             // Update hotel information based on invitation type suffix
             (function updateHotelInfo() {
                 // Determine which hotel based on invitation type suffix
@@ -1005,14 +1011,14 @@
                     invitationType === 'nikkahn' ||
                     invitationType === 'nikkahandshaliman'
                 );
-                
+
                 const hotelCard = document.querySelector('.hotel-card');
                 if (!hotelCard) return;
-                
+
                 const h3 = hotelCard.querySelector('h3');
                 const p = hotelCard.querySelector('p');
                 const a = hotelCard.querySelector('a');
-                
+
                 if (isEmbassySuites) {
                     // Embassy Suites for 'n' suffix types
                     if (h3) h3.textContent = 'Embassy Suites by Hilton Milpitas Silicon Valley';
@@ -1026,7 +1032,7 @@
                 }
             })();
         })();
-        
+
         // Set the date we're counting down to (Pacific time, July 4, 2026 1:30 AM)
         const weddingDateUtc = Date.UTC(2026, 6, 4, 8, 30, 0);
 
@@ -1058,21 +1064,21 @@
         function createSubtleFireworks(element) {
             // Color palette: gold, pink, sage green, and light purple
             const colors = ['#FFD700', '#E879A1', '#7B8E7E', '#D8B4E8'];
-            
+
             function launchRockets(delay = 0) {
                 setTimeout(() => {
                     const rect = element.getBoundingClientRect();
                     const relativeRect = element.getBoundingClientRect();
-                    
+
                     // Create 4-6 rockets that fly up then explode
                     const rocketCount = 4 + Math.floor(Math.random() * 2);
-                    
+
                     for (let r = 0; r < rocketCount; r++) {
                         setTimeout(() => {
                             const startX = relativeRect.width * (0.2 + Math.random() * 0.6);
                             const startY = relativeRect.height * 0.5;
                             const endY = relativeRect.height * (0.1 + Math.random() * 0.2);
-                            
+
                             // Create rocket particle
                             const rocket = document.createElement('div');
                             rocket.className = 'firework-particle';
@@ -1081,26 +1087,26 @@
                             rocket.style.top = startY + 'px';
                             rocket.style.width = '4px';
                             rocket.style.height = '4px';
-                            
+
                             const rocketColor = colors[Math.floor(Math.random() * colors.length)];
                             rocket.style.background = rocketColor;
                             rocket.style.boxShadow = `0 0 4px ${rocketColor}`;
-                            
+
                             element.appendChild(rocket);
-                            
+
                             // Animate rocket flying upward
                             rocket.style.animation = `none`;
                             rocket.style.transform = 'translate(0, 0)';
-                            
+
                             // Manually animate rocket
                             let rocketProgress = 0;
                             const rocketDuration = 600;
                             const rocketStart = Date.now();
-                            
+
                             const animateRocket = () => {
                                 const elapsed = Date.now() - rocketStart;
                                 rocketProgress = elapsed / rocketDuration;
-                                
+
                                 if (rocketProgress < 1) {
                                     const currentY = startY - (startY - endY) * rocketProgress;
                                     rocket.style.transform = `translate(0, ${currentY - startY}px)`;
@@ -1110,44 +1116,44 @@
                                     rocket.remove();
                                     // Explode at the top with randomized colors
                                     const particleCount = 14 + Math.random() * 4;
-                                    
+
                                     for (let i = 0; i < particleCount; i++) {
                                         const particle = document.createElement('div');
                                         particle.className = 'firework-particle';
-                                        
+
                                         const angle = (Math.PI * 2 * i) / particleCount + (Math.random() - 0.5) * 0.4;
                                         const distance = 35 + Math.random() * 50;
                                         const tx = Math.cos(angle) * distance;
                                         const ty = Math.sin(angle) * distance;
-                                        
+
                                         particle.style.position = 'absolute';
                                         particle.style.left = startX + 'px';
                                         particle.style.top = endY + 'px';
                                         particle.style.setProperty('--tx', tx + 'px');
                                         particle.style.setProperty('--ty', ty + 'px');
-                                        
+
                                         // Randomize color for each particle
                                         const color = colors[Math.floor(Math.random() * colors.length)];
                                         particle.style.background = color;
                                         particle.style.boxShadow = `0 0 3px ${color}`;
-                                        
+
                                         element.appendChild(particle);
-                                        
+
                                         particle.style.animation = `firework ${0.8 + Math.random() * 0.5}s ease-out forwards`;
-                                        
+
                                         setTimeout(() => {
                                             particle.remove();
                                         }, 1400);
                                     }
                                 }
                             };
-                            
+
                             animateRocket();
                         }, r * 200); // Stagger rockets
                     }
                 }, delay);
             }
-            
+
             // Launch multiple waves of rockets to keep fireworks going longer
             launchRockets(0);     // First wave
             launchRockets(1800);  // Second wave after ~2 seconds
@@ -1162,44 +1168,44 @@
         const timelineItems = document.querySelectorAll('.timeline-item-block');
         let fireworksCreated = false;
         const nikkahItem = document.querySelector('[data-event="nikkah"]');
-        
+
         if (timelineItems.length > 0) {
             const handleScrollAnimation = () => {
                 timelineItems.forEach((item, index) => {
                     const rect = item.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
-                    
+
                     // Calculate how much of the item is in view (0 to 1)
                     const elementTop = rect.top;
                     const elementHeight = rect.height;
                     const visibleStart = Math.max(0, windowHeight - elementTop);
                     const progress = Math.min(1, Math.max(0, visibleStart / (windowHeight * 0.25)));
-                    
+
                     // Apply opacity and transform based on scroll progress
                     item.style.opacity = progress;
                     item.style.transform = `translateY(${(1 - progress) * 30}px)`;
-                    
+
                     // Trigger subtle fireworks for Nikkah when it becomes visible
                     if (item === nikkahItem && progress > 0.8 && !fireworksCreated) {
                         createSubtleFireworks(item);
                         fireworksCreated = true;
-                    }                    
+                    }
                     // Also animate the date and content inside
                     const dateText = item.querySelector('.timeline-date-text');
                     const contentText = item.querySelector('.timeline-content-text');
-                    
+
                     if (dateText) {
                         dateText.style.opacity = progress;
                         dateText.style.transform = `translateY(${(1 - progress) * 30}px)`;
                     }
-                    
+
                     if (contentText) {
                         contentText.style.opacity = progress;
                         contentText.style.transform = `translateY(${(1 - progress) * 30}px)`;
                     }
                 });
             };
-            
+
             window.addEventListener('scroll', handleScrollAnimation, { passive: true });
             // Run once on load to set initial state
             handleScrollAnimation();
@@ -1219,7 +1225,7 @@
         }
 
         // Mark current page in menu
-        (function() {
+        (function () {
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const menuLinks = document.querySelectorAll('.menu-link');
             menuLinks.forEach(link => {
@@ -1259,7 +1265,7 @@
 
             if (menuBtn && menuOverlay) {
                 menuBtn.addEventListener('click', toggleMenu);
-                
+
                 // Close menu when close button is clicked
                 menuClose && menuClose.addEventListener('click', toggleMenu);
 
@@ -1298,6 +1304,28 @@
                         setTimeout(() => { window.location.href = href; }, 420);
                     });
                 });
+
+                // Make events section clickable
+                const eventsSection = document.getElementById('schedule');
+                if (eventsSection) {
+                    eventsSection.addEventListener('click', function(e) {
+                        const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
+                        const href = 'events.html?type=' + invitationType;
+                        document.documentElement.classList.add('page-exit');
+                        setTimeout(() => { window.location.href = href; }, 420);
+                    });
+                }
+
+                // Make hotel card clickable
+                const hotelCard = document.querySelector('.hotel-card');
+                if (hotelCard) {
+                    hotelCard.addEventListener('click', function(e) {
+                        const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
+                        const href = 'travel.html?type=' + invitationType;
+                        document.documentElement.classList.add('page-exit');
+                        setTimeout(() => { window.location.href = href; }, 420);
+                    });
+                }
             }
         })();
     </script>

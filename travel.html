@@ -382,7 +382,6 @@
             <a href="index.html#home" class="menu-link">Home</a>
             <a href="events.html" class="menu-link">Events</a>
             <a href="travel.html" class="menu-link">Travel</a>
-            <a href="index.html#faq" class="menu-link">Q + A</a>
             <a href="index.html#activities" class="menu-link">Things to Do</a>
             <a href="registry.html" class="menu-link">Registry</a>
             <a href="rsvp.html" class="menu-link">RSVP</a>
@@ -509,11 +508,6 @@
                 
                 const checkOutDate = new Date(latestDate);
                 checkOutDate.setDate(checkOutDate.getDate() + 1);
-                
-                // For subkucha and subkuchn, extend checkout to Monday (July 7)
-                if (invitationType === 'subkucha' || invitationType === 'subkuchn') {
-                    checkOutDate.setDate(checkOutDate.getDate() + 1);
-                }
 
                 // Format dates
                 const months = ['January', 'February', 'March', 'April', 'May', 'June', 

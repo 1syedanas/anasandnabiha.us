@@ -249,6 +249,32 @@
         color: var(--primary-text);
     }
 
+    #hotelSubtitle {
+        margin: 0 0 2px 0;
+    }
+
+    #hotelAddress {
+        margin: 0;
+        line-height: 1.4;
+    }
+
+    #roomsTitle {
+        margin-bottom: 3px;
+    }
+
+    #roomsDetail {
+        margin-top: 0;
+    }
+
+    #roomsDetail em {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    #hotelLink {
+        margin-top: 3px;
+    }
+
     .block-detail a {
         color: var(--sage-green);
         text-decoration: none;
@@ -273,8 +299,36 @@
         font-family: var(--sans-font);
         font-size: 1.1rem;
         color: #000000;
-        margin: 8px 0 0 0;
+        margin: 0;
         font-weight: 700;
+    }
+
+    .code-button {
+        border: 1px solid var(--sage-green);
+        background: transparent;
+        color: var(--sage-green);
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--accent-font);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.7rem;
+        font-weight: 700;
+        padding: 8px 14px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .code-button:hover {
+        background: var(--sage-green);
+        color: #ffffff;
+    }
+
+    .code-status {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+        opacity: 0.75;
     }
 
     .btn {
@@ -297,6 +351,34 @@
         color: white;
     }
 
+    .primary-info {
+        padding: 40px 30px;
+    }
+
+    .primary-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+        margin-top: 16px;
+    }
+
+    .primary-column .block-label {
+        margin-top: 18px;
+    }
+
+    .primary-column .block-label:first-child {
+        margin-top: 0;
+    }
+
+    .primary-info .block-label {
+        padding-top: 12px;
+        margin-bottom: 8px;
+    }
+
+    .group-rate-label {
+        padding-top: 6px;
+    }
+
     .full-width-block {
         grid-column: 1 / -1;
         padding: 40px 30px;
@@ -305,13 +387,19 @@
 
     .travel-times {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
     }
 
     .time-card {
-        padding: 20px 15px;
-        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-radius: 14px;
+        background: #ffffff;
+        border: 1px solid rgba(123, 142, 126, 0.2);
+        box-shadow: 0 6px 16px rgba(58, 63, 58, 0.08);
     }
 
     .time-label {
@@ -320,13 +408,14 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         color: var(--sage-green);
-        margin-bottom: 8px;
+        margin: 0;
     }
 
     .time-value {
         font-family: var(--serif-font);
-        font-size: 1.3rem;
+        font-size: 1.05rem;
         color: var(--primary-text);
+        margin: 0;
     }
 
     footer {
@@ -379,6 +468,14 @@
         .full-width-block {
             padding: 30px 20px;
         }
+
+        .primary-info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .travel-times {
+            grid-template-columns: 1fr;
+        }
     }
     </style>
 </head>
@@ -405,32 +502,34 @@
         <p class="hero-subtitle" id="heroSubtitle">July 3-5, 2026 • San Ramon, CA</p>
 
         <div class="content-grid">
-            <div class="content-block" data-hotel-block>
-                <p class="block-label">Hotel</p>
-                <h2 class="block-title" id="hotelName">DoubleTree by Hilton</h2>
-                <h3 class="block-detail" id="hotelSubtitle">Hotel Newark - Fremont</h3>
-                <p class="block-detail" id="hotelAddress">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
-                <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
-            </div>
+            <div class="full-width-block primary-info">
+                <h2 class="block-title" style="margin-top: 0;">Hotel Info</h2>
+                <div class="primary-info-grid">
+                    <div class="primary-column" data-hotel-block>
+                        <p class="block-label">Hotel Location</p>
+                        <h3 class="block-title" id="hotelName">DoubleTree by Hilton</h3>
+                        <h3 class="block-detail" id="hotelSubtitle">Hotel Newark - Fremont</h3>
+                        <p class="block-detail" id="hotelAddress">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
+                    </div>
 
-            <div class="content-block">
-                <p class="block-label">Group Rate</p>
-                <h2 class="block-title">Wedding Block Code</h2>
-                <p class="block-detail">Use Code Below When Booking</p>
-                <p class="code-label">Code:</p>
-                <p class="code-value">CDT903</p>
-            </div>
+                    <div class="primary-column">
+                        <p class="block-label group-rate-label">Group Rate</p>
+                        <button class="code-button" type="button" id="copyGroupRate" aria-label="Copy group rate code">
+                            <span class="code-value" id="groupRateCode">CDT903</span>
+                        </button>
 
-            <div class="content-block">
-                <p class="block-label">Recommended Rooms</p>
-                <h2 class="block-title" id="roomsTitle">Garden Rooms</h2>
-                <p class="block-detail" id="roomsDetail">Newly Renovated with Patio or Balcony<br><br><strong>1 King Bed Garden Room</strong><br>$135 per night<br><br><strong>2 Double Beds Garden Room</strong><br>$145 per night<br><br><em style="font-size: 0.85rem;">(Rates exclude applicable taxes)</em></p>
-            </div>
+                        <p class="block-label">Room Block Dates</p>
+                        <h3 class="block-title" id="checkInDates">July 2 - 6</h3>
 
-            <div class="content-block">
-                <p class="block-label">Room Block Dates</p>
-                <h2 class="block-title" id="checkInDates">July 2 - 6</h2>
-                <p class="block-detail"><span id="checkInDetail">Check-In: Wednesday<br>Check-Out: Sunday</span></p>
+                        <p class="block-label">Recommended Rooms</p>
+                        <h3 class="block-title" id="roomsTitle">Garden Rooms</h3>
+                        <p class="block-detail" id="roomsDetail">Newly Renovated with Patio or Balcony<br><br><strong>1 King Bed Garden Room</strong><br>$135 per night<br><br><strong>2 Double Beds Garden Room</strong><br>$145 per night<br><br><em style="font-size: 0.85rem;">(Rates exclude applicable taxes)</em></p>
+                        <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
+
+                        <p class="block-label">Additional Stay Requests</p>
+                        <p class="block-detail" style="margin: 0;">For those planning to stay outside the room block dates, please go ahead and make a reservation for July 2-6 only and contact us so we can connect you to the Hilton representative to add additional dates, we cannot promise the same rates but will try our best to get you negotiated rates!</p>
+                    </div>
+                </div>
             </div>
 
             <div class="content-block">
@@ -450,12 +549,15 @@
                         <p class="time-label">Hotel to Reception</p>
                         <p class="time-value">~25 Minutes</p>
                     </div>
+                    <div class="time-card">
+                        <p class="time-label">Hotel to SFO</p>
+                        <p class="time-value">~35 Minutes</p>
+                    </div>
+                    <div class="time-card">
+                        <p class="time-label">Hotel to SJC</p>
+                        <p class="time-value">~25 Minutes</p>
+                    </div>
                 </div>
-            </div>
-
-            <div class="full-width-block">
-                <h2 class="block-title" style="margin-top: 0;">Additional Stay Requests</h2>
-                <p class="block-detail" style="margin: 0;">If you would like to stay outside of July 2–6, please let us know so the hotel can review availability and adjust the nightly rate accordingly. We will send the information with the Group Code after the hotel knows about the additional nights :)</p>
             </div>
         </div>
     </div>
@@ -560,23 +662,58 @@
                 }
 
                 // Update check-in dates - show checkin through checkout range
-                if (checkInDay === checkOutDay && checkInMonth === checkOutMonth) {
-                    // Single day
-                    document.getElementById('checkInDates').textContent = 
-                        `${checkInMonth} ${checkInDay}`;
-                } else {
-                    // Date range
-                    document.getElementById('checkInDates').textContent = 
-                        `${checkInMonth} ${checkInDay} - ${checkOutMonth} ${checkOutDay}`;
-                }
+                // Only update dates for Embassy Suites; keep DoubleTree dates static (July 2-6)
+                const isEmbassySuites = invitationType && (
+                    invitationType === 'subkuchn' ||
+                    invitationType === 'nikkahn' ||
+                    invitationType === 'nikkahandshaliman'
+                );
                 
-                document.getElementById('checkInDetail').innerHTML = 
-                    `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
+                if (isEmbassySuites) {
+                    if (checkInDay === checkOutDay && checkInMonth === checkOutMonth) {
+                        // Single day
+                        document.getElementById('checkInDates').textContent = 
+                            `${checkInMonth} ${checkInDay}`;
+                    } else {
+                        // Date range
+                        document.getElementById('checkInDates').textContent = 
+                            `${checkInMonth} ${checkInDay} - ${checkOutMonth} ${checkOutDay}`;
+                    }
+                    
+                    document.getElementById('checkInDetail').innerHTML = 
+                        `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
+                }
+                // For DoubleTree (default), dates remain static at "July 2 - 6" as defined in HTML
             }
         }
 
         // Call update function on page load
         updateTravelDates();
+
+        // Copy group rate code
+        (function addCopyHandler() {
+            const copyButton = document.getElementById('copyGroupRate');
+            const codeValue = document.getElementById('groupRateCode');
+            if (!copyButton || !codeValue) return;
+
+            copyButton.addEventListener('click', async () => {
+                const codeText = codeValue.textContent.trim();
+                if (!codeText) return;
+
+                try {
+                    await navigator.clipboard.writeText(codeText);
+                    codeValue.textContent = 'Copied';
+                    window.setTimeout(() => {
+                        codeValue.textContent = codeText;
+                    }, 1500);
+                } catch (error) {
+                    codeValue.textContent = 'Copy failed';
+                    window.setTimeout(() => {
+                        codeValue.textContent = codeText;
+                    }, 2000);
+                }
+            });
+        })();
 
         // Update hotel information based on invitation type suffix
         (function updateHotelInfo() {

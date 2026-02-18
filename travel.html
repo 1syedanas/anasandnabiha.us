@@ -204,7 +204,7 @@
 
     .content-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: 1fr;
         gap: 40px;
         margin-bottom: 50px;
     }
@@ -300,7 +300,7 @@
         font-size: 1.1rem;
         color: #000000;
         margin: 0;
-        font-weight: 700;
+        font-weight: 450;
     }
 
     .code-button {
@@ -336,9 +336,9 @@
         margin-top: 16px;
         padding: 11px 30px;
         border: 1px solid var(--sage-green);
-        background: transparent;
+        background: var(--sage-green);
         text-decoration: none;
-        color: var(--sage-green);
+        color: white;
         text-transform: uppercase;
         letter-spacing: 2px;
         font-size: 0.7rem;
@@ -357,7 +357,7 @@
 
     .primary-info-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: 1fr;
         gap: 15px;
         margin-top: 16px;
     }
@@ -551,10 +551,10 @@
                         <p class="block-label">Recommended Rooms</p>
                         <h3 class="block-title" id="roomsTitle">Garden Rooms</h3>
                         <p class="block-detail" id="roomsDetail">Newly Renovated with Patio or Balcony<br><br><strong>1 King Bed Garden Room</strong><br>$135 per night<br><br><strong>2 Double Beds Garden Room</strong><br>$145 per night<br><br><em style="font-size: 0.85rem;">(Rates exclude applicable taxes)</em></p>
-                        <a href="https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
+                        <a href="https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=NWKBDDT&arrivalDate=2026-07-02&departureDate=2026-07-06&groupCode=CDT903&room1NumAdults=2" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
 
                         <p class="block-label">Additional Stay Requests</p>
-                        <p class="block-detail" style="margin: 0;">For those planning to stay outside the room block dates, please go ahead and make a reservation for July 2-6 only and contact us so we can connect you to the Hilton representative to add additional dates, we cannot promise the same rates but will try our best to get you negotiated rates!</p>
+                        <p class="block-detail" style="margin: 0;">For those planning to stay outside the room block dates, please go ahead and make a reservation for July 2-6 only and contact Hilton (<a href="tel:+18884466677">1-888-446-6677</a>) to add additional dates. Don't be shy in asking them to match the existing group rate!</p>
                     </div>
                 </div>
             </div>
@@ -572,7 +572,7 @@
                         <p class="time-label">Hotel to Mosque</p>
                         <p class="time-value">~25 Minutes</p>
                     </div>
-                    <div class="time-card">
+                    <div class="time-card" id="receptionTimeCard">
                         <p class="time-label">Hotel to Reception</p>
                         <p class="time-value">~25 Minutes</p>
                     </div>
@@ -717,6 +717,27 @@
         // Call update function on page load
         updateTravelDates();
 
+        // Show/hide hotel to reception time card based on invitation type
+        (function showReceptionTime() {
+            const params = new URLSearchParams(window.location.search);
+            let invitationType = params.get('type');
+            const storedType = sessionStorage.getItem('invitationType');
+            
+            invitationType = invitationType || storedType || 'nikkaha';
+            
+            const receptionCard = document.getElementById('receptionTimeCard');
+            if (!receptionCard) return;
+            
+            // Show reception time only for these invitation types
+            const typesWithReception = ['subkucha', 'subkuchn', 'nikkahandshalimaa', 'nikkahandshaliman'];
+            
+            if (typesWithReception.includes(invitationType)) {
+                receptionCard.style.display = 'flex';
+            } else {
+                receptionCard.style.display = 'none';
+            }
+        })();
+
         // Copy group rate code
         (function addCopyHandler() {
             const copyButton = document.getElementById('copyGroupRate');
@@ -777,7 +798,7 @@
                 if (hotelName) hotelName.textContent = 'DoubleTree by Hilton';
                 if (hotelSubtitle) hotelSubtitle.textContent = 'Hotel Newark - Fremont';
                 if (hotelAddress) hotelAddress.innerHTML = '39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href=\"tel:+15105940900\">(510) 594-0900</a>';
-                if (hotelLink) hotelLink.href = 'https://www.hilton.com/en/hotels/nwkbddt-doubletree-newark-fremont/';
+                if (hotelLink) hotelLink.href = 'https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=NWKBDDT&arrivalDate=2026-07-02&departureDate=2026-07-06&groupCode=CDT903&room1NumAdults=2';
                 if (amenitiesTitle) amenitiesTitle.textContent = 'Free Shuttle From SJC';
                 if (amenitiesDetail) amenitiesDetail.textContent = 'The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)';
             }

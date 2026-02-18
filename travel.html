@@ -418,6 +418,31 @@
         margin: 0;
     }
 
+    .mobile-page-title {
+        width: 100%;
+        text-align: center;
+        display: block;
+        overflow: hidden;
+        padding: 16px 0;
+        margin: 0;
+        text-overflow: ellipsis;
+        font-family: 'Quicksand', sans-serif;
+        color: #404041;
+        font-size: 32px;
+        font-weight: normal;
+        text-transform: uppercase;
+        position: sticky;
+        top: 0;
+        z-index: 999;
+        background-color: #FFFFFF;
+    }
+
+    @media (max-width: 640px) {
+        .mobile-page-title {
+            font-size: calc(32px * 0.75);
+        }
+    }
+
     footer {
         background: var(--bg-white);
         padding: 60px 0 30px;
@@ -480,6 +505,8 @@
     </style>
 </head>
 <body>
+    <h2 data-testid="mobile-page-title" class="mobile-page-title">A&amp;N</h2>
+
     <nav class="nav-wrapper">
         <button id="menuBtn" class="menu-btn" aria-label="Open navigation" aria-haspopup="true" aria-expanded="false">
             <span class="hamburger" aria-hidden="true"></span>

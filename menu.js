@@ -14,9 +14,9 @@
                     <button class="menu-close" id="menuClose" aria-label="Close navigation">✕</button>
                     <a href="index.html#home" class="menu-link">Home</a>
                     <a href="events.html" class="menu-link">Photos</a>
-                    <a href="index.html#travel" class="menu-link">Travel</a>
+                    <a href="travel.html" class="menu-link">Travel</a>
                     <a href="index.html#faq" class="menu-link">Q + A</a>
-                    <a href="index.html#activities" class="menu-link">Things to Do</a>
+                    <a href="thingstodo.html" class="menu-link">Things to Do</a>
                 </div>
             </div>
         </nav>

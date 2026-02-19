@@ -519,7 +519,6 @@
             <a href="events.html" class="menu-link">Events</a>
             <a href="travel.html" class="menu-link">Travel</a>
             <a href="index.html#activities" class="menu-link">Things to Do</a>
-            <a href="registry.html" class="menu-link">Registry</a>
             <a href="rsvp.html" class="menu-link">RSVP</a>
         </div>
     </div>
@@ -614,8 +613,12 @@
         // Function to update travel dates based on invited events
         function updateTravelDates() {
             const params = new URLSearchParams(window.location.search);
-            let invitationType = params.get('type'); // 'subkuch', 'nikkah', 'nikkahandshalima'
+            let invitationType = params.get('type') || params.get('code'); // 'subkuch', 'nikkah', 'nikkahandshalima'
             const storedType = sessionStorage.getItem('invitationType');
+
+            if (invitationType) {
+                invitationType = invitationType.trim().toLowerCase();
+            }
             
             // If URL has a type parameter, it always wins
             if (invitationType) {
@@ -707,8 +710,11 @@
                             `${checkInMonth} ${checkInDay} - ${checkOutMonth} ${checkOutDay}`;
                     }
                     
-                    document.getElementById('checkInDetail').innerHTML = 
-                        `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
+                    const checkInDetail = document.getElementById('checkInDetail');
+                    if (checkInDetail) {
+                        checkInDetail.innerHTML = 
+                            `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
+                    }
                 }
                 // For DoubleTree (default), dates remain static at "July 2 - 6" as defined in HTML
             }
@@ -720,8 +726,12 @@
         // Show/hide hotel to reception time card based on invitation type
         (function showReceptionTime() {
             const params = new URLSearchParams(window.location.search);
-            let invitationType = params.get('type');
+            let invitationType = params.get('type') || params.get('code');
             const storedType = sessionStorage.getItem('invitationType');
+
+            if (invitationType) {
+                invitationType = invitationType.trim().toLowerCase();
+            }
             
             invitationType = invitationType || storedType || 'nikkaha';
             
@@ -766,8 +776,12 @@
         // Update hotel information based on invitation type suffix
         (function updateHotelInfo() {
             const params = new URLSearchParams(window.location.search);
-            let invitationType = params.get('type');
+            let invitationType = params.get('type') || params.get('code');
             const storedType = sessionStorage.getItem('invitationType');
+
+            if (invitationType) {
+                invitationType = invitationType.trim().toLowerCase();
+            }
             
             invitationType = invitationType || storedType || 'nikkaha';
             

@@ -17,14 +17,13 @@
     <meta name="twitter:title" content="Our Wedding Celebration - 2026">
     <meta name="twitter:description" content="Join us for the celebration of Anas & Nabiha's wedding!">
     <meta name="twitter:image" content="https://anasandnabiha.us/images/favicon.svg">
-    <script src="auth.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&family=Quicksand:wght@300;400;500;700&display=swap"
         rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="auth.js" defer></script>
 
     <style>
         :root {
@@ -417,6 +416,148 @@
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
+        .gifts-card {
+            cursor: default;
+            border-top: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gifts-card .timeline-title {
+            position: relative;
+            z-index: 6;
+            margin-bottom: -30px;
+            background: transparent;
+            padding: 0;
+            top: auto;
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .gifts-card:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .gift-envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: #f9f7f1;
+            margin: -30px 0 2px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            overflow: visible;
+            border-radius: 4px;
+            perspective: 1200px;
+        }
+
+        /* The Top Flap */
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-top: 100px solid #ece9df;
+            transform-origin: top center;
+            transform: rotateX(0deg);
+            z-index: 3;
+        }
+
+        /* The Bottom & Side Pocket (Static) */
+        .envelope-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            border-bottom: 100px solid #e0ddd5;
+            z-index: 2;
+        }
+
+        /* The Letter inside */
+        .envelope-letter {
+            position: absolute;
+            bottom: 10px;
+            left: 10%;
+            width: 80%;
+            height: auto;
+            background: transparent;
+            z-index: 1;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .envelope-letter p {
+            margin: 0;
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            line-height: 1.6;
+            font-size: 0.9rem;
+        }
+
+        /* Animation States */
+        .gift-envelope.open .envelope-flap {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .gift-envelope.open .envelope-letter {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gifts-card.hide-envelope .gift-envelope {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .envelope-flap,
+            .envelope-letter {
+                transition: none !important;
+            }
+
+            .gift-envelope.open .envelope-flap {
+                transform: rotateX(180deg);
+            }
+
+            .gift-envelope.open .envelope-letter {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hotel-card h3 {
+            font-family: var(--serif-font);
+            color: var(--primary-text);
+            margin: 0 0 10px;
+        }
+
+        .hotel-card p {
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            margin: 0 0 12px;
+            line-height: 1.6;
+        }
+
+        .gifts-card {
+            cursor: default;
+        }
+
+        .gifts-card:hover {
+            transform: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
         /* Buttons */
         .btn {
             display: inline-block;
@@ -630,6 +771,7 @@
             padding: 40px 0;
             opacity: 0;
             transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .timeline-item-block:last-child {
@@ -653,18 +795,22 @@
             flex-shrink: 0;
             opacity: 0;
             transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .timeline-content-text {
+            display: flex;
+            align-items: center;
             opacity: 0;
             transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
         }
 
         .timeline-event-name {
             font-family: var(--serif-font);
             font-size: 1.3rem;
             color: var(--primary-text);
-            margin-bottom: 8px;
+            margin: 0;
             font-weight: 400;
         }
 
@@ -812,14 +958,13 @@
             <a href="events.html" class="menu-link">Events</a>
             <a href="travel.html" class="menu-link">Travel</a>
             <a href="#activities" class="menu-link">Things to Do</a>
-            <a href="registry.html" class="menu-link">Registry</a>
             <a href="rsvp.html" class="menu-link">RSVP</a>
         </div>
     </div>
 
     <section id="home" class="hero-container">
         <div class="hero-banner">
-            <img src="images/gem.png" alt="Wedding couple banner">
+            <img src="images/gem.png" alt="Wedding couple banner" loading="lazy">
         </div>
         <h1>Anas &amp; Nabiha</h1>
 
@@ -876,6 +1021,16 @@
             <h3>DoubleTree by Hilton</h3>
             <p>39900 Balentine Drive, Newark, CA 94560</p>
             <a href="travel.html" class="btn">Travel Information</a>
+        </div>
+
+        <div class="hotel-card gifts-card">
+            <h3 class="timeline-title">Gifts</h3>
+            <div class="gift-envelope" aria-hidden="true">
+                <div class="envelope-flap"></div>
+                <div class="envelope-letter">
+                    <p>Celebrating with you is the greatest gift we could ask for! If you'd like to give a gift, we'd kindly prefer no boxed gifts.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1197,8 +1352,9 @@
                     item.style.opacity = progress;
                     item.style.transform = `translateY(${(1 - progress) * 30}px)`;
 
-                    // Trigger subtle fireworks for Nikkah when it becomes visible
-                    if (item === nikkahItem && progress > 0.8 && !fireworksCreated) {
+                    // Trigger subtle fireworks for Nikkah when timeline section is fully unblurred
+                    const isTimelineUnblurred = timelineSection.classList.contains('unblurred');
+                    if (item === nikkahItem && isTimelineUnblurred && !fireworksCreated) {
                         createSubtleFireworks(item);
                         fireworksCreated = true;
                     }
@@ -1235,6 +1391,104 @@
             }, { threshold: 0.95, rootMargin: '0px' });
             countdownObserver.observe(countdownSection);
         }
+
+        // Gifts envelope animation: scroll-triggered open/fade with reversible animation
+        (function () {
+            const giftsCard = document.querySelector('.gifts-card');
+            const giftEnvelope = document.querySelector('.gift-envelope');
+            if (!giftsCard || !giftEnvelope) return;
+
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            if (reduceMotion) {
+                giftsCard.classList.add('gift-open');
+                giftEnvelope.classList.add('open');
+            }
+
+            let envelopeRect = null;
+            let fullOpenScrollY = null;
+            let envelopeIsVisible = false;
+
+            const updateEnvelopeState = () => {
+                envelopeRect = giftsCard.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                const envelopeTop = envelopeRect.top;
+                const envelopeHeight = envelopeRect.height;
+                const envelopeCenterY = envelopeTop + envelopeHeight / 2;
+
+                // Calculate progress for envelope flap opening (0 to 1)
+                // Fully open when envelope center is at middle of screen
+                let flapProgress = 0;
+                
+                // When envelope is above viewport, no opening
+                if (envelopeTop > windowHeight) {
+                    flapProgress = 0;
+                }
+                // When entering viewport from bottom, gradually open
+                // Fully open by the time center reaches middle of screen
+                else if (envelopeTop > 0) {
+                    // Opening range: from when center is at bottom to when center is at middle
+                    const centerAtBottom = windowHeight;
+                    const centerAtMiddle = windowHeight / 2;
+                    
+                    flapProgress = 1 - ((envelopeCenterY - centerAtMiddle) / (centerAtBottom - centerAtMiddle));
+                    flapProgress = Math.max(0, Math.min(1, flapProgress));
+                }
+                // When envelope is at or above center, fully open
+                else if (envelopeCenterY > -100) {
+                    flapProgress = 1;
+                }
+                // When scrolled past, gradually close
+                else {
+                    flapProgress = Math.max(0, (envelopeCenterY + 100) / 100);
+                }
+
+                // Apply flap rotation based on progress (0 to 180 degrees)
+                const flapRotation = flapProgress * 180;
+                const envelopeFlap = giftEnvelope.querySelector('.envelope-flap');
+                if (envelopeFlap) {
+                    envelopeFlap.style.transform = `rotateX(${flapRotation}deg)`;
+                    // Adjust z-index at the midpoint
+                    envelopeFlap.style.zIndex = flapProgress > 0.5 ? 0 : 3;
+                }
+
+                // Apply letter opacity and transform based on progress
+                const envelopeLetter = giftEnvelope.querySelector('.envelope-letter');
+                if (envelopeLetter) {
+                    // Letter fades in and moves up as flap opens
+                    const letterOpacity = Math.max(0, flapProgress - 0.3) / 0.7;
+                    const letterTranslate = 20 * (1 - flapProgress);
+                    envelopeLetter.style.opacity = letterOpacity;
+                    envelopeLetter.style.transform = `translateY(${letterTranslate}px)`;
+                }
+
+                // Handle envelope fade-out based on scroll progress toward page bottom
+                // Since the gifts section is at the bottom, it can never reach the top of the viewport
+                // Instead, fade based on how close we are to max scroll
+                const maxScroll = document.documentElement.scrollHeight - windowHeight;
+                const scrollProgress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+                // Start fading at 90% scroll, fully faded at 100%
+                let envelopeVisualOpacity = 1;
+                if (scrollProgress > 0.9) {
+                    envelopeVisualOpacity = Math.max(0, 1 - ((scrollProgress - 0.9) / 0.1));
+                }
+                // Apply fade to the visual parts only (flap, pocket, and envelope background)
+                if (envelopeFlap) {
+                    envelopeFlap.style.opacity = envelopeVisualOpacity;
+                }
+                const envelopePocket = giftEnvelope.querySelector('.envelope-pocket');
+                if (envelopePocket) {
+                    envelopePocket.style.opacity = envelopeVisualOpacity;
+                }
+                giftEnvelope.style.backgroundColor = `rgba(249, 247, 241, ${envelopeVisualOpacity})`;
+                giftEnvelope.style.boxShadow = envelopeVisualOpacity < 0.1 ? 'none' : `0 4px 10px rgba(0, 0, 0, ${0.2 * envelopeVisualOpacity})`;
+            };
+
+
+            window.addEventListener('scroll', updateEnvelopeState, { passive: true });
+            window.addEventListener('resize', updateEnvelopeState);
+            updateEnvelopeState();
+        })();
 
         // Mark current page in menu
         (function () {

@@ -17,7 +17,6 @@
                     <a href="index.html#travel" class="menu-link">Travel</a>
                     <a href="index.html#faq" class="menu-link">Q + A</a>
                     <a href="index.html#activities" class="menu-link">Things to Do</a>
-                    <a href="registry.html" class="menu-link">Registry</a>
                 </div>
             </div>
         </nav>

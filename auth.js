@@ -6,6 +6,43 @@ document.documentElement.style.visibility = 'hidden';
 
 (function() {
     'use strict';
+
+    function ensurePageEnterAnimationStyles() {
+        if (document.getElementById('page-enter-drop-style')) return;
+
+        const style = document.createElement('style');
+        style.id = 'page-enter-drop-style';
+        style.textContent = `
+            @keyframes pageDropIn {
+                from {
+                    opacity: 0;
+                    margin-top: -18px;
+                }
+                to {
+                    opacity: 1;
+                    margin-top: 0;
+                }
+            }
+
+            @media (prefers-reduced-motion: no-preference) {
+                body.page-enter-drop {
+                    position: relative;
+                    animation: pageDropIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+                }
+            }
+        `;
+
+        document.head.appendChild(style);
+    }
+
+    function runPageEnterAnimation() {
+        if (!document.body) return;
+        ensurePageEnterAnimationStyles();
+        document.body.classList.remove('page-enter-drop');
+        requestAnimationFrame(() => {
+            document.body.classList.add('page-enter-drop');
+        });
+    }
     
     // Set your wedding password here
     const WEDDING_PASSWORD = 'anabiha2026';
@@ -40,6 +77,7 @@ document.documentElement.style.visibility = 'hidden';
     // Show the page content
     function showContent() {
         document.documentElement.style.visibility = 'visible';
+        runPageEnterAnimation();
     }
     
     // Show access denied page

@@ -280,13 +280,14 @@
         margin-bottom: 35px;
         padding-bottom: 0;
         border-bottom: none;
-        opacity: 0;
+        opacity: 1;
+        filter: blur(6px);
         transform: translateY(18px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
+        transition: filter 0.6s ease, transform 0.6s ease;
     }
 
     .event-item.in-view {
-        opacity: 1;
+        filter: blur(0);
         transform: translateY(0);
     }
 
@@ -388,10 +389,18 @@
         color: var(--sage-green);
     }
 
-    /* Add to Calendar Button */
-    .add-to-calendar-btn {
+    /* Add to Calendar dropdown */
+    .calendar-dropdown {
+        position: relative;
         display: inline-block;
         margin-top: 15px;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .add-to-calendar-btn {
+        display: inline-block;
+        width: 100%;
         padding: 10px 24px;
         border: 1.5px solid var(--gold);
         background: transparent;
@@ -408,6 +417,43 @@
     .add-to-calendar-btn:hover {
         background: var(--gold);
         color: white;
+    }
+
+    .calendar-menu {
+        position: static;
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 8px;
+        background: #FFFFFF;
+        border: 1px solid rgba(197, 160, 89, 0.35);
+        box-shadow: 0 6px 16px rgba(58, 63, 58, 0.1);
+        padding: 6px;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.28s ease, opacity 0.22s ease;
+        pointer-events: none;
+    }
+
+    .calendar-dropdown.open .calendar-menu {
+        max-height: 140px;
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .calendar-option {
+        display: block;
+        padding: 9px 10px;
+        text-decoration: none;
+        color: var(--primary-text);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+    }
+
+    .calendar-option:hover {
+        background: var(--soft-sage);
+        color: var(--sage-green);
     }
 
     .map-embed {
@@ -502,7 +548,7 @@
 
     @media (prefers-reduced-motion: reduce) {
         .event-item {
-            opacity: 1;
+            filter: none;
             transform: none;
             transition: none;
         }
@@ -572,7 +618,13 @@
                 <div class="map-embed">
                     <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538&output=embed" title="Fremont Downtown Event Center map"></iframe>
                 </div>
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dholki%20-%20Anas%20%26%20Nabiha&dates=20260703T183000/20260703T213000&details=A%20lively%20pre-wedding%20celebration%20filled%20with%20music%20and%20traditional%20festivities&location=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538" target="_blank" class="add-to-calendar-btn">+ Add to Calendar</a>
+                <div class="calendar-dropdown">
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <div class="calendar-menu" role="menu" aria-label="Calendar options for Dholki">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dholki%20-%20Anas%20%26%20Nabiha&dates=20260703T183000/20260703T213000&details=A%20lively%20pre-wedding%20celebration%20filled%20with%20music%20and%20traditional%20festivities&location=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="calendar/dholki.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -588,7 +640,13 @@
                 <div class="map-embed">
                     <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148&output=embed" title="Evergreen Islamic Center map"></iframe>
                 </div>
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%20-%20Anas%20%26%20Nabiha&dates=20260704T133000/20260704T150000&details=The%20Islamic%20ceremony%20where%20we%20formally%20enter%20into%20marriage&location=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148" target="_blank" class="add-to-calendar-btn">+ Add to Calendar</a>
+                <div class="calendar-dropdown">
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <div class="calendar-menu" role="menu" aria-label="Calendar options for Nikkah">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%20-%20Anas%20%26%20Nabiha&dates=20260704T133000/20260704T150000&details=The%20Islamic%20ceremony%20where%20we%20formally%20enter%20into%20marriage&location=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="calendar/nikkah.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -604,7 +662,13 @@
                 <div class="map-embed">
                     <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582&output=embed" title="Canyon View Event Center map"></iframe>
                 </div>
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" class="add-to-calendar-btn">+ Add to Calendar</a>
+                <div class="calendar-dropdown">
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <div class="calendar-menu" role="menu" aria-label="Calendar options for Shalima">
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="calendar/shalima.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -784,6 +848,47 @@
             }, { threshold: 0.2, rootMargin: '0px 0px -10% 0px' });
 
             eventItems.forEach(item => observer.observe(item));
+        })();
+
+        // Calendar dropdown behavior
+        (function() {
+            const calendarDropdowns = document.querySelectorAll('.calendar-dropdown');
+            if (!calendarDropdowns.length) return;
+
+            function closeAllDropdowns(except) {
+                calendarDropdowns.forEach(dropdown => {
+                    if (dropdown === except) return;
+                    dropdown.classList.remove('open');
+                    const toggle = dropdown.querySelector('.calendar-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'false');
+                });
+            }
+
+            calendarDropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.calendar-toggle');
+                if (!toggle) return;
+
+                toggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isOpen = dropdown.classList.contains('open');
+                    closeAllDropdowns(dropdown);
+                    dropdown.classList.toggle('open', !isOpen);
+                    toggle.setAttribute('aria-expanded', String(!isOpen));
+                });
+
+                const options = dropdown.querySelectorAll('.calendar-option');
+                options.forEach(option => {
+                    option.addEventListener('click', () => {
+                        dropdown.classList.remove('open');
+                        toggle.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            });
+
+            document.addEventListener('click', () => closeAllDropdowns());
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeAllDropdowns();
+            });
         })();
     </script>
 

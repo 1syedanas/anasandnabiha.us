@@ -2,818 +2,871 @@
 <html lang="en">
 
 <head>
-    <meta name="robots" content="noindex, nofollow">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap"
-        rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600&display=swap"
+    rel="stylesheet">
 
-    <style>
-        :root {
-            --primary: #7a916a;
-            --gold: #c5a059;
-            --maroon: #800000;
-            --text: #1c1c1e;
-            --bg: #ffffff;
-            --soft-gray: #f2f2f7;
-        }
+  <style>
+    :root {
+      --primary: #7a916a;
+      --gold: #c5a059;
+      --maroon: #800000;
+      --text: #1c1c1e;
+      --bg: #ffffff;
+      --soft-gray: #f2f2f7;
+    }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes pulse {
+    @keyframes pulse {
 
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 0.8;
+      }
 
-            50% {
-                transform: scale(1.05);
-                opacity: 1;
-            }
-        }
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+    }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes fall {
-            to {
-                transform: translateY(200px) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    @keyframes fall {
+      to {
+        transform: translateY(200px) rotate(360deg);
+        opacity: 0;
+      }
+    }
 
-        @keyframes glassGlare {
-            0% {
-                left: -150%;
-            }
+    @keyframes glassGlare {
+      0% {
+        left: -150%;
+      }
 
-            100% {
-                left: 150%;
-            }
-        }
+      100% {
+        left: 150%;
+      }
+    }
 
-        .fade-in-item {
-            opacity: 0;
-            animation: fadeInUp 0.5s ease forwards;
-        }
+    .fade-in-item {
+      opacity: 0;
+      animation: fadeInUp 0.5s ease forwards;
+    }
 
-        /* Base Styles */
-        html,
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: var(--bg);
-            font-family: 'Lato', sans-serif;
-            scroll-behavior: smooth;
-            height: 100%;
-            overflow-x: hidden;
-            font-size: 16px;
-            /* USABILITY: Prevents iOS form zoom */
-            -webkit-tap-highlight-color: transparent;
-        }
+    /* Base Styles */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      font-family: 'Lato', sans-serif;
+      scroll-behavior: smooth;
+      height: 100%;
+      overflow-x: hidden;
+      font-size: 16px;
+      /* USABILITY: Prevents iOS form zoom */
+      -webkit-tap-highlight-color: transparent;
+    }
 
-        html {
-            scroll-snap-type: y proximity;
-        }
+    html {
+      scroll-snap-type: y proximity;
+    }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            /* USABILITY: 100dvh prevents jumpiness on mobile when address bar hides */
-            height: 100vh;
-            height: 100dvh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            text-align: center;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            background-color: #e0e0e0;
-            /* Loading placeholder color */
-        }
+    /* --- HERO SECTION --- */
+    .hero {
+      position: relative;
+      /* USABILITY: 100dvh prevents jumpiness on mobile when address bar hides */
+      height: 100vh;
+      height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      text-align: center;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      background-color: #e0e0e0;
+      /* Loading placeholder color */
+    }
 
-        .hero-video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 1;
-        }
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+    }
 
-        .hero-overlay {
-            position: relative;
-            z-index: 2;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.55);
-            /* Slightly more opaque for readability */
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+    .hero-overlay {
+      position: relative;
+      z-index: 2;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.55);
+      /* Slightly more opaque for readability */
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
 
-            width: 85vw;
-            max-width: 340px;
-            /* Slightly wider for modern phones */
-            /* Responsive height using vh/dvh fallback */
-            height: 70vh;
-            max-height: 520px;
+      width: 85vw;
+      max-width: 340px;
+      /* Slightly wider for modern phones */
+      /* Responsive height using vh/dvh fallback */
+      height: 70vh;
+      max-height: 520px;
 
-            border-radius: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            box-sizing: border-box;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-            transition: opacity 0.1s ease-out, transform 0.1s ease-out;
-        }
+      border-radius: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+      transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+    }
 
-        /* Glare effect logic remains same */
-        .hero-overlay::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
-            transform: skewX(-25deg);
-            z-index: 1;
-            pointer-events: none;
-            animation: glassGlare 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            animation-delay: 0.8s;
-        }
+    /* Glare effect logic remains same */
+    .hero-overlay::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+      transform: skewX(-25deg);
+      z-index: 1;
+      pointer-events: none;
+      animation: glassGlare 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+      animation-delay: 0.8s;
+    }
 
-        /* Typography */
-        .bismillah-unicode {
-            font-size: 1.3rem;
-            color: var(--primary);
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+    /* Typography */
+    .bismillah-unicode {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
 
-        .font-display {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin: 4px 0;
-            line-height: 1.3;
-            color: var(--primary);
-            font-weight: 400;
-        }
+    .font-display {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin: 4px 0;
+      line-height: 1.3;
+      color: var(--primary);
+      font-weight: 400;
+    }
 
-        .parent-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: 1.2rem;
-            color: var(--primary);
-            margin: 0;
-            text-transform: lowercase;
-            font-weight: bold;
-        }
+    .parent-text {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.2rem;
+      color: var(--primary);
+      margin: 0;
+      text-transform: lowercase;
+      font-weight: bold;
+    }
 
-        .and-text {
-            font-family: 'Great Vibes', cursive;
-            color: var(--gold);
-            font-size: 1.6rem;
-            margin: 0 8px;
-        }
+    .and-text {
+      font-family: 'Great Vibes', cursive;
+      color: var(--gold);
+      font-size: 1.6rem;
+      margin: 0 8px;
+    }
 
-        .hero-date {
-            font-size: 1rem;
-            letter-spacing: 0.2em;
-            margin-top: 15px;
-            border-top: 1px solid rgba(122, 145, 106, 0.3);
-            padding-top: 10px;
-            color: var(--primary);
-            width: 70%;
-            text-transform: uppercase;
-        }
+    .hero-date {
+      font-size: 1rem;
+      letter-spacing: 0.2em;
+      margin-top: 15px;
+      border-top: 1px solid rgba(122, 145, 106, 0.3);
+      padding-top: 10px;
+      color: var(--primary);
+      width: 70%;
+      text-transform: uppercase;
+    }
 
-        .separator-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80%;
-            margin: 8px 0;
-        }
+    .separator-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 80%;
+      margin: 8px 0;
+    }
 
-        .line {
-            flex: 1;
-            height: 1px;
-            background-color: var(--gold);
-        }
+    .line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--gold);
+    }
 
-        /* --- RSVP SECTION --- */
-        .rsvp-section {
-            position: relative;
-            min-height: 100vh;
-            /* Fallback */
-            min-height: 100dvh;
-            /* Mobile fix */
-            background: #fdfbf9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 15px;
-            z-index: 10;
-            scroll-snap-align: start;
-            box-sizing: border-box;
-        }
+    /* --- RSVP SECTION --- */
+    .rsvp-section {
+      position: relative;
+      min-height: 100vh;
+      /* Fallback */
+      min-height: 100dvh;
+      /* Mobile fix */
+      background: #fdfbf9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 15px;
+      z-index: 10;
+      scroll-snap-align: start;
+      box-sizing: border-box;
+    }
 
-        .card {
-            width: 100%;
-            max-width: 500px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            padding: 40px 25px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(138, 122, 95, 0.1);
-            text-align: center;
-            box-sizing: border-box;
-        }
+    .card {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 40px 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(138, 122, 95, 0.1);
+      text-align: center;
+      box-sizing: border-box;
+    }
 
-        .scroll-btn {
-            position: absolute;
-            bottom: 30px;
-            /* Moved up slightly */
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #555;
-            z-index: 3;
-            text-transform: uppercase;
-            letter-spacing: 0.3em;
-            font-size: 0.85rem;
-            padding: 20px;
-            /* Larger touch target */
-            transition: transform 0.3s ease;
-        }
+    .scroll-btn {
+      position: absolute;
+      bottom: 30px;
+      /* Moved up slightly */
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #555;
+      z-index: 3;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      font-size: 0.85rem;
+      padding: 20px;
+      /* Larger touch target */
+      transition: transform 0.3s ease;
+    }
 
-        .scroll-btn:hover {
-            transform: translateY(5px);
-            color: var(--primary);
-        }
+    .scroll-btn:hover {
+      transform: translateY(5px);
+      color: var(--primary);
+    }
 
-        .guest-section {
-            text-align: left;
-            background: #fff;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-left: 2px solid var(--primary);
-            border-radius: 12px;
-            animation: slideUp 0.4s ease forwards;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
-            /* Slight depth */
-        }
+    .guest-section {
+      text-align: left;
+      background: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-left: 2px solid var(--primary);
+      border-radius: 12px;
+      animation: slideUp 0.4s ease forwards;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      /* Slight depth */
+    }
 
-        .guest-name {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
-            margin-bottom: 10px;
-            display: block;
-            text-transform: uppercase;
-        }
+    .guest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      display: block;
+      text-transform: uppercase;
+    }
 
-        .event-option {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid #f9f9f9;
-        }
+    .event-option {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f9f9f9;
+    }
 
-        /* Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 46px;
-            height: 26px;
-        }
+    /* Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 46px;
+      height: 26px;
+    }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            inset: 0;
-            background: var(--maroon);
-            transition: .4s;
-            border-radius: 26px;
-        }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      inset: 0;
+      background: var(--maroon);
+      transition: .4s;
+      border-radius: 26px;
+    }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 4px;
-            bottom: 4px;
-            background: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 4px;
+      bottom: 4px;
+      background: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
 
-        .switch input:checked+.slider {
-            background: var(--primary);
-        }
+    .switch input:checked+.slider {
+      background: var(--primary);
+    }
 
-        .switch input:checked+.slider:before {
-            transform: translateX(20px);
-        }
+    .switch input:checked+.slider:before {
+      transform: translateX(20px);
+    }
 
-        /* Action Stack */
-        .action-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-            margin-top: 35px;
-        }
+    /* Action Stack */
+    /* Action Stack */
+    .action-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      margin-top: 35px;
+      /* Add a large padding at the bottom to clear the browser bar */
+      padding-bottom: 80px;
+      /* Ensures padding on edge-to-edge screens (iPhone Home Bar) */
+      padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    }
 
-        /* Inputs */
-        .elegant-input {
-            text-align: left;
-        }
+    /* Inputs */
+    .elegant-input {
+      text-align: left;
+    }
 
-        .elegant-input label {
-            display: block;
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            color: #888;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
+    .elegant-input label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #888;
+      font-weight: 600;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
 
-        .elegant-input textarea {
-            width: 100%;
-            background-color: #fdfbf9;
-            box-sizing: border-box;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 12px;
-            font-family: 'Lato', sans-serif;
-            transition: all 0.3s ease;
-            resize: vertical;
-            font-size: 16px;
-            /* Prevents zoom */
-        }
+    .elegant-input textarea {
+      width: 100%;
+      background-color: #fdfbf9;
+      box-sizing: border-box;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 12px;
+      font-family: 'Lato', sans-serif;
+      transition: all 0.3s ease;
+      resize: vertical;
+      font-size: 16px;
+      /* Prevents zoom */
+    }
 
-        .elegant-input textarea:focus {
-            background-color: #fff;
-            border-color: var(--gold);
-            outline: none;
-            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.1);
-        }
+    .elegant-input textarea:focus {
+      background-color: #fff;
+      border-color: var(--gold);
+      outline: none;
+      box-shadow: 0 4px 12px rgba(197, 160, 89, 0.1);
+    }
 
-        /* Notice */
-        .elegant-notice {
-            background: linear-gradient(to right, rgba(197, 160, 89, 0.08), rgba(255, 255, 255, 0));
-            border-left: 3px solid var(--gold);
-            padding: 15px 20px;
-            border-radius: 0 8px 8px 0;
-            text-align: left;
-        }
+    /* Notice */
+    .elegant-notice {
+      background: linear-gradient(to right, rgba(197, 160, 89, 0.08), rgba(255, 255, 255, 0));
+      border-left: 3px solid var(--gold);
+      padding: 15px 20px;
+      border-radius: 0 8px 8px 0;
+      text-align: left;
+    }
 
-        .notice-header {
-            font-family: 'Great Vibes', cursive;
-            color: var(--primary);
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
+    .notice-header {
+      font-family: 'Great Vibes', cursive;
+      color: var(--primary);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
 
-        .notice-body {
-            font-family: 'Lato', sans-serif;
-            font-size: 0.85rem;
-            color: #666;
-            margin: 0;
-            line-height: 1.5;
-        }
+    .notice-body {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      color: #666;
+      margin: 0;
+      line-height: 1.5;
+    }
 
-        /* Button */
-        button.primary-btn {
-            width: 100%;
-            padding: 20px;
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border-radius: 12px;
-            -webkit-appearance: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+    /* Button */
+    button.primary-btn {
+      width: 100%;
+      padding: 20px;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      -webkit-appearance: none;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-        button.primary-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
-        }
+    button.primary-btn:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
 
-        button.primary-btn:active {
-            transform: scale(0.97);
-            filter: brightness(0.9);
-        }
+    button.primary-btn:active {
+      transform: scale(0.97);
+      filter: brightness(0.9);
+    }
 
-        input[type="text"] {
-            width: 100%;
-            padding: 18px;
-            border: 1px solid #ddd;
-            border-radius: 12px;
-            text-align: center;
-            font-size: 1.15rem;
-            margin-bottom: 25px;
-            outline: none;
-            background: #fff;
-            box-sizing: border-box;
-            color: var(--primary);
-            transition: border-color 0.3s ease;
-        }
+    input[type="text"] {
+      width: 100%;
+      padding: 18px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.15rem;
+      margin-bottom: 25px;
+      outline: none;
+      background: #fff;
+      box-sizing: border-box;
+      color: var(--primary);
+      transition: border-color 0.3s ease;
+    }
 
-        input[type="text"]:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(122, 145, 106, 0.1);
-        }
+    input[type="text"]:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(122, 145, 106, 0.1);
+    }
 
-        .bloom-gif {
-            width: 60px;
-            margin: 20px auto;
-            display: block;
-            mix-blend-mode: multiply;
-            filter: contrast(1.1);
-            animation: pulse 2s infinite ease-in-out;
-        }
+    .bloom-gif {
+      width: 60px;
+      margin: 20px auto;
+      display: block;
+      mix-blend-mode: multiply;
+      filter: contrast(1.1);
+      animation: pulse 2s infinite ease-in-out;
+    }
 
-        .confetti-wrapper {
-            position: relative;
-            overflow: hidden;
-        }
+    .confetti-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
 
-        .confetti {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            top: -10px;
-            opacity: 0.7;
-            border-radius: 2px;
-            animation: fall linear forwards;
-        }
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      top: -10px;
+      opacity: 0.7;
+      border-radius: 2px;
+      animation: fall linear forwards;
+    }
 
-        @media (min-width: 768px) {
-            .hero-overlay {
-                max-width: 420px;
-                max-height: 620px;
-                padding: 40px;
-            }
+    @media (min-width: 768px) {
+      .hero-overlay {
+        max-width: 420px;
+        max-height: 620px;
+        padding: 40px;
+      }
 
-            .card {
-                max-width: 550px;
-                padding: 50px 40px;
-            }
+      .card {
+        max-width: 550px;
+        padding: 50px 40px;
+      }
 
-            .font-display {
-                font-size: 1.7rem;
-            }
-        }
-    </style>
+      .font-display {
+        font-size: 1.7rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <section class="hero">
-        <video autoplay muted loop playsinline class="hero-video" preload="metadata"
-            poster="https://anasandnabiha.us/images/wedding-photo.jpg">
-            <source src="https://anasandnabiha.us/images/hero-video.mp4" type="video/mp4">
-        </video>
+  <section class="hero">
+    <video autoplay muted loop playsinline class="hero-video" preload="metadata"
+      poster="https://anasandnabiha.us/images/wedding-photo.jpg">
+      <source src="https://anasandnabiha.us/images/hero-video.mp4" type="video/mp4">
+    </video>
 
-        <div class="hero-overlay">
-            <div class="bismillah-unicode">﷽</div>
-            <h1 class="font-display">Anas Syed</h1>
-            <p class="parent-text">son of</p>
-            <p class="font-display" style="font-size: 0.9rem;">Mr. & Mrs. Ishrat Syed</p>
-            <div class="separator-container">
-                <div class="line"></div>
-                <div class="and-text">and</div>
-                <div class="line"></div>
-            </div>
-            <h1 class="font-display">Nabiha Ahmed</h1>
-            <p class="parent-text">daughter of</p>
-            <p class="font-display" style="font-size: 0.9rem;">Mr. & Mrs. Aqeel Ahmed</p>
-            <p class="parent-text" style="margin-top: 15px; font-size: 1.25rem; font-weight: normal;">joyfully invite
-                you to
-                their wedding</p>
-            <p class="hero-date">JULY 2026</p>
-        </div>
-        <button class="scroll-btn" onclick="scrollToRSVP()">RSVP NOW <br> ▽</button>
-    </section>
+    <div class="hero-overlay">
+      <div class="bismillah-unicode">﷽</div>
+      <h1 class="font-display">Anas Syed</h1>
+      <p class="parent-text">son of</p>
+      <p class="font-display" style="font-size: 0.9rem;">Mr. & Mrs. Ishrat Syed</p>
+      <div class="separator-container">
+        <div class="line"></div>
+        <div class="and-text">and</div>
+        <div class="line"></div>
+      </div>
+      <h1 class="font-display">Nabiha Ahmed</h1>
+      <p class="parent-text">daughter of</p>
+      <p class="font-display" style="font-size: 0.9rem;">Mr. & Mrs. Aqeel Ahmed</p>
+      <p class="parent-text" style="margin-top: 15px; font-size: 1.25rem; font-weight: normal;">joyfully invite you to
+        their wedding</p>
+      <p class="hero-date">JULY 2026</p>
+    </div>
+    <button class="scroll-btn" onclick="scrollToRSVP()">RSVP NOW <br> ▽</button>
+  </section>
 
-    <section id="rsvp-anchor" class="rsvp-section">
-        <div class="card">
-            <div id="searchSection">
-                <div id="rsvp-bismillah" style="font-size: 1.4rem; color: var(--primary); margin-bottom: 10px;">﷽</div>
-                <h3
-                    style="letter-spacing: 0.3em; font-weight: 300; margin-bottom: 35px; text-transform: uppercase; font-size: 1rem; color: #777;">
-                    GUEST RESPONSE</h3>
-                <input type="text" id="headName" value="<?= prefilledCode ?>" placeholder="ENTER ACCESS CODE"
-                    style="text-transform: uppercase;" autocapitalize="characters">
-                <button class="primary-btn" id="findBtn" onclick="findFamily()">FIND INVITATION</button>
-                <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">Your code is located on your invitation
-                    card.</p>
-            </div>
-            <div id="familyList"></div>
-        </div>
-    </section>
+  <section id="rsvp-anchor" class="rsvp-section">
+    <div class="card">
+      <div id="searchSection">
+        <div id="rsvp-bismillah" style="font-size: 1.4rem; color: var(--primary); margin-bottom: 10px;">﷽</div>
+        <h3
+          style="letter-spacing: 0.3em; font-weight: 300; margin-bottom: 35px; text-transform: uppercase; font-size: 1rem; color: #777;">
+          GUEST RESPONSE</h3>
+        <input type="text" id="headName" value="<?= prefilledCode ?>" placeholder="ENTER ACCESS CODE" style="text-transform: uppercase;" autocapitalize="characters">
+        <button class="primary-btn" id="findBtn" onclick="findFamily()">FIND INVITATION</button>
+        <p style="font-size: 0.8rem; color: #999; margin-top: 15px;">Your code is located on your invitation card.</p>
+      </div>
+      <div id="familyList"></div>
+    </div>
+  </section>
 
-    <script>
-        const events = [
-            { id: 'dholki', name: 'DHOLKI', date: 'Fri, July 3rd @ 6:30 PM', location: 'Fremont, CA' },
-            { id: 'nikkah', name: 'NIKKAH', date: 'Sat, July 4th @ 1:30 PM', location: 'Evergreen, CA' },
-            { id: 'reception', name: 'RECEPTION', date: 'Sun, July 5th @ 6:00 PM', location: 'San Ramon, CA' }
-        ];
+  <script>
+    const events = [
+      { id: 'dholki', name: 'DHOLKI', date: 'Fri, July 3rd @ 6:30 PM', location: 'Fremont, CA' },
+      { id: 'nikkah', name: 'NIKKAH', date: 'Sat, July 4th @ 1:30 PM', location: 'Evergreen, CA' },
+      { id: 'reception', name: 'RECEPTION', date: 'Sun, July 5th @ 6:00 PM', location: 'San Ramon, CA' }
+    ];
 
-        function scrollToRSVP() { document.getElementById('rsvp-anchor').scrollIntoView({ behavior: 'smooth' }); }
+    function scrollToRSVP() { document.getElementById('rsvp-anchor').scrollIntoView({ behavior: 'smooth' }); }
 
-        // Optimization: Throttle the scroll event slightly to save battery/cpu on mobile
-        let ticking = false;
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(() => {
-                    const heroOverlay = document.querySelector('.hero-overlay');
-                    const scrollY = window.scrollY;
-                    const windowHeight = window.innerHeight;
-                    // Simple check to stop calculating if element is off screen
-                    if (scrollY < windowHeight) {
-                        let opacity = Math.max(0, Math.min(1, 1 - (scrollY / (windowHeight * 0.5))));
-                        heroOverlay.style.opacity = opacity;
-                        let scale = Math.max(0.95, 1 - (scrollY / (windowHeight * 2)));
-                        heroOverlay.style.transform = `scale(${scale})`;
-                    }
-                    ticking = false;
-                });
-                ticking = true;
-            }
+    // Optimization: Throttle the scroll event slightly to save battery/cpu on mobile
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const heroOverlay = document.querySelector('.hero-overlay');
+          const scrollY = window.scrollY;
+          const windowHeight = window.innerHeight;
+          // Simple check to stop calculating if element is off screen
+          if (scrollY < windowHeight) {
+            let opacity = Math.max(0, Math.min(1, 1 - (scrollY / (windowHeight * 0.5))));
+            heroOverlay.style.opacity = opacity;
+            let scale = Math.max(0.95, 1 - (scrollY / (windowHeight * 2)));
+            heroOverlay.style.transform = `scale(${scale})`;
+          }
+          ticking = false;
         });
+        ticking = true;
+      }
+    });
 
-        function resetSearch() {
-            document.getElementById('headName').value = "";
-            const findBtn = document.getElementById('findBtn');
-            findBtn.disabled = false; findBtn.innerText = "FIND INVITATION";
-            document.getElementById('familyList').innerHTML = "";
-            document.getElementById('searchSection').style.display = 'block';
-            document.getElementById('searchSection').classList.add('fade-in-item');
-            document.getElementById('headName').focus();
-        }
+    function resetSearch() {
+      document.getElementById('headName').value = "";
+      const findBtn = document.getElementById('findBtn');
+      findBtn.disabled = false; findBtn.innerText = "FIND INVITATION";
+      document.getElementById('familyList').innerHTML = "";
+      document.getElementById('searchSection').style.display = 'block';
+      document.getElementById('searchSection').classList.add('fade-in-item');
+      document.getElementById('headName').focus();
+    }
 
-        let loadingInterval;
+    let loadingInterval;
 
-        function findFamily() {
-            const name = document.getElementById('headName').value;
-            if (!name) return;
-
-            const btn = document.getElementById('findBtn');
-            btn.disabled = true;
-            btn.innerText = "SEARCHING...";
-
-            const loadingMessages = [
-                "Checking guest list...", "Looking for your invitation...", "Are you sure you were invited...", "Preparing your rsvp...", "Almost there..."
-            ];
-
-            document.getElementById('familyList').innerHTML = `
+    function findFamily() {
+      const name = document.getElementById('headName').value;
+      if (!name) return;
+      
+      const btn = document.getElementById('findBtn');
+      btn.disabled = true; 
+      btn.innerText = "SEARCHING...";
+      
+      const loadingMessages = [
+        "Checking guest list...", "Looking for your invitation...", "Are you sure you were invited...", "Preparing your rsvp...", "Almost there..."
+      ];
+      
+      document.getElementById('familyList').innerHTML = `
           <div id="loadingContainer" class="fade-in-item" style="padding: 20px; text-align: center;">
             <img src="https://png.pngtree.com/png-vector/20230407/ourlarge/pngtree-flower-bouquet-line-icon-vector-png-image_6694126.png" class="bloom-gif" alt="loading">
             <p id="loadingText" style="font-size: 1.1rem; font-family: 'Great Vibes', cursive; color: var(--primary); min-height: 1.5em; transition: opacity 0.3s ease;">${loadingMessages[0]}</p>
           </div>`;
-
-            let msgIndex = 0;
-            if (loadingInterval) clearInterval(loadingInterval);
-
-            loadingInterval = setInterval(() => {
-                const textEl = document.getElementById('loadingText');
-                if (textEl) {
-                    textEl.style.opacity = 0;
-                    setTimeout(() => {
-                        msgIndex = (msgIndex + 1) % loadingMessages.length;
-                        textEl.innerText = loadingMessages[msgIndex];
-                        textEl.style.opacity = 1;
-                    }, 300);
-                }
-            }, 1500);
-
-            const minWait = new Promise(resolve => setTimeout(resolve, 2500));
-            const serverCall = new Promise((resolve) => {
-                google.script.run.withSuccessHandler(resolve).withFailureHandler(() => resolve([])).getFamilyMembers(name);
-            });
-
-            Promise.all([serverCall, minWait]).then(([members]) => {
-                clearInterval(loadingInterval);
-                displayMembers(members);
-            });
+          
+      let msgIndex = 0;
+      if (loadingInterval) clearInterval(loadingInterval);
+      
+      loadingInterval = setInterval(() => {
+        const textEl = document.getElementById('loadingText');
+        if(textEl) {
+            textEl.style.opacity = 0;
+            setTimeout(() => {
+                msgIndex = (msgIndex + 1) % loadingMessages.length;
+                textEl.innerText = loadingMessages[msgIndex];
+                textEl.style.opacity = 1;
+            }, 300);
         }
+      }, 1500);
 
-        function displayMembers(members) {
-            if (!members || members.length === 0) {
-                document.getElementById('familyList').innerHTML = `
+      const minWait = new Promise(resolve => setTimeout(resolve, 2500));
+      const serverCall = new Promise((resolve) => {
+        google.script.run.withSuccessHandler(resolve).withFailureHandler(() => resolve([])).getFamilyMembers(name);
+      });
+
+      Promise.all([serverCall, minWait]).then(([members]) => {
+        clearInterval(loadingInterval);
+        displayMembers(members);
+      });
+    }
+
+    function displayMembers(members) {
+      if (!members || members.length === 0) {
+        document.getElementById('familyList').innerHTML = `
           <div class="fade-in-item" style="text-align: center; padding: 20px;">
             <p style="color: var(--maroon); font-size: 1.1rem; margin-bottom: 20px;">We couldn't find an invitation for that code.<br><span style="font-size: 0.95rem; opacity: 0.7;">Please contact the host or try opening the link again.</span></p>
             <button class="primary-btn" onclick="resetSearch()" style="background: var(--soft-gray); color: var(--text); width: auto; padding: 12px 30px;">TRY AGAIN</button>
           </div>`;
-                return;
-            }
+        return;
+      }
+      
+      document.getElementById('searchSection').style.display = 'none';
+      const kidsRestricted = members.some(m => m.kidsRestricted);
+      const existingDietary = members.find(m => m.dietary)?.dietary || "";
 
-            document.getElementById('searchSection').style.display = 'none';
-            const kidsRestricted = members.some(m => m.kidsRestricted);
-            const existingDietary = members.find(m => m.dietary)?.dietary || "";
+      let html = '<form id="rsvpForm" style="perspective: 1000px;">';
+      let animationDelay = 0.1;
 
-            let html = '<form id="rsvpForm" style="perspective: 1000px;">';
-            let animationDelay = 0.1;
+      html += `<div class="fade-in-item" style="animation-delay: ${animationDelay}s"><button type="button" id="toggleAllBtn" onclick="toggleAllRSVPs()" style="background: none; border: 1px solid var(--primary); color: var(--primary); padding: 15px 15px; border-radius: 12px; font-size: 0.9rem; letter-spacing: 0.15em; cursor: pointer; margin-bottom: 25px; font-weight: bold; width: 100%; transition: all 0.3s ease;">RSVP YES TO ALL</button></div>`;
+      animationDelay += 0.15;
 
-            html += `<div class="fade-in-item" style="animation-delay: ${animationDelay}s"><button type="button" id="toggleAllBtn" onclick="toggleAllRSVPs()" style="background: none; border: 1px solid var(--primary); color: var(--primary); padding: 15px 15px; border-radius: 12px; font-size: 0.9rem; letter-spacing: 0.15em; cursor: pointer; margin-bottom: 25px; font-weight: bold; width: 100%; transition: all 0.3s ease;">RSVP YES TO ALL</button></div>`;
-            animationDelay += 0.15;
-
-            if (kidsRestricted) {
-                // Apply var(--maroon) to the header and add margin-bottom for space
-                html += `<div class="elegant-notice" style="margin-bottom: 30px;">
+      if (kidsRestricted) {
+         // Apply var(--maroon) to the header and add margin-bottom for space
+         html += `<div class="elegant-notice" style="margin-bottom: 30px;">
                     <div class="notice-header" style="color: var(--maroon);">A Note Regarding Children</div>
                     <p class="notice-body">We respectfully request that children over the age of 2 do not attend. Thank you for your understanding.</p>
                   </div>`;
-            }
+      }
+      
+      members.forEach((m) => {
+  if (events.some(e => m[e.id])) {
+    // Use row index for the hidden active field
+    html += `<div class="guest-section fade-in-item" style="animation-delay: ${animationDelay}s">
+               <span class="guest-name">${m.name}</span>
+               <input type="hidden" name="row_${m.rowIndex}_active" value="true">`;
+    
+    events.forEach(event => { 
+      if (m[event.id]) {
+        const isAttending = m[`rsvp_${event.id}`];
+        // Pass rowIndex to the row renderer
+        html += renderEventRow(m.rowIndex, event.id, event, isAttending); 
+      }
+    });
+    html += `</div>`; 
+    animationDelay += 0.1;
+  }
+});
+      html += `<div class="action-stack fade-in-item" style="animation-delay: ${animationDelay}s">`;
 
-            members.forEach((m) => {
-                if (events.some(e => m[e.id])) {
-                    html += `<div class="guest-section fade-in-item" style="animation-delay: ${animationDelay}s"><span class="guest-name">${m.name}</span><input type="hidden" name="${m.name}_active" value="true">`;
-                    events.forEach(event => {
-                        if (m[event.id]) {
-                            const isAttending = m[`rsvp_${event.id}`];
-                            html += renderEventRow(m.name, event.id, event, isAttending);
-                        }
-                    });
-                    html += `</div>`; animationDelay += 0.1;
-                }
-            });
+      const showDietary = existingDietary !== "";
+      html += `<div id="dietarySection" style="display: ${showDietary ? 'block' : 'none'};" class="elegant-input"><label>Dietary Requirements</label><textarea name="dietary_notes" rows="2" placeholder="e.g., Allergies, Vegetarian...">${existingDietary}</textarea></div>`;
 
-            html += `<div class="action-stack fade-in-item" style="animation-delay: ${animationDelay}s">`;
-
-            const showDietary = existingDietary !== "";
-            html += `<div id="dietarySection" style="display: ${showDietary ? 'block' : 'none'};" class="elegant-input"><label>Dietary Requirements</label><textarea name="dietary_notes" rows="2" placeholder="e.g., Allergies, Vegetarian...">${existingDietary}</textarea></div>`;
-
-            html += `<div class="elegant-notice">
+      html += `<div class="elegant-notice">
                 <div class="notice-header">Response Deadline</div>
                 <p class="notice-body">Kindly respond by April 15th, 2026. We look forward to celebrating with you!</p>
               </div>`;
 
-            html += `<button type="button" class="primary-btn" id="confirmBtn" onclick="submitFinal()" style="margin-top: 0;">CONFIRM RSVP</button></div></form>`;
+      html += `<button type="button" class="primary-btn" id="confirmBtn" onclick="submitFinal()" style="margin-top: 0;">CONFIRM RSVP</button></div></form>`; 
+      
+      document.getElementById('familyList').innerHTML = html;
+      setupToggleListeners();
+      
+      const firstCheck = document.querySelector('input[type="checkbox"]');
+      if(firstCheck) firstCheck.dispatchEvent(new Event('change'));
+    }
 
-            document.getElementById('familyList').innerHTML = html;
-            setupToggleListeners();
+    function setToggleAllButton(action) {
+      const btn = document.getElementById('toggleAllBtn');
+      if (!btn) return;
+      const shouldAcceptAll = action === 'accept';
+      btn.dataset.action = action;
+      btn.innerText = shouldAcceptAll ? "RSVP YES TO ALL" : "DECLINE ALL";
+      btn.style.color = shouldAcceptAll ? "var(--primary)" : "#800000";
+      btn.style.borderColor = shouldAcceptAll ? "var(--primary)" : "#800000";
+    }
 
-            const firstCheck = document.querySelector('input[type="checkbox"]');
-            if (firstCheck) firstCheck.dispatchEvent(new Event('change'));
-        }
+    function syncToggleAllButtonToSelections() {
+      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]');
+      if (!checkboxes.length) return;
+      const allChecked = Array.from(checkboxes).every(cb => cb.checked);
+      setToggleAllButton(allChecked ? 'decline' : 'accept');
+    }
 
-        function toggleAllRSVPs() {
-            const btn = document.getElementById('toggleAllBtn');
-            const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]');
-            const newState = Array.from(checkboxes).some(cb => !cb.checked);
-            checkboxes.forEach(cb => { cb.checked = newState; cb.dispatchEvent(new Event('change')); });
-            btn.innerText = newState ? "DECLINE ALL" : "RSVP YES TO ALL";
-            btn.style.color = newState ? "#800000" : "var(--primary)";
-            btn.style.borderColor = newState ? "#800000" : "var(--primary)";
-        }
+    function toggleAllRSVPs() {
+      const btn = document.getElementById('toggleAllBtn');
+      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]');
+      if (!btn || !checkboxes.length) return;
 
-        function renderEventRow(guestName, eventId, config, isChecked = false) {
-            const inputName = `${guestName}_${eventId}`;
-            const checkedAttr = isChecked ? 'checked' : '';
-            const labelText = isChecked ? "YES" : "NO";
-            const labelColor = isChecked ? "var(--primary)" : "#bbb";
+      const action = btn.dataset.action || 'accept';
+      const shouldAcceptAll = action === 'accept';
 
-            return `<div class="event-option"><div style="text-align:left"><div style="font-weight:700; font-size:1rem; color: #444;">${config.name}</div><div style="font-size:0.85rem; color:#999">${config.date}</div><div style="font-size:0.8rem; color:var(--primary); margin-top: 2px; opacity: 0.8;">${config.location || ''}</div></div><div style="display: flex; align-items: center; gap: 8px;"><span id="label-${inputName}" style="font-size: 0.7rem; color: ${labelColor}; text-transform: uppercase; letter-spacing: 0.1em;">${labelText}</span><label class="switch"><input type="checkbox" name="${inputName}" value="Attending" ${checkedAttr}><span class="slider"></span></label></div></div>`;
-        }
+      checkboxes.forEach(cb => {
+        cb.checked = shouldAcceptAll;
+        cb.dispatchEvent(new Event('change'));
+      });
 
-        function setupToggleListeners() {
-            document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                cb.addEventListener('change', (e) => {
-                    const label = document.getElementById('label-' + e.target.name);
-                    label.innerText = e.target.checked ? "YES" : "NO";
-                    label.style.color = e.target.checked ? "var(--primary)" : "var(--maroon)";
-                    const anyOn = Array.from(document.querySelectorAll('input[type="checkbox"]')).some(c => c.checked);
-                    document.getElementById('dietarySection').style.display = anyOn ? 'block' : 'none';
-                });
-            });
-        }
+      setToggleAllButton(shouldAcceptAll ? 'decline' : 'accept');
+    }
 
-        function submitFinal() {
-            const confirmBtn = document.getElementById('confirmBtn');
-            confirmBtn.disabled = true;
-            confirmBtn.innerText = "SAVING...";
+    function renderEventRow(rowIndex, eventId, config, isChecked = false) {
+  // Unique name based on row index
+  const inputName = `row_${rowIndex}_${eventId}`;
+  const checkedAttr = isChecked ? 'checked' : '';
+  const labelText = isChecked ? "YES" : "NO";
+  const labelColor = isChecked ? "var(--primary)" : "#bbb"; 
 
-            const form = document.getElementById('rsvpForm');
-            const data = Object.fromEntries(new FormData(form).entries());
+  return `
+    <div class="event-option">
+      <div style="text-align:left">
+        <div style="font-weight:700; font-size:1rem; color: #444;">${config.name}</div>
+        <div style="font-size:0.85rem; color:#999">${config.date}</div>
+        <div style="font-size:0.8rem; color:var(--primary); margin-top: 2px; opacity: 0.8;">${config.location || ''}</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span id="label-${inputName}" style="font-size: 0.7rem; color: ${labelColor}; text-transform: uppercase; letter-spacing: 0.1em;">${labelText}</span>
+        <label class="switch">
+          <input type="checkbox" name="${inputName}" value="Attending" ${checkedAttr}>
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>`;
+}
 
-            google.script.run.withSuccessHandler(msg => {
-                document.getElementById('rsvp-bismillah').style.display = 'none';
+    function setupToggleListeners() {
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', (e) => {
+          const label = document.getElementById('label-' + e.target.name);
+          label.innerText = e.target.checked ? "YES" : "NO";
+          label.style.color = e.target.checked ? "var(--primary)" : "var(--maroon)";
+          const anyOn = Array.from(document.querySelectorAll('input[type="checkbox"]')).some(c => c.checked);
+          document.getElementById('dietarySection').style.display = anyOn ? 'block' : 'none';
+          syncToggleAllButtonToSelections();
+        });
+      });
 
-                // 1. Determine aggregate attendance for the group
-                let attendingDholki = false;
-                let attendingNikkah = false;
-                let attendingReception = false;
+      // Ensure the bulk action button reflects the current per-event selections.
+      syncToggleAllButtonToSelections();
+    }
 
-                Object.keys(data).forEach(key => {
-                    if (data[key] === 'Attending') {
-                        if (key.includes('_dholki')) attendingDholki = true;
-                        if (key.includes('_nikkah')) attendingNikkah = true;
-                        if (key.includes('_reception')) attendingReception = true;
-                    }
-                });
+    function submitFinal() {
+  const confirmBtn = document.getElementById('confirmBtn'); 
+  confirmBtn.disabled = true; 
+  confirmBtn.innerText = "SAVING...";
+  
+  const form = document.getElementById('rsvpForm'); 
+  const data = Object.fromEntries(new FormData(form).entries());
+  
+  google.script.run.withSuccessHandler(msg => {
+    document.getElementById('rsvp-bismillah').style.display = 'none';
+    
+    // 1. Determine aggregate attendance for the group
+    let attendingDholki = false;
+    let attendingNikkah = false;
+    let attendingReception = false;
 
-                // 2. Determine which URL to show based on your 3 specific cases
-                let redirectUrl = "";
+    Object.keys(data).forEach(key => {
+  if (data[key] === 'Attending') {
+    if (key.endsWith('_dholki')) attendingDholki = true;
+    if (key.endsWith('_nikkah')) attendingNikkah = true;
+    if (key.endsWith('_reception')) attendingReception = true;
+  }
+});
 
-                if (attendingDholki) {
-                    // Case 1: Any Dholki attendance (automatic subkucha)
-                    redirectUrl = "https://1syedanas.github.io/anasandnabiha.us/index.html#home?type=subkucha";
-                }
-                else if (attendingReception) {
-                    // Case 2: No Dholki, but attending Reception
-                    redirectUrl = "https://1syedanas.github.io/anasandnabiha.us/index.html#home?type=nikkahandshalimaa";
-                }
-                else if (attendingNikkah) {
-                    // Case 3: Nikkah only (No Dholki, No Reception)
-                    redirectUrl = "https://1syedanas.github.io/anasandnabiha.us/index.html#home?type=nikkaha";
-                }
+    // 2. Determine which URL to show based on your 3 specific cases
+    let redirectUrl = "";
 
-                // 3. Render the UI
-                if (redirectUrl) {
-                    document.getElementById('familyList').innerHTML = `
+    if (attendingDholki) {
+      // Case 1: Any Dholki attendance (automatic subkucha)
+      redirectUrl = "https://anasandnabiha.us/index.html?type=subkucha&key=anabiha2026";
+    } 
+    else if (attendingReception && attendingNikkah) {
+      // Case 2: Reception and Nikkah
+      redirectUrl = "https://anasandnabiha.us/index.html?type=nikkahandshalimaa&key=anabiha2026";
+    } 
+    else if (attendingReception) {
+      // Case 2: Reception only
+      redirectUrl = "https://anasandnabiha.us/index.html?type=shalimaa&key=anabiha2026";
+    } 
+    else if (attendingNikkah) {
+      // Case 3: Nikkah only (No Dholki, No Reception)
+      redirectUrl = "https://anasandnabiha.us/index.html?type=nikkaha&key=anabiha2026";
+    }
+
+    // 3. Render the UI
+    if (redirectUrl) {
+      document.getElementById('familyList').innerHTML = `
         <div id="thankYouContainer" class="confetti-wrapper" style="padding: 20px;">
           <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 1.6rem;">Thank you for your response!</h2>
-          <p style="font-size: 1.1rem; color: #555;">We are delighted to celebrate with you.</p>
+          <p style="font-size: 1.1rem; color: #555;">It brings us great joy to share this special day with you!<br> <br> Please click the link below for more info on where to stay, event locations, food, and more!</p>
           <div style="margin-top: 25px;">
             <a href="${redirectUrl}" target="_top" style="color: var(--primary); font-weight: bold; text-decoration: underline; font-size: 1.2rem;">
               AnasAndNabiha.us
             </a>
           </div>
         </div>`;
-                    startConfetti();
-                } else {
-                    // Case: Not attending anything
-                    document.getElementById('familyList').innerHTML = `
+      startConfetti();
+    } else {
+      // Case: Not attending anything
+      document.getElementById('familyList').innerHTML = `
         <div id="thankYouContainer" style="padding: 20px;">
            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 1.6rem;">You will be missed!</h2>
            <p style="font-size: 1.1rem; color: #555; line-height: 1.6;">We are so sorry that you are unable to attend our wedding. Please keep us in your duas!</p>
         </div>`;
-                }
-            }).submitRSVP(data);
-        }
+    }
+  }).submitRSVP(data);
+}
 
-        function startConfetti() {
-            const container = document.getElementById('thankYouContainer'); const colors = ['#7a916a', '#c5a059', '#e8e1d5'];
-            for (let i = 0; i < 30; i++) {
-                const confetto = document.createElement('div'); confetto.className = 'confetti'; confetto.style.left = Math.random() * 100 + '%'; confetto.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]; confetto.style.animationDuration = (Math.random() * 2 + 2) + 's'; confetto.style.animationDelay = Math.random() + 's'; container.appendChild(confetto);
-            }
-        }
+    function startConfetti() {
+      const container = document.getElementById('thankYouContainer'); const colors = ['#7a916a', '#c5a059', '#e8e1d5'];
+      for (let i = 0; i < 30; i++) {
+        const confetto = document.createElement('div'); confetto.className = 'confetti'; confetto.style.left = Math.random() * 100 + '%'; confetto.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)]; confetto.style.animationDuration = (Math.random() * 2 + 2) + 's'; confetto.style.animationDelay = Math.random() + 's'; container.appendChild(confetto);
+      }
+    }
 
-        // 3. SPEED: Use DOMContentLoaded so we don't wait for the video to fully load before running logic
-        document.addEventListener("DOMContentLoaded", () => {
-            const codeInput = document.getElementById('headName');
-            if (codeInput.value.trim() !== "") {
-                findFamily();
-            }
-        });
-    </script>
+    // 3. SPEED: Use DOMContentLoaded so we don't wait for the video to fully load before running logic
+    document.addEventListener("DOMContentLoaded", () => {
+      const codeInput = document.getElementById('headName');
+      if (codeInput.value.trim() !== "") { 
+        findFamily(); 
+      } 
+    });
+  </script>
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Anas and Nabiha Wedding//Events//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:nikkah-20260704@anasandnabiha.us
+DTSTAMP:20260309T000000Z
+DTSTART:20260704T133000
+DTEND:20260704T150000
+SUMMARY:Nikkah - Anas & Nabiha
+DESCRIPTION:The Islamic ceremony where we formally enter into marriage.
+LOCATION:Evergreen Islamic Center\, 2486 Ruby Ave\, San Jose\, CA 95148
+END:VEVENT
+END:VCALENDAR

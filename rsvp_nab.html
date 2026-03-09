@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>You're invited! Anas & Nabiha Wedding - RSVP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/favicon.svg">
+    <meta name="theme-color" content="#7B8E7E">
+    <meta property="og:title" content="You're invited! Anas & Nabiha Wedding - RSVP">
+    <meta property="og:description" content="RSVP to the wedding celebration of Anas & Nabiha in 2026">
+    <meta property="og:image" content="https://anasandnabiha.us/images/favicon.svg">
+    <meta property="og:url" content="https://anasandnabiha.us/rsvp.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="RSVP - Anas & Nabiha Wedding">
+    <meta name="twitter:description" content="RSVP to the wedding celebration of Anas & Nabiha in 2026">
+    <meta name="twitter:image" content="https://anasandnabiha.us/images/favicon.svg">
+    <script src="auth.js"></script>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+        iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+    </style>
+    <script>
+        // Extract code parameter from URL and pass it to the iframe
+        function loadIframe() {
+            let iframeSrc = 'https://script.google.com/macros/s/AKfycbxonCMwsPy65LoHw3KG1wwuz_KVPlLBYodF8ciQHjkzojJ0vsZ7s94neZxuZF7FTXjI/exec';
+            
+            // Get code parameter from current URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const code = urlParams.get('code');
+            
+            // If code exists, append it to the iframe URL
+            if (code) {
+                iframeSrc += '?code=' + encodeURIComponent(code);
+            }
+            
+            // Set the iframe src
+            document.getElementById('rsvpFrame').src = iframeSrc;
+        }
+        
+        // Load iframe when page is ready
+        window.addEventListener('DOMContentLoaded', loadIframe);
+    </script>
+</head>
+<body>
+    <iframe id="rsvpFrame"></iframe>
+</body>
+</html>

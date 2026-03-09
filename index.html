@@ -521,6 +521,7 @@
         }
 
         @media (prefers-reduced-motion: reduce) {
+
             .envelope-flap,
             .envelope-letter {
                 transition: none !important;
@@ -1028,7 +1029,8 @@
             <div class="gift-envelope" aria-hidden="true">
                 <div class="envelope-flap"></div>
                 <div class="envelope-letter">
-                    <p>Celebrating with you is the greatest gift we could ask for! If you'd like to give a gift, we'd kindly prefer no boxed gifts.</p>
+                    <p>Celebrating with you is the greatest gift we could ask for! If you'd like to give a gift, we'd
+                        kindly prefer no boxed gifts.</p>
                 </div>
             </div>
         </div>
@@ -1141,7 +1143,9 @@
                 'nikkaha': ['nikkah'],
                 'nikkahn': ['nikkah'],
                 'nikkahandshalimaa': ['nikkah', 'shalima'],
-                'nikkahandshaliman': ['nikkah', 'shalima']
+                'nikkahandshaliman': ['nikkah', 'shalima'],
+                'shalimaa': ['shalima'],
+                'shaliman': ['shalima']
             };
 
             // Default to nikkaha only if invalid type specified
@@ -1163,6 +1167,8 @@
             if (introText) {
                 if (invitationType === 'nikkaha' || invitationType === 'nikkahn') {
                     introText.textContent = 'You are cordially invited to celebrate our sacred union at the Nikkah ceremony.';
+                } else if (invitationType === 'shalimaa' || invitationType === 'shaliman') {
+                    introText.textContent = 'Join us as we celebrate our reception. One beautiful day of love and joy.';
                 } else if (invitationType === 'nikkahandshalimaa' || invitationType === 'nikkahandshaliman') {
                     introText.textContent = 'Join us as we celebrate our sacred union and reception. Two beautiful days of love and joy.';
                 } else {
@@ -1176,7 +1182,8 @@
                 const isEmbassySuites = invitationType && (
                     invitationType === 'subkuchn' ||
                     invitationType === 'nikkahn' ||
-                    invitationType === 'nikkahandshaliman'
+                    invitationType === 'nikkahandshaliman' ||
+                    invitationType === 'shaliman'
                 );
 
                 const hotelCard = document.querySelector('.hotel-card');
@@ -1419,7 +1426,7 @@
                 // Calculate progress for envelope flap opening (0 to 1)
                 // Fully open when envelope center is at middle of screen
                 let flapProgress = 0;
-                
+
                 // When envelope is above viewport, no opening
                 if (envelopeTop > windowHeight) {
                     flapProgress = 0;
@@ -1430,7 +1437,7 @@
                     // Opening range: from when center is at bottom to when center is at middle
                     const centerAtBottom = windowHeight;
                     const centerAtMiddle = windowHeight / 2;
-                    
+
                     flapProgress = 1 - ((envelopeCenterY - centerAtMiddle) / (centerAtBottom - centerAtMiddle));
                     flapProgress = Math.max(0, Math.min(1, flapProgress));
                 }
@@ -1574,7 +1581,7 @@
                 // Make events section clickable
                 const eventsSection = document.getElementById('schedule');
                 if (eventsSection) {
-                    eventsSection.addEventListener('click', function(e) {
+                    eventsSection.addEventListener('click', function (e) {
                         const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
                         const href = 'events.html?type=' + invitationType;
                         document.documentElement.classList.add('page-exit');
@@ -1585,7 +1592,7 @@
                 // Make hotel card clickable
                 const hotelCard = document.querySelector('.hotel-card');
                 if (hotelCard) {
-                    hotelCard.addEventListener('click', function(e) {
+                    hotelCard.addEventListener('click', function (e) {
                         const invitationType = sessionStorage.getItem('invitationType') || 'nikkaha';
                         const href = 'travel.html?type=' + invitationType;
                         document.documentElement.classList.add('page-exit');

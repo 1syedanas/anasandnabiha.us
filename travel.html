@@ -607,7 +607,9 @@
             'nikkaha': ['nikkah'],
             'nikkahn': ['nikkah'],
             'nikkahandshalimaa': ['nikkah', 'shalima'],
-            'nikkahandshaliman': ['nikkah', 'shalima']
+            'nikkahandshaliman': ['nikkah', 'shalima'],
+            'shalimaa': ['shalima'],
+            'shaliman': ['shalima']
         };
 
         // Function to update travel dates based on invited events
@@ -739,7 +741,7 @@
             if (!receptionCard) return;
             
             // Show reception time only for these invitation types
-            const typesWithReception = ['subkucha', 'subkuchn', 'nikkahandshalimaa', 'nikkahandshaliman'];
+            const typesWithReception = ['subkucha', 'subkuchn', 'nikkahandshalimaa', 'nikkahandshaliman', 'shalimaa', 'shaliman'];
             
             if (typesWithReception.includes(invitationType)) {
                 receptionCard.style.display = 'flex';
@@ -789,7 +791,8 @@
             const isEmbassySuites = invitationType && (
                 invitationType === 'subkuchn' ||
                 invitationType === 'nikkahn' ||
-                invitationType === 'nikkahandshaliman'
+                invitationType === 'nikkahandshaliman' ||
+                invitationType === 'shaliman'
             );
             
             const hotelName = document.getElementById('hotelName');

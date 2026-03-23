@@ -1145,7 +1145,8 @@
                 'nikkahandshalimaa': ['nikkah', 'shalima'],
                 'nikkahandshaliman': ['nikkah', 'shalima'],
                 'shalimaa': ['shalima'],
-                'shaliman': ['shalima']
+                'shaliman': ['shalima'],
+                'dholkiandshaliman': ['dholki', 'shalima']
             };
 
             // Default to nikkaha only if invalid type specified
@@ -1171,6 +1172,8 @@
                     introText.textContent = 'Join us as we celebrate our reception. One beautiful day of love and joy.';
                 } else if (invitationType === 'nikkahandshalimaa' || invitationType === 'nikkahandshaliman') {
                     introText.textContent = 'Join us as we celebrate our sacred union and reception. Two beautiful days of love and joy.';
+                } else if (invitationType === 'dholkiandshalimaa' || invitationType === 'dholkiandshaliman') {
+                    introText.textContent = 'Join us as we celebrate with family and join us for our reception. Two beautiful days of love and joy.';
                 } else {
                     introText.textContent = 'Join us as we celebrate three beautiful days of love, joy, and new beginnings.';
                 }
@@ -1183,7 +1186,8 @@
                     invitationType === 'subkuchn' ||
                     invitationType === 'nikkahn' ||
                     invitationType === 'nikkahandshaliman' ||
-                    invitationType === 'shaliman'
+                    invitationType === 'shaliman' ||
+                    invitationType === 'dholkiandshaliman'
                 );
 
                 const hotelCard = document.querySelector('.hotel-card');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,490 +21,504 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
-    :root {
-        --sage-green: #7B8E7E;
-        --soft-sage: #F4F6F4;
-        --gold: #C5A059;
-        --dark-gold: #9E7E3F;
-        --primary-text: #3A3F3A;
-        --bg-white: #FFFFFF;
-        --serif-font: 'Playfair Display', serif;
-        --sans-font: 'Lato', sans-serif;
-        --serif-sc: 'Playfair Display SC', serif;
-        --accent-font: 'Quicksand', sans-serif;
-    }
-
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: var(--sans-font);
-        color: var(--primary-text);
-        background-color: var(--bg-white);
-    }
-
-    .nav-wrapper {
-        width: auto;
-        background: transparent;
-        padding: 0;
-        text-align: left;
-        position: fixed;
-        top: 5px;
-        left: 5px;
-        z-index: 9999;
-    }
-
-    .menu-btn {
-        width: 46px;
-        height: 46px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    .hamburger {
-        width: 24px;
-        height: 1.7px;
-        background: var(--sage-green);
-        position: relative;
-        display: inline-block;
-        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .hamburger::before,
-    .hamburger::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 24px;
-        height: 2px;
-        background: var(--sage-green);
-        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
-
-    .menu-btn.active .hamburger {
-        background: transparent;
-    }
-
-    .menu-btn.active .hamburger::before,
-    .menu-btn.active .hamburger::after {
-        background: var(--sage-green);
-        top: 0;
-    }
-
-    .menu-btn.active .hamburger::before { transform: rotate(45deg); }
-    .menu-btn.active .hamburger::after { transform: rotate(-45deg); }
-
-    .menu-btn.active {
-        background: transparent;
-        border-color: transparent;
-        box-shadow: none;
-    }
-
-    .menu-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(244, 246, 244, 0.4);
-        backdrop-filter: blur(12px) saturate(150%);
-        -webkit-backdrop-filter: blur(12px) saturate(150%);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.35s ease, visibility 0.35s ease;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        z-index: 1050;
-    }
-
-    .menu-overlay.open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .menu-inner {
-        text-align: center;
-        position: relative;
-        padding-top: 100px;
-    }
-
-    .menu-link {
-        display: block;
-        width: fit-content;
-        margin: 0 auto;
-        padding: 8px 8px 6px;
-        font-family: var(--accent-font);
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--sage-green);
-        text-decoration: none;
-        letter-spacing: 2px;
-        line-height: 1;
-        border-bottom: 2px solid transparent;
-        transition: all 0.25s;
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-    }
-
-    .menu-link.active {
-        border-bottom-color: var(--sage-green);
-    }
-
-    .menu-link:hover,
-    .menu-link:active,
-    .menu-link:focus {
-        color: var(--sage-green);
-        border-bottom-color: var(--sage-green);
-        transform: translateY(-2px);
-        background: rgba(255, 192, 203, 0.15);
-        border-radius: 4px;
-    }
-
-    body.page-exit {
-        opacity: 0;
-        transform: translateY(8px);
-        transition: opacity 0.42s ease, transform 0.42s ease;
-    }
-
-    /* Main Layout */
-    .page-wrapper {
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 80px 40px 60px;
-        text-align: center;
-    }
-
-    .hero-title {
-        font-family: var(--serif-sc);
-        font-size: 3.5rem;
-        text-transform: uppercase;
-        letter-spacing: 6px;
-        color: var(--primary-text);
-        margin: 0 0 50px 0;
-        font-weight: normal;
-        line-height: 1.1;
-    }
-
-    .hero-subtitle {
-        font-family: var(--accent-font);
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 4px;
-        color: var(--primary-text);
-        margin: 0 0 80px 0;
-    }
-
-    .content-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 40px;
-        margin-bottom: 50px;
-    }
-
-    .content-block {
-        text-align: center;
-    }
-
-    .block-label {
-        font-family: var(--accent-font);
-        font-size: 1.1rem;
-        text-transform: uppercase;
-        letter-spacing: 3px;
-        color: var(--sage-green);
-        margin-bottom: 12px;
-        padding-top: 20px;
-        position: relative;
-    }
-
-    .block-label::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: linear-gradient(to right, transparent, rgba(123, 142, 126, 0.25), transparent);
-    }
-
-    .block-title {
-        font-family: var(--serif-font);
-        font-size: 2.3rem;
-        color: var(--primary-text);
-        margin: 0 0 15px 0;
-        font-weight: 400;
-    }
-
-    .block-detail {
-        font-family: var(--sans-font);
-        font-size: 0.95rem;
-        line-height: 1.7;
-        color: var(--primary-text);
-    }
-
-    #hotelSubtitle {
-        margin: 0 0 2px 0;
-    }
-
-    #hotelAddress {
-        margin: 0;
-        line-height: 1.4;
-    }
-
-    #roomsTitle {
-        margin-bottom: 3px;
-    }
-
-    #roomsDetail {
-        margin-top: 0;
-    }
-
-    #roomsDetail em {
-        display: inline-block;
-        margin-bottom: 0;
-    }
-
-    #hotelLink {
-        margin-top: 3px;
-    }
-
-    .block-detail a {
-        color: var(--sage-green);
-        text-decoration: none;
-        border-bottom: 1px solid var(--sage-green);
-    }
-
-    .block-detail a:hover {
-        color: var(--gold);
-        border-bottom-color: var(--gold);
-    }
-
-    .code-label {
-        font-family: var(--accent-font);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.75rem;
-        color: var(--primary-text);
-        margin-top: 12px;
-    }
-
-    .code-value {
-        font-family: var(--sans-font);
-        font-size: 1.1rem;
-        color: #000000;
-        margin: 0;
-        font-weight: 450;
-    }
-
-    .code-button {
-        border: 1px solid var(--sage-green);
-        background: transparent;
-        color: var(--sage-green);
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        font-family: var(--accent-font);
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        padding: 8px 14px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-
-    .code-button:hover {
-        background: var(--sage-green);
-        color: #ffffff;
-    }
-
-    .code-status {
-        font-size: 0.6rem;
-        letter-spacing: 1px;
-        opacity: 0.75;
-    }
-
-    .btn {
-        display: inline-block;
-        margin-top: 16px;
-        padding: 11px 30px;
-        border: 1px solid var(--sage-green);
-        background: var(--sage-green);
-        text-decoration: none;
-        color: white;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.7rem;
-        font-weight: 700;
-        transition: 0.3s;
-    }
-
-    .btn:hover {
-        background: var(--sage-green);
-        color: white;
-    }
-
-    .primary-info {
-        padding: 40px 30px;
-    }
-
-    .primary-info-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 15px;
-        margin-top: 16px;
-    }
-
-    .primary-column .block-label {
-        margin-top: 18px;
-    }
-
-    .primary-column .block-label:first-child {
-        margin-top: 0;
-    }
-
-    .primary-info .block-label {
-        padding-top: 12px;
-        margin-bottom: 8px;
-    }
-
-    .group-rate-label {
-        padding-top: 6px;
-    }
-
-    .full-width-block {
-        grid-column: 1 / -1;
-        padding: 40px 30px;
-        background: var(--soft-sage);
-    }
-
-    .travel-times {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-
-    .time-card {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 16px;
-        border-radius: 14px;
-        background: #ffffff;
-        border: 1px solid rgba(123, 142, 126, 0.2);
-        box-shadow: 0 6px 16px rgba(58, 63, 58, 0.08);
-    }
-
-    .time-label {
-        font-family: var(--accent-font);
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        color: var(--sage-green);
-        margin: 0;
-    }
-
-    .time-value {
-        font-family: var(--serif-font);
-        font-size: 1.05rem;
-        color: var(--primary-text);
-        margin: 0;
-    }
-
-    .mobile-page-title {
-        width: 100%;
-        text-align: center;
-        display: block;
-        overflow: hidden;
-        padding: 16px 0;
-        margin: 0;
-        text-overflow: ellipsis;
-        font-family: 'Quicksand', sans-serif;
-        color: #404041;
-        font-size: 32px;
-        font-weight: normal;
-        text-transform: uppercase;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: #FFFFFF;
-    }
-
-    @media (max-width: 640px) {
-        .mobile-page-title {
-            font-size: calc(32px * 0.75);
-        }
-    }
-
-    footer {
-        background: var(--bg-white);
-        padding: 60px 0 30px;
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--sage-green);
-        letter-spacing: 2px;
-        opacity: 0.7;
-    }
-
-    @media (max-width: 768px) {
-        .page-wrapper {
-            padding: 60px 30px 50px;
+        :root {
+            --sage-green: #7B8E7E;
+            --soft-sage: #F4F6F4;
+            --gold: #C5A059;
+            --dark-gold: #9E7E3F;
+            --primary-text: #3A3F3A;
+            --bg-white: #FFFFFF;
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Lato', sans-serif;
+            --serif-sc: 'Playfair Display SC', serif;
+            --accent-font: 'Quicksand', sans-serif;
         }
 
-        .hero-title {
-            font-size: 2.5rem;
-            letter-spacing: 4px;
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            background-color: var(--bg-white);
         }
 
-        .content-grid {
-            gap: 30px;
-        }
-    }
-
-    @media (max-width: 640px) {
-        .page-wrapper {
-            padding: 50px 20px 40px;
-        }
-
-        .hero-title {
-            font-size: 1.8rem;
-            letter-spacing: 2px;
+        .nav-wrapper {
+            width: auto;
+            background: transparent;
+            padding: 0;
+            text-align: left;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            z-index: 9999;
         }
 
-        .block-title {
-            font-size: 1.9rem;
+        .menu-btn {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 1.7px;
+            background: var(--sage-green);
+            position: relative;
+            display: inline-block;
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 2px;
+            background: var(--sage-green);
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hamburger::before {
+            top: -6px;
+        }
+
+        .hamburger::after {
+            top: 6px;
+        }
+
+        .menu-btn.active .hamburger {
+            background: transparent;
+        }
+
+        .menu-btn.active .hamburger::before,
+        .menu-btn.active .hamburger::after {
+            background: var(--sage-green);
+            top: 0;
+        }
+
+        .menu-btn.active .hamburger::before {
+            transform: rotate(45deg);
+        }
+
+        .menu-btn.active .hamburger::after {
+            transform: rotate(-45deg);
+        }
+
+        .menu-btn.active {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(244, 246, 244, 0.4);
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-inner {
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
         }
 
         .menu-link {
-            font-size: calc(16px * 0.875);
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 8px 6px;
+            font-family: var(--accent-font);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--sage-green);
+            text-decoration: none;
+            letter-spacing: 2px;
+            line-height: 1;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        .menu-link.active {
+            border-bottom-color: var(--sage-green);
+        }
+
+        .menu-link:hover,
+        .menu-link:active,
+        .menu-link:focus {
+            color: var(--sage-green);
+            border-bottom-color: var(--sage-green);
+            transform: translateY(-2px);
+            background: rgba(255, 192, 203, 0.15);
+            border-radius: 4px;
+        }
+
+        body.page-exit {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.42s ease, transform 0.42s ease;
+        }
+
+        /* Main Layout */
+        .page-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px 60px;
+            text-align: center;
+        }
+
+        .hero-title {
+            font-family: var(--serif-sc);
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            color: var(--primary-text);
+            margin: 0 0 50px 0;
+            font-weight: normal;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-family: var(--accent-font);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--primary-text);
+            margin: 0 0 80px 0;
         }
 
         .content-grid {
+            display: grid;
             grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
         }
 
-        .full-width-block {
-            padding: 30px 20px;
+        .content-block {
+            text-align: center;
+        }
+
+        .block-label {
+            font-family: var(--accent-font);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--sage-green);
+            margin-bottom: 12px;
+            padding-top: 20px;
+            position: relative;
+        }
+
+        .block-label::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(123, 142, 126, 0.25), transparent);
+        }
+
+        .block-title {
+            font-family: var(--serif-font);
+            font-size: 2.3rem;
+            color: var(--primary-text);
+            margin: 0 0 15px 0;
+            font-weight: 400;
+        }
+
+        .block-detail {
+            font-family: var(--sans-font);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--primary-text);
+        }
+
+        #hotelSubtitle {
+            margin: 0 0 2px 0;
+        }
+
+        #hotelAddress {
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        #roomsTitle {
+            margin-bottom: 3px;
+        }
+
+        #roomsDetail {
+            margin-top: 0;
+        }
+
+        #roomsDetail em {
+            display: inline-block;
+            margin-bottom: 0;
+        }
+
+        #hotelLink {
+            margin-top: 3px;
+        }
+
+        .block-detail a {
+            color: var(--sage-green);
+            text-decoration: none;
+            border-bottom: 1px solid var(--sage-green);
+        }
+
+        .block-detail a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        .code-label {
+            font-family: var(--accent-font);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.75rem;
+            color: var(--primary-text);
+            margin-top: 12px;
+        }
+
+        .code-value {
+            font-family: var(--sans-font);
+            font-size: 1.1rem;
+            color: #000000;
+            margin: 0;
+            font-weight: 450;
+        }
+
+        .code-button {
+            border: 1px solid var(--sage-green);
+            background: transparent;
+            color: var(--sage-green);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--accent-font);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .code-button:hover {
+            background: var(--sage-green);
+            color: #ffffff;
+        }
+
+        .code-status {
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            opacity: 0.75;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 11px 30px;
+            border: 1px solid var(--sage-green);
+            background: var(--sage-green);
+            text-decoration: none;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: var(--sage-green);
+            color: white;
+        }
+
+        .primary-info {
+            padding: 40px 30px;
         }
 
         .primary-info-grid {
+            display: grid;
             grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 16px;
+        }
+
+        .primary-column .block-label {
+            margin-top: 18px;
+        }
+
+        .primary-column .block-label:first-child {
+            margin-top: 0;
+        }
+
+        .primary-info .block-label {
+            padding-top: 12px;
+            margin-bottom: 8px;
+        }
+
+        .group-rate-label {
+            padding-top: 6px;
+        }
+
+        .full-width-block {
+            grid-column: 1 / -1;
+            padding: 40px 30px;
+            background: var(--soft-sage);
         }
 
         .travel-times {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
-    }
+
+        .time-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid rgba(123, 142, 126, 0.2);
+            box-shadow: 0 6px 16px rgba(58, 63, 58, 0.08);
+        }
+
+        .time-label {
+            font-family: var(--accent-font);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--sage-green);
+            margin: 0;
+        }
+
+        .time-value {
+            font-family: var(--serif-font);
+            font-size: 1.05rem;
+            color: var(--primary-text);
+            margin: 0;
+        }
+
+        .mobile-page-title {
+            width: 100%;
+            text-align: center;
+            display: block;
+            overflow: hidden;
+            padding: 16px 0;
+            margin: 0;
+            text-overflow: ellipsis;
+            font-family: 'Quicksand', sans-serif;
+            color: #404041;
+            font-size: 32px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: #FFFFFF;
+        }
+
+        @media (max-width: 640px) {
+            .mobile-page-title {
+                font-size: calc(32px * 0.75);
+            }
+        }
+
+        footer {
+            background: var(--bg-white);
+            padding: 60px 0 30px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--sage-green);
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .page-wrapper {
+                padding: 60px 30px 50px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .content-grid {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .page-wrapper {
+                padding: 50px 20px 40px;
+            }
+
+            .hero-title {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .block-title {
+                font-size: 1.9rem;
+            }
+
+            .menu-link {
+                font-size: calc(16px * 0.875);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .full-width-block {
+                padding: 30px 20px;
+            }
+
+            .primary-info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .travel-times {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
+
 <body>
     <h2 data-testid="mobile-page-title" class="mobile-page-title">A&amp;N</h2>
 
@@ -535,7 +550,8 @@
                         <p class="block-label">Hotel Location</p>
                         <h3 class="block-title" id="hotelName">DoubleTree by Hilton</h3>
                         <h3 class="block-detail" id="hotelSubtitle">Hotel Newark - Fremont</h3>
-                        <p class="block-detail" id="hotelAddress">39900 Balentine Drive<br>Newark, California, 94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
+                        <p class="block-detail" id="hotelAddress">39900 Balentine Drive<br>Newark, California,
+                            94560-0564, USA<br><a href="tel:+15105940900">(510) 594-0900</a></p>
                     </div>
 
                     <div class="primary-column">
@@ -549,11 +565,18 @@
 
                         <p class="block-label">Recommended Rooms</p>
                         <h3 class="block-title" id="roomsTitle">Garden Rooms</h3>
-                        <p class="block-detail" id="roomsDetail">Newly Renovated with Patio or Balcony<br><br><strong>1 King Bed Garden Room</strong><br>$135 per night<br><br><strong>2 Double Beds Garden Room</strong><br>$145 per night<br><br><em style="font-size: 0.85rem;">(Rates exclude applicable taxes)</em></p>
-                        <a href="https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=NWKBDDT&arrivalDate=2026-07-02&departureDate=2026-07-06&groupCode=CDT903&room1NumAdults=2" target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
+                        <p class="block-detail" id="roomsDetail">Newly Renovated with Patio or Balcony<br><br><strong>1
+                                King Bed Garden Room</strong><br>$135 per night<br><br><strong>2 Double Beds Garden
+                                Room</strong><br>$145 per night<br><br><em style="font-size: 0.85rem;">(Rates exclude
+                                applicable taxes)</em></p>
+                        <a href="https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=NWKBDDT&arrivalDate=2026-07-02&departureDate=2026-07-06&groupCode=CDT903&room1NumAdults=2"
+                            target="_blank" class="btn" id="hotelLink">Book Your Stay</a>
 
                         <p class="block-label">Additional Stay Requests</p>
-                        <p class="block-detail" id="additionalStayDetail" style="margin: 0;">For those planning to stay outside the room block dates, please go ahead and make a reservation for July 2-6 only and contact Hilton (<a href="tel:+18884466677">1-888-446-6677</a>) to add additional dates. Don't be shy in asking them to match the existing group rate!</p>
+                        <p class="block-detail" id="additionalStayDetail" style="margin: 0;">For those planning to stay
+                            outside the room block dates, please go ahead and make a reservation for July 2-6 only and
+                            contact Hilton (<a href="tel:+18884466677">1-888-446-6677</a>) to add additional dates.
+                            Don't be shy in asking them to match the existing group rate!</p>
                     </div>
                 </div>
             </div>
@@ -561,7 +584,8 @@
             <div class="content-block" id="amenitiesBlock">
                 <p class="block-label">Hotel Amenities</p>
                 <h2 class="block-title" id="amenitiesTitle">Free Shuttle From SJC</h2>
-                <p class="block-detail" id="amenitiesDetail">The DoubleTree provides complimentary shuttle service from San José International Airport (SJC)</p>
+                <p class="block-detail" id="amenitiesDetail">The DoubleTree provides complimentary shuttle service from
+                    San José International Airport (SJC)</p>
             </div>
 
             <div class="full-width-block">
@@ -609,7 +633,9 @@
             'nikkahandshalimaa': ['nikkah', 'shalima'],
             'nikkahandshaliman': ['nikkah', 'shalima'],
             'shalimaa': ['shalima'],
-            'shaliman': ['shalima']
+            'shaliman': ['shalima'],
+            'dholkiandshaliman': ['dholki', 'shalima'],
+            'dholkiandshalimaa': ['dholki', 'shalima']
         };
 
         // Function to update travel dates based on invited events
@@ -621,7 +647,7 @@
             if (invitationType) {
                 invitationType = invitationType.trim().toLowerCase();
             }
-            
+
             // If URL has a type parameter, it always wins
             if (invitationType) {
                 // If it differs from stored value and we haven't just reloaded, update and reload
@@ -639,10 +665,10 @@
                 // No type in URL, check sessionStorage
                 invitationType = storedType || 'nikkaha'; // default to nikkah only
             }
-            
+
             // Default to nikkaha only if invalid type specified
             const allowedEvents = invitationTypes[invitationType] || invitationTypes['nikkaha'];
-            
+
             if (allowedEvents.length === 0) {
                 return;
             }
@@ -662,19 +688,19 @@
             if (earliestDate && latestDate) {
                 // Check-in on first event day, check-out day after last event
                 const checkInDate = new Date(earliestDate);
-                
+
                 const checkOutDate = new Date(latestDate);
                 checkOutDate.setDate(checkOutDate.getDate() + 1);
 
                 // Format dates
-                const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                              'July', 'August', 'September', 'October', 'November', 'December'];
+                const months = ['January', 'February', 'March', 'April', 'May', 'June',
+                    'July', 'August', 'September', 'October', 'November', 'December'];
                 const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
                 const checkInMonth = months[checkInDate.getMonth()];
                 const checkInDay = checkInDate.getDate();
                 const checkInDayName = days[checkInDate.getDay()];
-                
+
                 const checkOutMonth = months[checkOutDate.getMonth()];
                 const checkOutDay = checkOutDate.getDate();
                 const checkOutDayName = days[checkOutDate.getDay()];
@@ -685,11 +711,11 @@
                 // Update hero subtitle - show event date range
                 if (checkInDay === latestDay && checkInMonth === latestMonth) {
                     // Single day event
-                    document.getElementById('heroSubtitle').innerHTML = 
+                    document.getElementById('heroSubtitle').innerHTML =
                         `${checkInMonth} ${checkInDay}, 2026<br>San Ramon, CA`;
                 } else {
                     // Multi-day event range
-                    document.getElementById('heroSubtitle').innerHTML = 
+                    document.getElementById('heroSubtitle').innerHTML =
                         `${checkInMonth} ${checkInDay} - ${latestMonth} ${latestDay}, 2026<br>San Ramon, CA`;
                 }
 
@@ -698,13 +724,14 @@
                     invitationType === 'subkuchn' ||
                     invitationType === 'nikkahn' ||
                     invitationType === 'nikkahandshaliman' ||
-                    invitationType === 'shaliman'
+                    invitationType === 'shaliman' ||
+                    invitationType === 'dholkiandshaliman'
                 );
-                
+
                 if (isEmbassySuites) {
                     const checkInDetail = document.getElementById('checkInDetail');
                     if (checkInDetail) {
-                        checkInDetail.innerHTML = 
+                        checkInDetail.innerHTML =
                             `Check-In: ${checkInDayName}<br>Check-Out: ${checkOutDayName}`;
                     }
                 }
@@ -725,15 +752,15 @@
             if (invitationType) {
                 invitationType = invitationType.trim().toLowerCase();
             }
-            
+
             invitationType = invitationType || storedType || 'nikkaha';
-            
+
             const receptionCard = document.getElementById('receptionTimeCard');
             if (!receptionCard) return;
-            
+
             // Show reception time only for these invitation types
-            const typesWithReception = ['subkucha', 'subkuchn', 'nikkahandshalimaa', 'nikkahandshaliman', 'shalimaa', 'shaliman'];
-            
+            const typesWithReception = ['subkucha', 'subkuchn', 'nikkahandshalimaa', 'nikkahandshaliman', 'shalimaa', 'shaliman', 'dholkiandshaliman', 'dholkiandshalimaa'];
+
             if (typesWithReception.includes(invitationType)) {
                 receptionCard.style.display = 'flex';
             } else {
@@ -775,17 +802,18 @@
             if (invitationType) {
                 invitationType = invitationType.trim().toLowerCase();
             }
-            
+
             invitationType = invitationType || storedType || 'nikkaha';
-            
+
             // Determine which hotel based on invitation type suffix
             const isEmbassySuites = invitationType && (
                 invitationType === 'subkuchn' ||
                 invitationType === 'nikkahn' ||
                 invitationType === 'nikkahandshaliman' ||
-                invitationType === 'shaliman'
+                invitationType === 'shaliman' ||
+                invitationType === 'dholkiandshaliman'
             );
-            
+
             const hotelName = document.getElementById('hotelName');
             const hotelSubtitle = document.getElementById('hotelSubtitle');
             const hotelAddress = document.getElementById('hotelAddress');
@@ -798,7 +826,7 @@
             const amenitiesBlock = document.getElementById('amenitiesBlock');
             const amenitiesTitle = document.getElementById('amenitiesTitle');
             const amenitiesDetail = document.getElementById('amenitiesDetail');
-            
+
             if (isEmbassySuites) {
                 // Embassy Suites for 'n' suffix types
                 if (hotelName) hotelName.textContent = 'Embassy Suites by Hilton Milpitas Silicon Valley';
@@ -829,13 +857,13 @@
         })();
 
         // Mark current page in menu
-        (function() {
+        (function () {
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const menuLinks = document.querySelectorAll('.menu-link');
             menuLinks.forEach(link => {
                 const href = link.getAttribute('href');
                 // Check if this link matches the current page
-                if (href === currentPage || 
+                if (href === currentPage ||
                     (currentPage === '' && href === 'index.html') ||
                     (currentPage === 'travel.html' && href === 'travel.html')) {
                     link.classList.add('active');
@@ -844,7 +872,7 @@
         })();
 
         // Top-left options menu + page transition behavior
-        (function() {
+        (function () {
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
             const menuLinks = document.querySelectorAll('.menu-link');
@@ -907,4 +935,5 @@
         })();
     </script>
 </body>
+
 </html>

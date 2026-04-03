@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,570 +18,580 @@
     <meta name="twitter:description" content="Join us for the wedding events in July 2026">
     <meta name="twitter:image" content="https://anasandnabiha.us/images/favicon.svg">
     <script src="auth.js"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Playfair+Display+SC:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
-    :root {
-        /* Color Palette */
-        --sage-green: #7B8E7E;
-        --soft-sage: #F4F6F4;
-        --gold: #C5A059;
-        --dark-gold: #9E7E3F;
-        --primary-text: #3A3F3A;
-        --cream-bg: #F5F1ED;
-        --bg-white: #FFFFFF;
-        
-        /* Fonts */
-        --serif-font: 'Playfair Display', serif;
-        --sans-font: 'Lato', sans-serif;
-    }
+        :root {
+            /* Color Palette */
+            --sage-green: #7B8E7E;
+            --soft-sage: #F4F6F4;
+            --gold: #C5A059;
+            --dark-gold: #9E7E3F;
+            --primary-text: #3A3F3A;
+            --cream-bg: #F5F1ED;
+            --bg-white: #FFFFFF;
 
-    body, html {
-        margin: 0;
-        padding: 0;
-        font-family: var(--sans-font);
-        color: var(--primary-text);
-        scroll-behavior: smooth;
-        background-color: var(--cream-bg);
-    }
-
-    /* Top Navigation */
-    .nav-wrapper {
-        width: auto;
-        background: transparent;
-        padding: 0;
-        text-align: left;
-        position: fixed;
-        top: 5px;
-        left: 5px;
-        z-index: 9999;
-    }
-
-    .nav-wrapper a {
-        text-decoration: none;
-        color: var(--sage-green);
-        margin: 0 18px;
-        font-size: 0.8rem;
-        letter-spacing: 2px;
-        text-transform: uppercase;
-        font-weight: 700;
-        transition: color 0.3s;
-    }
-
-    .nav-wrapper a:hover {
-        color: var(--gold);
-    }
-
-    /* Left options menu (replaces top links) */
-    .menu-btn {
-        width: 46px;
-        height: 46px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        z-index: 9999;
-    }
-
-    .hamburger {
-        width: 24px;
-        height: 1.7px;
-        background: var(--sage-green);
-        position: relative;
-        display: inline-block;
-        -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .hamburger::before,
-    .hamburger::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        width: 24px;
-        height: 2px;
-        background: var(--sage-green);
-        -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .hamburger::before { top: -6px; }
-    .hamburger::after { top: 6px; }
-
-    /* Hamburger to X animation */
-    .menu-btn.active .hamburger {
-        background: transparent;
-        /* Hides middle bar */
-    }
-
-    /* Change both bars to sage green and ensure they are visible */
-    .menu-btn.active .hamburger::before,
-    .menu-btn.active .hamburger::after {
-        background: var(--sage-green);
-        top: 0;
-    }
-
-    .menu-btn.active .hamburger::before {
-        -webkit-transform: rotate(45deg);
-        -moz-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
-    }
-
-    .menu-btn.active .hamburger::after {
-        -webkit-transform: rotate(-45deg);
-        -moz-transform: rotate(-45deg);
-        -ms-transform: rotate(-45deg);
-        transform: rotate(-45deg);
-    }
-
-    /* Make the button background transparent when menu is open */
-    .menu-btn.active {
-        background: transparent;
-        border-color: transparent;
-        box-shadow: none;
-    }
-
-    .menu-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(244, 246, 244, 0.4);
-        /* Frosted glass effect with transparency */
-        backdrop-filter: blur(12px) saturate(150%);
-        -webkit-backdrop-filter: blur(12px) saturate(150%);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.35s ease, visibility 0.35s ease;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        z-index: 1050;
-    }
-
-    .menu-overlay.open {
-        opacity: 1;
-        visibility: visible;
-    }
-
-    .menu-inner {
-        text-align: center;
-        position: relative;
-        padding-top: 100px;
-    }
-
-    .menu-link {
-        display: block;
-        width: fit-content;
-        margin: 0 auto;
-        padding: 8px 8px 6px;
-
-        font-family: 'Quicksand', sans-serif;
-        font-size: 16px;
-        font-weight: 500;
-        color: var(--sage-green);
-        text-decoration: none;
-        letter-spacing: 2px;
-        line-height: 1;
-
-        border-bottom: 2px solid transparent;
-        transition: all 0.25s;
-        
-        /* Remove default tap/click highlight */
-        -webkit-tap-highlight-color: transparent;
-        outline: none;
-    }
-
-    /* Active menu item has underline */
-    .menu-link.active {
-        border-bottom-color: var(--sage-green);
-    }
-
-    /* Hover and active state to make it interactive */
-    .menu-link:hover,
-    .menu-link:active,
-    .menu-link:focus {
-        color: var(--sage-green);
-        border-bottom-color: var(--sage-green);
-        transform: translateY(-2px);
-        background: rgba(255, 192, 203, 0.15);
-        border-radius: 4px;
-    }
-
-    /* Mobile scaling as per your snippet */
-    @media (max-width: 640px) {
-        .menu-link {
-            font-size: calc(16px * 0.875);
-            margin: 0 auto;
+            /* Fonts */
+            --serif-font: 'Playfair Display', serif;
+            --sans-font: 'Lato', sans-serif;
         }
-    }
 
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: var(--sans-font);
+            color: var(--primary-text);
+            scroll-behavior: smooth;
+            background-color: var(--cream-bg);
+        }
 
+        /* Top Navigation */
+        .nav-wrapper {
+            width: auto;
+            background: transparent;
+            padding: 0;
+            text-align: left;
+            position: fixed;
+            top: 5px;
+            left: 5px;
+            z-index: 9999;
+        }
 
-    /* Page transition when navigating between pages */
-    body.page-exit {
-        opacity: 0;
-        transform: translateY(8px);
-        transition: opacity 0.42s ease, transform 0.42s ease;
-    }
-
-    /* Main Content Container */
-    .main-container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px 40px 60px;
-        background: var(--bg-white);
-        min-height: 100vh;
-        position: relative;
-    }
-
-    /* Page Header */
-    .page-header {
-        text-align: center;
-        margin-bottom: 10px;
-    }
-
-    .page-header h1 {
-        font-family: var(--serif-font);
-        font-size: 3rem;
-        color: #000000;
-        margin: 0 0 20px 0;
-        font-weight: 400;
-    }
-
-    .decorative-divider {
-        width: 60px;
-        height: 2px;
-        background: var(--gold);
-        margin: 0 auto 40px;
-    }
-
-    /* Date Heading */
-    .date-heading {
-        font-family: var(--serif-font);
-        font-size: 1.3rem;
-        color: var(--primary-text);
-        margin: 40px 0 25px 0;
-        text-align: left;
-        font-weight: 400;
-    }
-
-    .event-item {
-        display: flex;
-        gap: 30px;
-        margin-bottom: 35px;
-        padding-bottom: 0;
-        border-bottom: none;
-        opacity: 1;
-        filter: blur(6px);
-        transform: translateY(18px);
-        transition: filter 0.6s ease, transform 0.6s ease;
-    }
-
-    .event-item.in-view {
-        filter: blur(0);
-        transform: translateY(0);
-    }
-
-    .event-item:last-of-type {
-        border-bottom: none;
-    }
-
-    .event-time {
-        flex: 0 0 80px;
-        font-family: var(--serif-font);
-        font-size: 0.9rem;
-        color: var(--primary-text);
-        font-weight: 700;
-        display: none;
-    }
-
-    .event-content {
-        flex: 1;
-    }
-
-    .event-title {
-        font-family: var(--serif-font);
-        font-size: 1.5rem;
-        color: var(--sage-green);
-        margin: 0 0 4px 0;
-        font-weight: 400;
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        width: 100%;
-    }
-
-    .event-date {
-        font-family: var(--serif-font);
-        font-size: 1.3rem;
-        color: var(--primary-text);
-        font-weight: 400;
-        margin-right: 8px;
-    }
-
-    .event-name {
-        text-align: right;
-        margin-left: auto;
-    }
-
-    .event-timing {
-        font-family: var(--serif-font);
-        font-size: 0.9rem;
-        color: var(--primary-text);
-        font-weight: 700;
-        margin-top: 12px;
-        margin-bottom: 10px;
-    }
-
-    /* Title + timing header with faint gold divider */
-    .event-header {
-        display: flex;
-        align-items: baseline;
-        gap: 12px;
-        padding-bottom: 12px;
-        margin-bottom: 10px;
-        border-bottom: 2px solid rgba(197,160,89,0.18); /* slightly thicker faint gold */
-    }
-
-    .event-description {
-        font-size: 0.85rem;
-        line-height: 1.6;
-        color: var(--primary-text);
-        margin-bottom: 8px;
-    }
-
-    .event-location {
-        color: var(--gold);
-        font-size: 0.75rem;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .event-location a {
-        color: inherit;
-        text-decoration: none;
-    }
-
-    .event-location a:hover {
-        color: var(--dark-gold);
-        text-decoration: underline;
-    }
-
-    .event-dress-code {
-        font-size: 0.8rem;
-        color: var(--primary-text);
-        margin-top: 8px;
-    }
-
-    .event-dress-code strong {
-        color: var(--sage-green);
-    }
-
-    /* Add to Calendar dropdown */
-    .calendar-dropdown {
-        position: relative;
-        display: inline-block;
-        margin-top: 15px;
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .add-to-calendar-btn {
-        display: inline-block;
-        width: 100%;
-        padding: 10px 24px;
-        border: 1.5px solid var(--gold);
-        background: transparent;
-        text-decoration: none;
-        color: var(--gold);
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        font-size: 0.75rem;
-        font-weight: 700;
-        transition: 0.3s;
-        cursor: pointer;
-    }
-
-    .add-to-calendar-btn:hover {
-        background: var(--gold);
-        color: white;
-    }
-
-    .calendar-menu {
-        position: static;
-        width: 100%;
-        box-sizing: border-box;
-        margin-top: 8px;
-        background: #FFFFFF;
-        border: 1px solid rgba(197, 160, 89, 0.35);
-        box-shadow: 0 6px 16px rgba(58, 63, 58, 0.1);
-        padding: 6px;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.28s ease, opacity 0.22s ease;
-        pointer-events: none;
-    }
-
-    .calendar-dropdown.open .calendar-menu {
-        max-height: 140px;
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .calendar-option {
-        display: block;
-        padding: 9px 10px;
-        text-decoration: none;
-        color: var(--primary-text);
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.4px;
-    }
-
-    .calendar-option:hover {
-        background: var(--soft-sage);
-        color: var(--sage-green);
-    }
-
-    .map-embed {
-        margin-top: 14px;
-        border: 1px solid rgba(197,160,89,0.18);
-        border-radius: 6px;
-        overflow: hidden;
-        background: var(--soft-sage);
-    }
-
-    .map-frame {
-        width: 100%;
-        height: 240px;
-        border: 0;
-        display: block;
-    }
-
-
-    footer {
-        background: var(--bg-white);
-        padding: 60px 0;
-        text-align: center;
-        font-size: 0.8rem;
-        color: var(--sage-green);
-        letter-spacing: 2px;
-        opacity: 0.7;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
         .nav-wrapper a {
-            margin: 0 10px;
-            font-size: 0.7rem;
+            text-decoration: none;
+            color: var(--sage-green);
+            margin: 0 18px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
+            transition: color 0.3s;
         }
 
+        .nav-wrapper a:hover {
+            color: var(--gold);
+        }
+
+        /* Left options menu (replaces top links) */
+        .menu-btn {
+            width: 46px;
+            height: 46px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+        }
+
+        .hamburger {
+            width: 24px;
+            height: 1.7px;
+            background: var(--sage-green);
+            position: relative;
+            display: inline-block;
+            -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 24px;
+            height: 2px;
+            background: var(--sage-green);
+            -webkit-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -moz-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            -ms-transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .hamburger::before {
+            top: -6px;
+        }
+
+        .hamburger::after {
+            top: 6px;
+        }
+
+        /* Hamburger to X animation */
+        .menu-btn.active .hamburger {
+            background: transparent;
+            /* Hides middle bar */
+        }
+
+        /* Change both bars to sage green and ensure they are visible */
+        .menu-btn.active .hamburger::before,
+        .menu-btn.active .hamburger::after {
+            background: var(--sage-green);
+            top: 0;
+        }
+
+        .menu-btn.active .hamburger::before {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .menu-btn.active .hamburger::after {
+            -webkit-transform: rotate(-45deg);
+            -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+        }
+
+        /* Make the button background transparent when menu is open */
+        .menu-btn.active {
+            background: transparent;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(244, 246, 244, 0.4);
+            /* Frosted glass effect with transparency */
+            backdrop-filter: blur(12px) saturate(150%);
+            -webkit-backdrop-filter: blur(12px) saturate(150%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            z-index: 1050;
+        }
+
+        .menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .menu-inner {
+            text-align: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .menu-link {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            padding: 8px 8px 6px;
+
+            font-family: 'Quicksand', sans-serif;
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--sage-green);
+            text-decoration: none;
+            letter-spacing: 2px;
+            line-height: 1;
+
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s;
+
+            /* Remove default tap/click highlight */
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+        }
+
+        /* Active menu item has underline */
+        .menu-link.active {
+            border-bottom-color: var(--sage-green);
+        }
+
+        /* Hover and active state to make it interactive */
+        .menu-link:hover,
+        .menu-link:active,
+        .menu-link:focus {
+            color: var(--sage-green);
+            border-bottom-color: var(--sage-green);
+            transform: translateY(-2px);
+            background: rgba(255, 192, 203, 0.15);
+            border-radius: 4px;
+        }
+
+        /* Mobile scaling as per your snippet */
+        @media (max-width: 640px) {
+            .menu-link {
+                font-size: calc(16px * 0.875);
+                margin: 0 auto;
+            }
+        }
+
+
+
+        /* Page transition when navigating between pages */
+        body.page-exit {
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.42s ease, transform 0.42s ease;
+        }
+
+        /* Main Content Container */
         .main-container {
-            padding: 12px 20px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px 40px 60px;
+            background: var(--bg-white);
+            min-height: 100vh;
+            position: relative;
         }
 
+        /* Page Header */
         .page-header {
-            margin-bottom: 8px;
+            text-align: center;
+            margin-bottom: 10px;
         }
 
         .page-header h1 {
-            font-size: 2rem;
+            font-family: var(--serif-font);
+            font-size: 3rem;
+            color: #000000;
+            margin: 0 0 20px 0;
+            font-weight: 400;
         }
 
+        .decorative-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 40px;
+        }
+
+        /* Date Heading */
         .date-heading {
-            font-size: 1.1rem;
-            margin: 30px 0 15px 0;
+            font-family: var(--serif-font);
+            font-size: 1.3rem;
+            color: var(--primary-text);
+            margin: 40px 0 25px 0;
+            text-align: left;
+            font-weight: 400;
         }
 
         .event-item {
-            display: block;
-            margin-bottom: 25px;
+            display: flex;
+            gap: 30px;
+            margin-bottom: 35px;
             padding-bottom: 0;
+            border-bottom: none;
+            opacity: 1;
+            filter: blur(6px);
+            transform: translateY(18px);
+            transition: filter 0.6s ease, transform 0.6s ease;
+        }
+
+        .event-item.in-view {
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        .event-item:last-of-type {
+            border-bottom: none;
         }
 
         .event-time {
-            flex: none;
-            font-size: 0.8rem;
-            margin-bottom: 5px;
-            display: block;
+            flex: 0 0 80px;
+            font-family: var(--serif-font);
+            font-size: 0.9rem;
+            color: var(--primary-text);
+            font-weight: 700;
+            display: none;
+        }
+
+        .event-content {
+            flex: 1;
         }
 
         .event-title {
-            font-size: 1.2rem;
-            margin-bottom: 6px;
+            font-family: var(--serif-font);
+            font-size: 1.5rem;
+            color: var(--sage-green);
+            margin: 0 0 4px 0;
+            font-weight: 400;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .event-date {
+            font-family: var(--serif-font);
+            font-size: 1.3rem;
+            color: var(--primary-text);
+            font-weight: 400;
+            margin-right: 8px;
+        }
+
+        .event-name {
+            text-align: right;
+            margin-left: auto;
+        }
+
+        .event-timing {
+            font-family: var(--serif-font);
+            font-size: 0.9rem;
+            color: var(--primary-text);
+            font-weight: 700;
+            margin-top: 12px;
+            margin-bottom: 10px;
+        }
+
+        /* Title + timing header with faint gold divider */
+        .event-header {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding-bottom: 12px;
+            margin-bottom: 10px;
+            border-bottom: 2px solid rgba(197, 160, 89, 0.18);
+            /* slightly thicker faint gold */
         }
 
         .event-description {
-            font-size: 0.8rem;
-            margin-bottom: 6px;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--primary-text);
+            margin-bottom: 8px;
         }
 
         .event-location {
-            font-size: 0.7rem;
-            margin-bottom: 6px;
+            color: var(--gold);
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .event-location a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .event-location a:hover {
+            color: var(--dark-gold);
+            text-decoration: underline;
         }
 
         .event-dress-code {
-            font-size: 0.75rem;
-            margin-top: 6px;
+            font-size: 0.8rem;
+            color: var(--primary-text);
+            margin-top: 8px;
+        }
+
+        .event-dress-code strong {
+            color: var(--sage-green);
+        }
+
+        /* Add to Calendar dropdown */
+        .calendar-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-top: 15px;
+            width: 100%;
+            max-width: 280px;
         }
 
         .add-to-calendar-btn {
-            margin-top: 10px;
-            padding: 8px 18px;
-            font-size: 0.7rem;
+            display: inline-block;
+            width: 100%;
+            padding: 10px 24px;
+            border: 1.5px solid var(--gold);
+            background: transparent;
+            text-decoration: none;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transition: 0.3s;
+            cursor: pointer;
         }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-        .event-item {
-            filter: none;
-            transform: none;
-            transition: none;
+        .add-to-calendar-btn:hover {
+            background: var(--gold);
+            color: white;
         }
-    }
 
-    /* Mobile page title: visible on all screens */
-    .mobile-page-title {
-        width: 100%;
-        text-align: center;
-        display: block;
-        overflow: hidden;
-        padding: 16px 0;
-        margin: 0;
-        text-overflow: ellipsis;
-        font-family: 'Quicksand', sans-serif;
-        color: #404041;
-        font-size: 32px;
-        font-weight: normal;
-        text-transform: uppercase;
-        position: sticky;
-        top: 0;
-        z-index: 999;
-        background-color: #FFFFFF;
-    }
+        .calendar-menu {
+            position: static;
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 8px;
+            background: #FFFFFF;
+            border: 1px solid rgba(197, 160, 89, 0.35);
+            box-shadow: 0 6px 16px rgba(58, 63, 58, 0.1);
+            padding: 6px;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.28s ease, opacity 0.22s ease;
+            pointer-events: none;
+        }
 
-    @media (max-width: 640px) {
+        .calendar-dropdown.open .calendar-menu {
+            max-height: 140px;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .calendar-option {
+            display: block;
+            padding: 9px 10px;
+            text-decoration: none;
+            color: var(--primary-text);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+        }
+
+        .calendar-option:hover {
+            background: var(--soft-sage);
+            color: var(--sage-green);
+        }
+
+        .map-embed {
+            margin-top: 14px;
+            border: 1px solid rgba(197, 160, 89, 0.18);
+            border-radius: 6px;
+            overflow: hidden;
+            background: var(--soft-sage);
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 240px;
+            border: 0;
+            display: block;
+        }
+
+
+        footer {
+            background: var(--bg-white);
+            padding: 60px 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--sage-green);
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-wrapper a {
+                margin: 0 10px;
+                font-size: 0.7rem;
+            }
+
+            .main-container {
+                padding: 12px 20px 30px;
+            }
+
+            .page-header {
+                margin-bottom: 8px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .date-heading {
+                font-size: 1.1rem;
+                margin: 30px 0 15px 0;
+            }
+
+            .event-item {
+                display: block;
+                margin-bottom: 25px;
+                padding-bottom: 0;
+            }
+
+            .event-time {
+                flex: none;
+                font-size: 0.8rem;
+                margin-bottom: 5px;
+                display: block;
+            }
+
+            .event-title {
+                font-size: 1.2rem;
+                margin-bottom: 6px;
+            }
+
+            .event-description {
+                font-size: 0.8rem;
+                margin-bottom: 6px;
+            }
+
+            .event-location {
+                font-size: 0.7rem;
+                margin-bottom: 6px;
+            }
+
+            .event-dress-code {
+                font-size: 0.75rem;
+                margin-top: 6px;
+            }
+
+            .add-to-calendar-btn {
+                margin-top: 10px;
+                padding: 8px 18px;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .event-item {
+                filter: none;
+                transform: none;
+                transition: none;
+            }
+        }
+
+        /* Mobile page title: visible on all screens */
         .mobile-page-title {
-            font-size: calc(32px * 0.75);
+            width: 100%;
+            text-align: center;
+            display: block;
+            overflow: hidden;
+            padding: 16px 0;
+            margin: 0;
+            text-overflow: ellipsis;
+            font-family: 'Quicksand', sans-serif;
+            color: #404041;
+            font-size: 32px;
+            font-weight: normal;
+            text-transform: uppercase;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: #FFFFFF;
         }
-    }
+
+        @media (max-width: 640px) {
+            .mobile-page-title {
+                font-size: calc(32px * 0.75);
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <h2 data-testid="mobile-page-title" class="mobile-page-title">A&amp;N</h2>
@@ -609,19 +620,29 @@
         <div class="event-item" data-event="dholki">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Friday, July 3</span><span class="event-name">Dholki</span></h3>
+                    <h3 class="event-title"><span class="event-date">Friday, July 3</span><span
+                            class="event-name">Dholki</span></h3>
                 </div>
                 <p class="event-timing">6:30 PM</p>
-                <p class="event-description">Welcome family and friends! We are hosting a fun dholki night to welcome our guests from near and far. This will be a lively pre-wedding celebration filled with music and traditional festivities.</p>
-                <p class="event-location"><a href="https://www.google.com/maps/dir/?api=1&destination=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538" target="_blank" rel="noopener">Fremont Downtown Event Center<br>3500 Capitol Ave, Fremont, CA 94538</a></p>
+                <p class="event-description">Welcome family and friends! We are hosting a fun dholki night to welcome
+                    our guests from near and far. This will be a lively pre-wedding celebration filled with music and
+                    traditional festivities.</p>
+                <p class="event-location"><a
+                        href="https://www.google.com/maps/dir/?api=1&destination=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538"
+                        target="_blank" rel="noopener">Fremont Downtown Event Center<br>3500 Capitol Ave, Fremont, CA
+                        94538</a></p>
                 <p class="event-dress-code"><strong>Dress Code:</strong> Traditional</p>
                 <div class="map-embed">
-                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538&output=embed" title="Fremont Downtown Event Center map"></iframe>
+                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps?q=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538&output=embed"
+                        title="Fremont Downtown Event Center map"></iframe>
                 </div>
                 <div class="calendar-dropdown">
-                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true"
+                        aria-expanded="false">+ Add to Calendar</button>
                     <div class="calendar-menu" role="menu" aria-label="Calendar options for Dholki">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dholki%20-%20Anas%20%26%20Nabiha&dates=20260703T183000/20260703T213000&details=A%20lively%20pre-wedding%20celebration%20filled%20with%20music%20and%20traditional%20festivities&location=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Dholki%20-%20Anas%20%26%20Nabiha&dates=20260703T183000/20260703T213000&details=A%20lively%20pre-wedding%20celebration%20filled%20with%20music%20and%20traditional%20festivities&location=Fremont%20Downtown%20Event%20Center%2C%203500%20Capitol%20Ave%2C%20Fremont%2C%20CA%2094538"
+                            target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
                         <a href="calendar/dholki.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
                     </div>
                 </div>
@@ -631,19 +652,27 @@
         <div class="event-item" data-event="nikkah">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Saturday, July 4</span><span class="event-name">Nikkah</span></h3>
+                    <h3 class="event-title"><span class="event-date">Saturday, July 4</span><span
+                            class="event-name">Nikkah</span></h3>
                 </div>
                 <p class="event-timing">1:30pm</p>
                 <p class="event-description">The Islamic ceremony where we formally enter into marriage.</p>
-                <p class="event-location"><a href="https://www.google.com/maps/dir/?api=1&destination=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148" target="_blank" rel="noopener">Evergreen Islamic Center<br>2486 Ruby Ave, San Jose, CA 95148</a></p>
+                <p class="event-location"><a
+                        href="https://www.google.com/maps/dir/?api=1&destination=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148"
+                        target="_blank" rel="noopener">Evergreen Islamic Center<br>2486 Ruby Ave, San Jose, CA 95148</a>
+                </p>
                 <p class="event-dress-code"><strong>Dress Code:</strong> Traditional</p>
                 <div class="map-embed">
-                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148&output=embed" title="Evergreen Islamic Center map"></iframe>
+                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps?q=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148&output=embed"
+                        title="Evergreen Islamic Center map"></iframe>
                 </div>
                 <div class="calendar-dropdown">
-                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true"
+                        aria-expanded="false">+ Add to Calendar</button>
                     <div class="calendar-menu" role="menu" aria-label="Calendar options for Nikkah">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%20-%20Anas%20%26%20Nabiha&dates=20260704T133000/20260704T150000&details=The%20Islamic%20ceremony%20where%20we%20formally%20enter%20into%20marriage&location=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Nikkah%20-%20Anas%20%26%20Nabiha&dates=20260704T133000/20260704T150000&details=The%20Islamic%20ceremony%20where%20we%20formally%20enter%20into%20marriage&location=Evergreen%20Islamic%20Center%2C%202486%20Ruby%20Ave%2C%20San%20Jose%2C%20CA%2095148"
+                            target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
                         <a href="calendar/nikkah.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
                     </div>
                 </div>
@@ -653,19 +682,32 @@
         <div class="event-item" data-event="shalima">
             <div class="event-content">
                 <div class="event-header">
-                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span><span class="event-name">Shalima</span></h3>
+                    <h3 class="event-title"><span class="event-date">Sunday, July 5</span><span
+                            class="event-name">Shalima</span></h3>
                 </div>
                 <p class="event-timing">6:00 PM</p>
-                <p class="event-description">A celebratory reception to share an evening of dining and joy with our loved ones.</p>
-                <p class="event-location"><a href="https://www.google.com/maps/dir/?api=1&destination=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" rel="noopener">Canyon View Event Center<br>680 Bollinger Canyon Way, San Ramon, CA 94582</a></p>
-                <p class="event-dress-code"><strong>Dress Code:</strong> Formal or Traditional</p>
+                <p class="event-description">A celebratory reception to share an evening of dining and joy with our
+                    loved ones.</p>
+                <p class="event-location"><a
+                        href="https://www.google.com/maps/dir/?api=1&destination=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582"
+                        target="_blank" rel="noopener">Canyon View Event Center<br>680 Bollinger Canyon Way, San Ramon,
+                        CA 94582</a></p>
+                <p class="event-dress-code">
+                    <strong>Dress Code:</strong>
+                    <span style="display: block; padding-left: 20px;">• Men: Traditional or Western Suit</span>
+                    <span style="display: block; padding-left: 20px;">• Women: Traditional</span>
+                </p>
                 <div class="map-embed">
-                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582&output=embed" title="Canyon View Event Center map"></iframe>
+                    <iframe class="map-frame" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        src="https://www.google.com/maps?q=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582&output=embed"
+                        title="Canyon View Event Center map"></iframe>
                 </div>
                 <div class="calendar-dropdown">
-                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true" aria-expanded="false">+ Add to Calendar</button>
+                    <button type="button" class="add-to-calendar-btn calendar-toggle" aria-haspopup="true"
+                        aria-expanded="false">+ Add to Calendar</button>
                     <div class="calendar-menu" role="menu" aria-label="Calendar options for Shalima">
-                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582" target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
+                        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Shalima%20-%20Anas%20%26%20Nabiha&dates=20260705T180000/20260705T220000&details=A%20celebratory%20reception%20to%20share%20an%20evening%20of%20dining%20and%20joy%20with%20our%20loved%20ones&location=Canyon%20View%20Event%20Center%2C%20680%20Bollinger%20Canyon%20Way%2C%20San%20Ramon%2C%20CA%2094582"
+                            target="_blank" rel="noopener" class="calendar-option" role="menuitem">Google Calendar</a>
                         <a href="calendar/shalima.ics" class="calendar-option" role="menuitem">Apple Calendar (.ics)</a>
                     </div>
                 </div>
@@ -679,13 +721,13 @@
 
     <script>
         // Mark current page in menu
-        (function() {
+        (function () {
             const currentPage = window.location.pathname.split('/').pop() || 'index.html';
             const menuLinks = document.querySelectorAll('.menu-link');
             menuLinks.forEach(link => {
                 const href = link.getAttribute('href');
                 // Check if this link matches the current page
-                if (href === currentPage || 
+                if (href === currentPage ||
                     (currentPage === '' && href === 'index.html') ||
                     (currentPage === 'events.html' && href === 'events.html') ||
                     (currentPage === 'travel.html' && href === 'travel.html') ||
@@ -696,7 +738,7 @@
         })();
 
         // Top-left options menu + page transition behavior
-        (function() {
+        (function () {
             const menuBtn = document.getElementById('menuBtn');
             const menuOverlay = document.getElementById('menuOverlay');
             const menuLinks = document.querySelectorAll('.menu-link');
@@ -762,7 +804,7 @@
         })();
 
         // Invitation Type Handler - Persist type across pages using sessionStorage
-        (function() {
+        (function () {
             const params = new URLSearchParams(window.location.search);
             if (window.location.hash.includes('?')) {
                 const [hashPath, hashQuery] = window.location.hash.split('?');
@@ -781,7 +823,7 @@
                 invitationType = new URLSearchParams(hashQuery).get('type');
             }
             const storedType = sessionStorage.getItem('invitationType');
-            
+
             // If URL has a type parameter, it always wins
             if (invitationType) {
                 // If it differs from stored value and we haven't just reloaded, update and reload
@@ -800,7 +842,7 @@
                 invitationType = 'nikkaha';
                 sessionStorage.setItem('invitationType', invitationType);
             }
-            
+
             // Define which events are in each invitation type
             const invitationTypes = {
                 'subkucha': ['dholki', 'nikkah', 'shalima'],
@@ -811,15 +853,15 @@
                 'nikkahandshaliman': ['nikkah', 'shalima'],
                 'shalimaa': ['shalima'],
                 'shaliman': ['shalima'],
-                'dholkiandshalimaa' : ['dholki', 'shalima'],
-                'dholkiandshaliman' : ['dholki', 'shalima'],
+                'dholkiandshalimaa': ['dholki', 'shalima'],
+                'dholkiandshaliman': ['dholki', 'shalima'],
             };
-            
+
             // Default to nikkaha only if invalid type specified
-            const allowedEvents = invitationType && invitationTypes[invitationType] 
-                ? invitationTypes[invitationType] 
+            const allowedEvents = invitationType && invitationTypes[invitationType]
+                ? invitationTypes[invitationType]
                 : invitationTypes['nikkaha'];
-            
+
             // Remove event items that aren't allowed (completely remove from DOM)
             const allEventItems = document.querySelectorAll('.event-item[data-event]');
             allEventItems.forEach(item => {
@@ -831,7 +873,7 @@
         })();
 
         // Scroll-reveal for events
-        (function() {
+        (function () {
             const eventItems = document.querySelectorAll('.event-item');
             if (!eventItems.length) return;
 
@@ -853,7 +895,7 @@
         })();
 
         // Calendar dropdown behavior
-        (function() {
+        (function () {
             const calendarDropdowns = document.querySelectorAll('.calendar-dropdown');
             if (!calendarDropdowns.length) return;
 
@@ -895,4 +937,5 @@
     </script>
 
 </body>
+
 </html>

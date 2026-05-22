@@ -1098,6 +1098,18 @@
 
         // Invitation Type Handler - Persist type across pages using sessionStorage
         (function () {
+            // Clear old cookies that might interfere with invitation type
+            function clearOldTypeCookies() {
+                const cookiesToClear = ['invitationType', 'type', 'eventType', 'wedding_type'];
+                cookiesToClear.forEach(cookieName => {
+                    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                    document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+                });
+            }
+            
+            // Clear cookies first to ensure clean state
+            clearOldTypeCookies();
+            
             const params = new URLSearchParams(window.location.search);
             if (window.location.hash.includes('?')) {
                 const [hashPath, hashQuery] = window.location.hash.split('?');

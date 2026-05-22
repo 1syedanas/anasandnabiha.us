@@ -32,8 +32,24 @@
         }
     </style>
     <script>
+        // Clear old cookies that might interfere with current code/state
+        function clearOldCookies() {
+            // Delete cookies that might store old state
+            const cookiesToClear = ['code', 'invitationType', 'rsvp_code', 'wedding_code'];
+            
+            cookiesToClear.forEach(cookieName => {
+                // Clear the cookie by setting expiration to the past
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+                // Also try with different domains
+                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname;
+            });
+        }
+        
         // Extract code parameter from URL and pass it to the iframe
         function loadIframe() {
+            // Clear old cookies first
+            clearOldCookies();
+            
             let iframeSrc = 'https://script.google.com/macros/s/AKfycbwBl23tsG4n9jyHujJaXDqhiyk_1K0GXEuPqK7-9u6MGTLj0-mUfSfyG_J6yAv7bJtl/exec';
             
             // Get code parameter from current URL

@@ -656,6 +656,12 @@
         return;
       }
       
+      const alreadyRSVPed = members.some(m => m.hasExistingRSVP);
+      if (alreadyRSVPed) {
+        showExistingConfirmation(members);
+        return;
+      }
+
       document.getElementById('searchSection').style.display = 'none';
       const kidsRestricted = members.some(m => m.kidsRestricted);
       const existingDietary = members.find(m => m.dietary)?.dietary || "";
@@ -699,7 +705,7 @@
 
       html += `<div class="elegant-notice">
                 <div class="notice-header">Response Deadline</div>
-                <p class="notice-body">Kindly respond by April 15th, 2026. We look forward to celebrating with you!</p>
+                <p class="notice-body">Kindly respond by May 10th, 2026. We look forward to celebrating with you!</p>
               </div>`;
 
       html += `<button type="button" class="primary-btn" id="confirmBtn" onclick="submitFinal()" style="margin-top: 0;">CONFIRM RSVP</button></div></form>`; 
@@ -784,6 +790,52 @@
       syncToggleAllButtonToSelections();
     }
 
+    function getRedirectUrl(attendingDholki, attendingNikkah, attendingReception) {
+      if (attendingDholki && attendingReception && attendingNikkah) {
+        return "https://anasandnabiha.us/index.html?type=subkucha&key=anabiha2026";
+      }
+      if (attendingDholki && attendingReception) {
+        return "https://anasandnabiha.us/index.html?type=dholkiandshalimaa&key=anabiha2026";
+      }
+      if (attendingReception && attendingNikkah) {
+        return "https://anasandnabiha.us/index.html?type=nikkahandshalimaa&key=anabiha2026";
+      }
+      if (attendingReception) {
+        return "https://anasandnabiha.us/index.html?type=shalimaa&key=anabiha2026";
+      }
+      if (attendingNikkah) {
+        return "https://anasandnabiha.us/index.html?type=nikkaha&key=anabiha2026";
+      }
+      return "";
+    }
+
+    function showExistingConfirmation(members) {
+      document.getElementById('searchSection').style.display = 'none';
+      const attendingDholki = members.some(m => m.rsvp_dholki);
+      const attendingNikkah = members.some(m => m.rsvp_nikkah);
+      const attendingReception = members.some(m => m.rsvp_reception);
+      const redirectUrl = getRedirectUrl(attendingDholki, attendingNikkah, attendingReception);
+      const hasAnyAttendance = attendingDholki || attendingNikkah || attendingReception;
+
+      if (redirectUrl) {
+        document.getElementById('familyList').innerHTML = `
+          <div id="thankYouContainer" class="confetti-wrapper" style="padding: 20px; text-align: center;">
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 1.6rem;">Your RSVP has already been received.</h2>
+            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin: 20px 0;">Thank you! We have recorded your attendance and look forward to seeing you.</p>
+            <div style="margin-top: 15px;">
+              <a href="${redirectUrl}" target="_top" style="color: var(--primary); font-weight: bold; text-decoration: underline; font-size: 1.05rem;">View event details and travel info</a>
+            </div>
+          </div>`;
+        startConfetti();
+      } else {
+        document.getElementById('familyList').innerHTML = `
+          <div id="thankYouContainer" style="padding: 20px; text-align: center;">
+            <h2 style="font-family:'Playfair Display'; color:var(--primary); font-size: 1.6rem;">Your RSVP is already recorded.</h2>
+            <p style="font-size: 1.1rem; color: #555; line-height: 1.6; margin-top: 20px;">We have your response and understand you will not be able to attend. Thank you for letting us know.</p>
+          </div>`;
+      }
+    }
+
     function submitFinal() {
   const confirmBtn = document.getElementById('confirmBtn'); 
   confirmBtn.disabled = true; 
@@ -811,10 +863,14 @@
     // 2. Determine which URL to show based on your 3 specific cases
     let redirectUrl = "";
 
-    if (attendingDholki) {
-      // Case 1: Any Dholki attendance (automatic subkucha)
+    if (attendingDholki && attendingReception && attendingNikkah) {
+      // Case 1: Attending everything (automatic subkucha)
       redirectUrl = "https://anasandnabiha.us/index.html?type=subkucha&key=anabiha2026";
-    } 
+    }
+    else if (attendingDholki && attendingReception) {
+      // Case 1: Any Dholki attendance (automatic subkucha)
+      redirectUrl = "https://anasandnabiha.us/index.html?type=dholkiandshalimaa&key=anabiha2026";
+    }
     else if (attendingReception && attendingNikkah) {
       // Case 2: Reception and Nikkah
       redirectUrl = "https://anasandnabiha.us/index.html?type=nikkahandshalimaa&key=anabiha2026";

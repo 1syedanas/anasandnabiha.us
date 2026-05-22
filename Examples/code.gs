@@ -10,57 +10,75 @@ function doGet(e) {
 
 function getFamilyMembers(accessCode) {
   try {
-    const ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1b7909KMT5MCpRfNR2ZEFWXMRYt8ixRveJrs-aM7gvyI/edit");
+    const ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1b7909KMT5MCpRfNR2ZEFWXMRYt8ixRveJrs-aM7gvyI/edit?gid=1799665475#gid=1799665475");
     const sheet = ss.getSheetByName("GuestList");
     const lastRow = sheet.getLastRow();
 
     if (lastRow < 2) return [];
-    const data = sheet.getRange(2, 1, lastRow - 1, 11).getValues();
+    // Fetch all data including headers to keep indices simple
+    const data = sheet.getRange(1, 1, lastRow, 11).getValues();
     const searchCode = accessCode.trim().toUpperCase();
 
-    const family = data.filter(row => row[6].toString().trim().toUpperCase() === searchCode);
+    const family = [];
+    // Start loop from 1 (second row) to skip headers
+    for (let i = 1; i < data.length; i++) {
+      if (data[i][6].toString().trim().toUpperCase() === searchCode) {
+        const rsvpDholkiValue = data[i][7].toString().trim();
+        const rsvpNikkahValue = data[i][8].toString().trim();
+        const rsvpReceptionValue = data[i][9].toString().trim();
+        family.push({
+          rowIndex: i + 1, // Store the actual sheet row number
+          name: data[i][1].toString().trim(),
+          dholki: !!data[i][2],
+          nikkah: !!data[i][3],
+          reception: !!data[i][4],
+          kidsRestricted: !!data[i][5],
+          rsvp_dholki: rsvpDholkiValue === "Attending",
+          rsvp_nikkah: rsvpNikkahValue === "Attending",
+          rsvp_reception: rsvpReceptionValue === "Attending",
+          rsvp_dholki_value: rsvpDholkiValue,
+          rsvp_nikkah_value: rsvpNikkahValue,
+          rsvp_reception_value: rsvpReceptionValue,
+          hasExistingRSVP: Boolean(rsvpDholkiValue || rsvpNikkahValue || rsvpReceptionValue),
+          dietary: data[i][10] ? data[i][10].toString() : ""
+        });
+      }
+    }
 
-    if (family.length === 0) return null;
-
-    return family.map(row => ({
-      name: row[1].toString().trim(),
-      dholki: !!row[2],
-      nikkah: !!row[3],
-      reception: !!row[4],
-      kidsRestricted: !!row[5],
-      // NEW: return existing RSVP status
-      rsvp_dholki: row[7] === "Attending",
-      rsvp_nikkah: row[8] === "Attending",
-      rsvp_reception: row[9] === "Attending",
-      dietary: row[10] ? row[10].toString() : ""
-    }));
+    return family.length === 0 ? null : family;
   } catch (e) {
-    console.error("Error in getFamilyMembers: " + e.toString());
+    console.error("Error: " + e.toString());
     return null;
   }
 }
 
 function submitRSVP(responses) {
-  const ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1b7909KMT5MCpRfNR2ZEFWXMRYt8ixRveJrs-aM7gvyI/edit");
+  const ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1b7909KMT5MCpRfNR2ZEFWXMRYt8ixRveJrs-aM7gvyI/edit?gid=1799665475#gid=1799665475");
   const sheet = ss.getSheetByName("GuestList");
-  const data = sheet.getDataRange().getValues();
-
-  // CHANGED: All output columns shift by +1 due to the inserted column
+  
   const COL_RSVP_D = 8;
   const COL_RSVP_N = 9;
   const COL_RSVP_R = 10;
   const COL_DIETARY = 11;
 
   const dietaryNotes = responses['dietary_notes'] || "";
-
-  for (let i = 1; i < data.length; i++) {
-    const guestName = data[i][1].toString().trim();
-    if (responses[guestName + "_active"]) {
-      sheet.getRange(i + 1, COL_RSVP_D).setValue(responses[guestName + "_dholki"] ? "Attending" : "Not Attending");
-      sheet.getRange(i + 1, COL_RSVP_N).setValue(responses[guestName + "_nikkah"] ? "Attending" : "Not Attending");
-      sheet.getRange(i + 1, COL_RSVP_R).setValue(responses[guestName + "_reception"] ? "Attending" : "Not Attending");
-      sheet.getRange(i + 1, COL_DIETARY).setValue(dietaryNotes);
+  
+  // 'responses' now contains row IDs as keys (e.g., "row_5_active")
+  // We extract the row numbers from the keys
+  const processedRows = new Set();
+  
+  Object.keys(responses).forEach(key => {
+    if (key.startsWith("row_") && key.endsWith("_active")) {
+      const rowNum = parseInt(key.split("_")[1]);
+      if (!processedRows.has(rowNum)) {
+        sheet.getRange(rowNum, COL_RSVP_D).setValue(responses[`row_${rowNum}_dholki`] === "Attending" ? "Attending" : "Not Attending");
+        sheet.getRange(rowNum, COL_RSVP_N).setValue(responses[`row_${rowNum}_nikkah`] === "Attending" ? "Attending" : "Not Attending");
+        sheet.getRange(rowNum, COL_RSVP_R).setValue(responses[`row_${rowNum}_reception`] === "Attending" ? "Attending" : "Not Attending");
+        sheet.getRange(rowNum, COL_DIETARY).setValue(dietaryNotes);
+        processedRows.add(rowNum);
+      }
     }
-  }
+  });
+
   return "JazakAllah Khair! Your RSVP has been saved.";
 }

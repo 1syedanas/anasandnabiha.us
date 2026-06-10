@@ -648,6 +648,19 @@
     }
 
     function displayMembers(members) {
+      function isEventAnswered(member, event) {
+        const responseValue = member[`rsvp_${event.id}_value`];
+        return responseValue === 'Attending' || responseValue === 'Not Attending';
+      }
+
+      function isEventInvited(member, event) {
+        return Boolean(member[event.id]) || typeof member[`rsvp_${event.id}_value`] !== 'undefined' || typeof member[`rsvp_${event.id}`] !== 'undefined';
+      }
+
+      function isEventUnanswered(member, event) {
+        return isEventInvited(member, event) && !isEventAnswered(member, event);
+      }
+
       if (!members || members.length === 0) {
         document.getElementById('familyList').innerHTML = `
           <div class="fade-in-item" style="text-align: center; padding: 20px;">
@@ -657,8 +670,9 @@
         return;
       }
 
+      const hasUnanswered = members.some(m => events.some(event => isEventUnanswered(m, event)));
       const alreadyRSVPed = members.some(m => m.hasExistingRSVP);
-      if (alreadyRSVPed) {
+      if (alreadyRSVPed && !hasUnanswered) {
         showExistingConfirmation(members);
         return;
       }
@@ -682,27 +696,31 @@
       }
 
       members.forEach((m) => {
-        if (events.some(e => m[e.id])) {
-          // Use row index for the hidden active field
-          html += `<div class="guest-section fade-in-item" style="animation-delay: ${animationDelay}s">
+        const memberHasEvents = events.some(event => isEventInvited(m, event));
+        if (!memberHasEvents) return;
+
+        let memberRows = '';
+        events.forEach(event => {
+          if (!isEventInvited(m, event)) return;
+          const responseValue = m[`rsvp_${event.id}_value`] || "";
+          if (responseValue === 'Not Attending') return;
+          const hasAnswered = responseValue !== "";
+          const isAttending = responseValue === "Attending";
+          memberRows += renderEventRow(m.rowIndex, event.id, event, isAttending, hasAnswered, responseValue);
+        });
+
+        if (!memberRows) return;
+
+        html += `<div class="guest-section fade-in-item" style="animation-delay: ${animationDelay}s">
                <span class="guest-name">${m.name}</span>
                <input type="hidden" name="row_${m.rowIndex}_active" value="true">`;
-
-          events.forEach(event => {
-            if (m[event.id]) {
-              const isAttending = m[`rsvp_${event.id}`];
-              // Pass rowIndex to the row renderer
-              html += renderEventRow(m.rowIndex, event.id, event, isAttending);
-            }
-          });
-          html += `</div>`;
-          animationDelay += 0.1;
-        }
+        html += memberRows;
+        html += `</div>`;
+        animationDelay += 0.1;
       });
       html += `<div class="action-stack fade-in-item" style="animation-delay: ${animationDelay}s">`;
 
-      const showDietary = existingDietary !== "";
-      html += `<div id="dietarySection" style="display: ${showDietary ? 'block' : 'none'};" class="elegant-input"><label>Dietary Requirements</label><textarea name="dietary_notes" rows="2" placeholder="e.g., Allergies, Vegetarian...">${existingDietary}</textarea></div>`;
+      html += `<div id="dietarySection" style="display: none;" class="elegant-input"><label>Dietary Requirements</label><textarea name="dietary_notes" rows="2" placeholder="e.g., Allergies, Vegetarian...">${existingDietary}</textarea></div>`;
 
       html += `<div class="elegant-notice">
                 <div class="notice-header">Response Deadline</div>
@@ -713,9 +731,6 @@
 
       document.getElementById('familyList').innerHTML = html;
       setupToggleListeners();
-
-      const firstCheck = document.querySelector('input[type="checkbox"]');
-      if (firstCheck) firstCheck.dispatchEvent(new Event('change'));
     }
 
     function setToggleAllButton(action) {
@@ -729,15 +744,18 @@
     }
 
     function syncToggleAllButtonToSelections() {
-      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]');
-      if (!checkboxes.length) return;
+      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]:not(:disabled)');
+      if (!checkboxes.length) {
+        setToggleAllButton('accept');
+        return;
+      }
       const allChecked = Array.from(checkboxes).every(cb => cb.checked);
       setToggleAllButton(allChecked ? 'decline' : 'accept');
     }
 
     function toggleAllRSVPs() {
       const btn = document.getElementById('toggleAllBtn');
-      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]');
+      const checkboxes = document.querySelectorAll('#rsvpForm input[type="checkbox"]:not(:disabled)');
       if (!btn || !checkboxes.length) return;
 
       const action = btn.dataset.action || 'accept';
@@ -751,15 +769,31 @@
       setToggleAllButton(shouldAcceptAll ? 'decline' : 'accept');
     }
 
-    function renderEventRow(rowIndex, eventId, config, isChecked = false) {
-      // Unique name based on row index
+    function renderEventRow(rowIndex, eventId, config, isChecked = false, readonly = false, responseValue = "") {
       const inputName = `row_${rowIndex}_${eventId}`;
       const checkedAttr = isChecked ? 'checked' : '';
-      const labelText = isChecked ? "YES" : "NO";
-      const labelColor = isChecked ? "var(--primary)" : "#bbb";
+      const labelText = isChecked ? 'Attending' : 'NO';
+      const labelColor = isChecked ? 'var(--primary)' : '#bbb';
+      const rowStyle = readonly ? 'opacity: 0.55;' : '';
+
+      const hiddenInput = readonly ? `<input type="hidden" name="${inputName}" value="${responseValue}">` : '';
+      if (readonly) {
+        return `
+    <div class="event-option" style="${rowStyle}">
+      <div style="text-align:left">
+        <div style="font-weight:700; font-size:1rem; color: #444;">${config.name}</div>
+        <div style="font-size:0.85rem; color:#999">${config.date}</div>
+        <div style="font-size:0.8rem; color:var(--primary); margin-top: 2px; opacity: 0.8;">${config.location || ''}</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 0.75rem; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(122, 145, 106, 0.35); background: rgba(122, 145, 106, 0.08);">Attending</span>
+      </div>
+      ${hiddenInput}
+    </div>`;
+      }
 
       return `
-    <div class="event-option">
+    <div class="event-option" style="${rowStyle}">
       <div style="text-align:left">
         <div style="font-weight:700; font-size:1rem; color: #444;">${config.name}</div>
         <div style="font-size:0.85rem; color:#999">${config.date}</div>
@@ -775,20 +809,29 @@
     </div>`;
     }
 
+    function updateDietaryVisibility() {
+      const anyOn = Array.from(document.querySelectorAll('#rsvpForm input[type="checkbox"]')).some(c => c.checked);
+      const dietarySection = document.getElementById('dietarySection');
+      if (!dietarySection) return;
+      dietarySection.style.display = anyOn ? 'block' : 'none';
+    }
+
     function setupToggleListeners() {
-      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      document.querySelectorAll('#rsvpForm input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', (e) => {
           const label = document.getElementById('label-' + e.target.name);
-          label.innerText = e.target.checked ? "YES" : "NO";
-          label.style.color = e.target.checked ? "var(--primary)" : "var(--maroon)";
-          const anyOn = Array.from(document.querySelectorAll('input[type="checkbox"]')).some(c => c.checked);
-          document.getElementById('dietarySection').style.display = anyOn ? 'block' : 'none';
+          if (label) {
+            label.innerText = e.target.checked ? "YES" : "NO";
+            label.style.color = e.target.checked ? "var(--primary)" : "var(--maroon)";
+          }
+          updateDietaryVisibility();
           syncToggleAllButtonToSelections();
         });
       });
 
       // Ensure the bulk action button reflects the current per-event selections.
       syncToggleAllButtonToSelections();
+      updateDietaryVisibility();
     }
 
     function getRedirectUrl(attendingDholki, attendingNikkah, attendingReception) {

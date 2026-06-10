@@ -16,7 +16,7 @@ function getFamilyMembers(accessCode) {
 
     if (lastRow < 2) return [];
     // Fetch all data including headers to keep indices simple
-    const data = sheet.getRange(1, 1, lastRow, 11).getValues();
+    const data = sheet.getRange(1, 1, lastRow, 12).getValues();
     const searchCode = accessCode.trim().toUpperCase();
 
     const family = [];
@@ -40,7 +40,7 @@ function getFamilyMembers(accessCode) {
           rsvp_nikkah_value: rsvpNikkahValue,
           rsvp_reception_value: rsvpReceptionValue,
           hasExistingRSVP: Boolean(rsvpDholkiValue || rsvpNikkahValue || rsvpReceptionValue),
-          dietary: data[i][10] ? data[i][10].toString() : ""
+          dietary: data[i][11] ? data[i][11].toString() : ""
         });
       }
     }
@@ -59,7 +59,7 @@ function submitRSVP(responses) {
   const COL_RSVP_D = 8;
   const COL_RSVP_N = 9;
   const COL_RSVP_R = 10;
-  const COL_DIETARY = 11;
+  const COL_DIETARY = 12;
 
   const dietaryNotes = responses['dietary_notes'] || "";
   
